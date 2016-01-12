@@ -8,15 +8,17 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 
-	private static Joystick leftJoy = new Joystick(0);
-	private static Joystick rightJoy = new Joystick(1);
+	private static Joystick leftJoy = new Joystick(
+			RobotMap.JOYDRIVE_LEFT_STICK_PORT);
+	private static Joystick rightJoy = new Joystick(
+			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
 
 	public double getLeftY() {
-		return leftJoy.getY() * -1;
+		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
 	public double getRightY() {
-		return rightJoy.getY() * -1;
+		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
 	// // CREATING BUTTONS

@@ -7,6 +7,25 @@ package org.team2399;
  * floating around.
  */
 public class RobotMap {
+
+	/*
+	 * Things on the CAN network have addresses. Things on PWM network have
+	 * ports.
+	 */
+	public static final int DRIVETRAIN_RIGHT_TALON_ADDRESS = 0;
+	public static final int DRIVETRAIN_LEFT_TALON_ADDRESS = 0;
+
+	/*
+	 * PLEASE DO NOT CHANGE UNLESS JOYSTICKS BREAK
+	 */
+	public static final int JOYDRIVE_RIGHT_STICK_PORT = 0;
+	public static final int JOYDRIVE_LEFT_STICK_PORT = 0;
+
+	public static final int DRIVETRAIN_FORWARD_RIGHT = -1;
+	public static final int DRIVETRAIN_FORWARD_LEFT = 1;
+
+	public static final int JOYDRIVE_FORWARD = -1;
+
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
