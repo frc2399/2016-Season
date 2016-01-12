@@ -6,7 +6,8 @@ package org.team2399;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {
+public class RobotMap
+{
 
 	/*
 	 * Things on the CAN network have addresses. Things on PWM network have

@@ -6,18 +6,21 @@ import edu.wpi.first.wpilibj.Joystick;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class OI
+{
 
 	private static Joystick leftJoy = new Joystick(
 			RobotMap.JOYDRIVE_LEFT_STICK_PORT);
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
 
-	public double getLeftY() {
+	public double getLeftY()
+	{
 		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
-	public double getRightY() {
+	public double getRightY()
+	{
 		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
