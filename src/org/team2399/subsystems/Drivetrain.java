@@ -14,6 +14,7 @@ public class Drivetrain extends Subsystem
 
 	private CANTalon leftFrontTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_LEFTFRONT_TALON_ADDRESS);
+
 	private CANTalon rightFrontTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_RIGHTFRONT_TALON_ADDRESS);
 	private CANTalon leftBackTalon = new CANTalon(

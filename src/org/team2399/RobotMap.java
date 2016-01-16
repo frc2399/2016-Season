@@ -13,15 +13,15 @@ public class RobotMap
 	 * Things on the CAN network have addresses. Things on PWM network have
 	 * ports.
 	 */
-	public static final int DRIVETRAIN_RIGHTFRONT_TALON_ADDRESS = 0;
-	public static final int DRIVETRAIN_LEFTFRONT_TALON_ADDRESS = 0;
-	public static final int DRIVETRAIN_RIGHTBACK_TALON_ADDRESS = 0;
-	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 0;
+	public static final int DRIVETRAIN_RIGHTFRONT_TALON_ADDRESS = 3;
+	public static final int DRIVETRAIN_LEFTFRONT_TALON_ADDRESS = 4;
+	public static final int DRIVETRAIN_RIGHTBACK_TALON_ADDRESS = 5;
+	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
 
 	/*
 	 * PLEASE DO NOT CHANGE UNLESS JOYSTICKS BREAK
 	 */
-	public static final int JOYDRIVE_RIGHT_STICK_PORT = 0;
+	public static final int JOYDRIVE_RIGHT_STICK_PORT = 1;
 	public static final int JOYDRIVE_LEFT_STICK_PORT = 0;
 
 	public static final int DRIVETRAIN_FORWARD_RIGHT = -1;
