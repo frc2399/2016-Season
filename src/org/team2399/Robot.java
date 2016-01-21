@@ -1,6 +1,7 @@
 package org.team2399;
 
 import org.team2399.subsystems.Drivetrain;
+import org.team2399.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,7 +19,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot
 {
-
+	public static Intake intake = new Intake();
+	public static Intake outtake = new Intake();
 	public static Drivetrain drivetrain = new Drivetrain();
 
 	public static OI oi;

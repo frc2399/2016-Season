@@ -1,6 +1,10 @@
 package org.team2399;
 
+import org.team2399.commands.IntakeBoulder;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -13,6 +17,23 @@ public class OI
 			RobotMap.JOYDRIVE_LEFT_STICK_PORT);
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
+
+	private Button intakeButt = new JoystickButton(rightJoy, 1);
+	private Button outtakeButt = new JoystickButton(leftJoy, 1);
+	private Button stopButt = new JoystickButton(rightJoy, 10);
+
+	IntakeBoulder inSpeed = new IntakeBoulder(RobotMap.INTAKE_SPEED);
+	IntakeBoulder outSpeed = new IntakeBoulder(RobotMap.OUTTAKE_SPEED);
+	IntakeBoulder stopSpeed = new IntakeBoulder(RobotMap.STOP_SPEED);
+
+	public OI()
+	{
+		intakeButt.whileHeld(inSpeed);
+		intakeButt.whenReleased(stopSpeed);
+		outtakeButt.whileHeld(outSpeed);
+		outtakeButt.whenReleased(stopSpeed);
+		stopButt.whenPressed(stopSpeed);
+	}
 
 	public double getLeftY()
 	{
