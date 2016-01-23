@@ -13,7 +13,6 @@ public class IntakeBoulder extends Command
 {
 	double speed;
 	private Intake intake = Robot.intake;
-	private OI oi = Robot.oi;
 
 	public IntakeBoulder(double speed)
 	{
@@ -24,19 +23,20 @@ public class IntakeBoulder extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		intake.setIntakeSpeed(speed * oi.getRightThrottle());
-		System.out.println(speed * oi.getRightThrottle());
+		intake.setIntakeSpeed(speed * OI.getRightThrottle());
+		System.out.println(speed * OI.getRightThrottle());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

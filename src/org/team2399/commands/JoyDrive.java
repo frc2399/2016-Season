@@ -13,7 +13,6 @@ public class JoyDrive extends Command
 {
 
 	private Drivetrain drivetrain = Robot.drivetrain;
-	private OI oi = Robot.oi;
 
 	public JoyDrive()
 	{
@@ -28,8 +27,8 @@ public class JoyDrive extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		drivetrain.driveLeft(oi.getLeftY());
-		drivetrain.driveRight(oi.getRightY());
+		drivetrain.driveLeft(OI.getLeftY());
+		drivetrain.driveRight(OI.getRightY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

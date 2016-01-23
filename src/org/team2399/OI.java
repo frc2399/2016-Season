@@ -18,40 +18,41 @@ public class OI
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
 
-	private Button intakeButt = new JoystickButton(rightJoy, 1);
-	private Button outtakeButt = new JoystickButton(leftJoy, 1);
-	private Button stopButt = new JoystickButton(rightJoy, 10);
+	private static Button intakeButt = new JoystickButton(rightJoy, 1);
+	private static Button outtakeButt = new JoystickButton(leftJoy, 1);
+	private static Button stopButt = new JoystickButton(rightJoy, 10);
 
-	IntakeBoulder inSpeed = new IntakeBoulder(RobotMap.INTAKE_SPEED);
-	IntakeBoulder outSpeed = new IntakeBoulder(RobotMap.OUTTAKE_SPEED);
-	IntakeBoulder stopSpeed = new IntakeBoulder(RobotMap.STOP_SPEED);
+	private static IntakeBoulder inSpeed = new IntakeBoulder(
+			RobotMap.INTAKE_SPEED);
+	private static IntakeBoulder outSpeed = new IntakeBoulder(
+			RobotMap.OUTTAKE_SPEED);
+	private static IntakeBoulder stopSpeed = new IntakeBoulder(
+			RobotMap.STOP_SPEED);
 
 	public OI()
 	{
 		intakeButt.whileHeld(inSpeed);
-		intakeButt.whenReleased(stopSpeed);
 		outtakeButt.whileHeld(outSpeed);
-		outtakeButt.whenReleased(stopSpeed);
 		stopButt.whenPressed(stopSpeed);
 	}
 
-	public double getLeftY()
+	public static double getLeftY()
 	{
 		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
-	public double getRightY()
+	public static double getRightY()
 	{
 		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
-	public double getRightThrottle()
+	public static double getRightThrottle()
 	{
-		double throttle = rightJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD;
 		return (throttle + 1) / 2;
 	}
 
-	public double getLeftThrottle()
+	public static double getLeftThrottle()
 	{
 		double throttle = leftJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
 		return (throttle + 1) / 2;
