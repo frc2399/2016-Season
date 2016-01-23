@@ -45,6 +45,17 @@ public class OI
 		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
+	public double getRightThrottle()
+	{
+		double throttle = rightJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		return (throttle + 1) / 2;
+	}
+
+	public double getLeftThrottle()
+	{
+		double throttle = leftJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		return (throttle + 1) / 2;
+	}
 	// // CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	// joystick.
