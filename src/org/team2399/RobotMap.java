@@ -30,7 +30,7 @@ public class RobotMap
 	public static final int INTAKE_SPEED_IN_CONSTANT = 1;
 
 	public static final int JOYDRIVE_FORWARD = -1;
-	public static final int THROTTLE_FORWARD = 1;
+	public static final int THROTTLE_FORWARD = -1;
 
 	public static final double INTAKE_SPEED = .5;
 	public static final double OUTTAKE_SPEED = -.5;

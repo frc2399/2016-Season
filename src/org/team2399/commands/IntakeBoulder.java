@@ -29,8 +29,6 @@ public class IntakeBoulder extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		oi.getRightThrottle();
-		oi.getLeftThrottle();
 		intake.setIntakeSpeed(speed * oi.getRightThrottle());
 		System.out.println(speed * oi.getRightThrottle());
 	}
