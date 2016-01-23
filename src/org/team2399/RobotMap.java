@@ -27,12 +27,13 @@ public class RobotMap
 
 	public static final int DRIVETRAIN_FORWARD_RIGHT = -1;
 	public static final int DRIVETRAIN_FORWARD_LEFT = 1;
+	public static final int INTAKE_SPEED_IN_CONSTANT = 1;
 
 	public static final int JOYDRIVE_FORWARD = -1;
 
 	public static final double INTAKE_SPEED = .5;
 	public static final double OUTTAKE_SPEED = -.5;
-	public static final double STOP_SPEED = 0;
+	public static final double STOP_SPEED = 0.0;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

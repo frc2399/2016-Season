@@ -18,7 +18,7 @@ public class Intake extends Subsystem
 
 	public void setIntakeSpeed(double speed)
 	{
-		intakeTalon.set(speed);
+		intakeTalon.set(speed * RobotMap.INTAKE_SPEED_IN_CONSTANT);
 	}
 
 	public void initDefaultCommand()
