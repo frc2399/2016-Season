@@ -2,6 +2,7 @@ package org.team2399;
 
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
+import org.team2399.subsystems.Spoon;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,6 +22,7 @@ public class Robot extends IterativeRobot
 {
 	public static Intake intake = new Intake();
 	public static Drivetrain drivetrain = new Drivetrain();
+	public static Spoon spoon = new Spoon();
 
 	public static OI oi = new OI();;
 

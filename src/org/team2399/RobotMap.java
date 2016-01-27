@@ -19,6 +19,11 @@ public class RobotMap
 	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
 
 	public static final int INTAKE_TALON_ADDRESS = 6;
+
+	// TODO: CHANGE PORT NUMBER
+	public static final int ARM_TALON_ADDRESS = 0;
+	// TODO: CHANGE PORT NUMBER
+	public static final int ARM_POT_PORT = 0;
 	/*
 	 * PLEASE DO NOT CHANGE UNLESS JOYSTICKS BREAK
 	 */
@@ -35,6 +40,8 @@ public class RobotMap
 	public static final double INTAKE_SPEED = 1.0;
 	public static final double OUTTAKE_SPEED = -1.0;
 	public static final double STOP_SPEED = 0.0;
+
+	public static final double P_CONSTANT = 0.0;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
