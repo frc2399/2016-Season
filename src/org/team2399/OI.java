@@ -1,6 +1,7 @@
 package org.team2399;
 
 import org.team2399.commands.IntakeBoulder;
+import org.team2399.commands.MoveSpoon;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -18,9 +19,19 @@ public class OI
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
 
+	// TODO: Set actual buttons for arm
+	private static Button lowArmButt = new JoystickButton(rightJoy, 11);
+	private static Button medArmButt = new JoystickButton(rightJoy, 12);
+	private static Button highArmButt = new JoystickButton(rightJoy, 13);
+
 	private static Button intakeButt = new JoystickButton(rightJoy, 1);
 	private static Button outtakeButt = new JoystickButton(leftJoy, 1);
 	private static Button stopButt = new JoystickButton(rightJoy, 10);
+
+	private static MoveSpoon lowAngle = new MoveSpoon(RobotMap.LOW_ANGLE_CONST);
+	private static MoveSpoon medAngle = new MoveSpoon(RobotMap.MED_ANGLE_CONST);
+	private static MoveSpoon highAngle = new MoveSpoon(
+			RobotMap.HIGH_ANGLE_CONST);
 
 	private static IntakeBoulder inSpeed = new IntakeBoulder(
 			RobotMap.INTAKE_SPEED);
@@ -34,6 +45,9 @@ public class OI
 		intakeButt.whileHeld(inSpeed);
 		outtakeButt.whileHeld(outSpeed);
 		stopButt.whenPressed(stopSpeed);
+		lowArmButt.whenPressed(lowAngle);
+		medArmButt.whenPressed(medAngle);
+		highArmButt.whenPressed(highAngle);
 	}
 
 	public static double getLeftY()

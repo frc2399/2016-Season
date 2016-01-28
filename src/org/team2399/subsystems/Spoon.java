@@ -37,7 +37,7 @@ public class Spoon extends Subsystem
 		return desiredAngle;
 	}
 
-	// gets the current angle from the potentiometer
+	// gets the current angle in degrees
 	public double getCurrentAngle()
 	{
 		return armPot.get();
