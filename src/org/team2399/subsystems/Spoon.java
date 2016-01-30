@@ -50,7 +50,12 @@ public class Spoon extends Subsystem
 	{
 		double error = getDesiredAngle() - getCurrentAngle();
 		double pOutput = error * RobotMap.P_CONSTANT;
-		armTalon.set(pOutput);
+		setArmSpeed(pOutput);
+	}
+	
+	public void setArmSpeed(double speed)
+	{
+		armTalon.set(speed * RobotMap.ARM_FORWARD);
 	}
 
 	public void initDefaultCommand()

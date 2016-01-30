@@ -1,7 +1,8 @@
 package org.team2399;
 
 import org.team2399.commands.IntakeBoulder;
-import org.team2399.commands.MoveSpoon;
+import org.team2399.commands.StopSpoon;
+import org.team2399.commands.AngleSpoon;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -18,20 +19,23 @@ public class OI
 			RobotMap.JOYDRIVE_LEFT_STICK_PORT);
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
+	private static Joystick armJoy = new Joystick(RobotMap.ARM_STICK_PORT);
 
 	// TODO: Set actual buttons for arm
-	private static Button lowArmButt = new JoystickButton(rightJoy, 11);
-	private static Button medArmButt = new JoystickButton(rightJoy, 12);
-	private static Button highArmButt = new JoystickButton(rightJoy, 13);
+	private static Button lowArmButt = new JoystickButton(armJoy, 11);
+	private static Button medArmButt = new JoystickButton(armJoy, 12);
+	private static Button highArmButt = new JoystickButton(armJoy, 13);
+	private static Button stopArmButt = new JoystickButton(armJoy, 14); 
 
-	private static Button intakeButt = new JoystickButton(rightJoy, 1);
-	private static Button outtakeButt = new JoystickButton(leftJoy, 1);
-	private static Button stopButt = new JoystickButton(rightJoy, 10);
+	private static Button intakeButt = new JoystickButton(armJoy, 1);
+	private static Button outtakeButt = new JoystickButton(armJoy, 1);
+	private static Button stopButt = new JoystickButton(armJoy, 10);
 
-	private static MoveSpoon lowAngle = new MoveSpoon(RobotMap.LOW_ANGLE_CONST);
-	private static MoveSpoon medAngle = new MoveSpoon(RobotMap.MED_ANGLE_CONST);
-	private static MoveSpoon highAngle = new MoveSpoon(
+	private static AngleSpoon lowAngle = new AngleSpoon(RobotMap.LOW_ANGLE_CONST);
+	private static AngleSpoon medAngle = new AngleSpoon(RobotMap.MED_ANGLE_CONST);
+	private static AngleSpoon highAngle = new AngleSpoon(
 			RobotMap.HIGH_ANGLE_CONST);
+	private static StopSpoon stopSpoon = new StopSpoon();
 
 	private static IntakeBoulder inSpeed = new IntakeBoulder(
 			RobotMap.INTAKE_SPEED);
@@ -39,6 +43,7 @@ public class OI
 			RobotMap.OUTTAKE_SPEED);
 	private static IntakeBoulder stopSpeed = new IntakeBoulder(
 			RobotMap.STOP_SPEED);
+	
 
 	public OI()
 	{
@@ -48,6 +53,7 @@ public class OI
 		lowArmButt.whenPressed(lowAngle);
 		medArmButt.whenPressed(medAngle);
 		highArmButt.whenPressed(highAngle);
+		stopArmButt.whenPressed(stopSpoon);
 	}
 
 	public static double getLeftY()
