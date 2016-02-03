@@ -44,7 +44,8 @@ public class RobotMap
 	public static final double OUTTAKE_SPEED = -1.0;
 	public static final double STOP_SPEED = 0.0;
 
-	public static final double P_CONSTANT = 0.0;
+	public static final double ARM_P_CONSTANT = 0.0;
+	public static final double DRIVE_P_CONSTANT = 0.0;
 
 	public static final double LOW_ANGLE_CONST = 0.0;
 	public static final double MED_ANGLE_CONST = 0.0;

@@ -22,6 +22,30 @@ public class Drivetrain extends Subsystem
 	private CANTalon rightBackTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
 
+	private double desiredDistance;
+
+	public double getCurrentDistance()
+	{
+		return 0;
+	}
+
+	public void setDesiredDistance(double goal)
+	{
+		desiredDistance = goal;
+	}
+
+	public double getDesiredDistance()
+	{
+		return desiredDistance;
+	}
+
+	public void moveToDistance()
+	{
+		double error = getDesiredDistance() - getCurrentDistance();
+		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+		// setArmSpeed(pOutput);
+	}
+
 	public void driveLeft(double leftSpeed)
 	{
 		leftFrontTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);

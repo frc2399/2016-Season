@@ -49,10 +49,10 @@ public class Spoon extends Subsystem
 	public void moveArm()
 	{
 		double error = getDesiredAngle() - getCurrentAngle();
-		double pOutput = error * RobotMap.P_CONSTANT;
+		double pOutput = error * RobotMap.ARM_P_CONSTANT;
 		setArmSpeed(pOutput);
 	}
-	
+
 	public void setArmSpeed(double speed)
 	{
 		armTalon.set(speed * RobotMap.ARM_FORWARD);
