@@ -1,6 +1,5 @@
 package org.team2399.commands;
 
-import org.team2399.OI;
 import org.team2399.Robot;
 import org.team2399.subsystems.Drivetrain;
 
@@ -9,26 +8,32 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class JoyDrive extends Command
+public class DriveDistance extends Command
 {
+	private Drivetrain driveTrain = Robot.drivetrain;
+	private double desiredDistance;
 
-	private Drivetrain drivetrain = Robot.drivetrain;
-
-	public JoyDrive()
+	public DriveDistance(double desiredDistance)
 	{
-		requires(drivetrain);
+		this.desiredDistance = desiredDistance;
+		requires(driveTrain);
+		setInterruptible(true);
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
+		driveTrain.setLeftDesiredDistance(desiredDistance);
+		driveTrain.setRightDesiredDistance(desiredDistance);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		drivetrain.setLeftSpeed(OI.getLeftY());
-		drivetrain.setRightSpeed(OI.getRightY());
+		driveTrain.moveToLeftDistance();
+		driveTrain.moveToRightDistance();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

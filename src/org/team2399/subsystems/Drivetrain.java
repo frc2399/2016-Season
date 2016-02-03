@@ -24,36 +24,58 @@ public class Drivetrain extends Subsystem
 
 	private double desiredDistance;
 
-	public double getCurrentDistance()
+	public double getLeftPosition()
 	{
 		return 0;
 	}
 
-	public void setDesiredDistance(double goal)
+	public double getRightPosition()
+	{
+		return 0;
+	}
+
+	public void setLeftDesiredDistance(double goal)
 	{
 		desiredDistance = goal;
 	}
 
-	public double getDesiredDistance()
+	public void setRightDesiredDistance(double goal)
+	{
+		desiredDistance = goal;
+	}
+
+	public double getLeftDesiredDistance()
 	{
 		return desiredDistance;
 	}
 
-	public void moveToDistance()
+	public double getRightDesiredDistance()
 	{
-		double error = getDesiredDistance() - getCurrentDistance();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		// setArmSpeed(pOutput);
+		return desiredDistance;
 	}
 
-	public void driveLeft(double leftSpeed)
+	public void moveToLeftDistance()
+	{
+		double error = getLeftDesiredDistance() - getLeftPosition();
+		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+		setLeftSpeed(pOutput);
+	}
+
+	public void moveToRightDistance()
+	{
+		double error = getRightDesiredDistance() - getRightPosition();
+		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+		setRightSpeed(pOutput);
+	}
+
+	public void setLeftSpeed(double leftSpeed)
 	{
 		leftFrontTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);
 		leftBackTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);
 	}
 
 	// If wired positively, negate the right speed
-	public void driveRight(double rightSpeed)
+	public void setRightSpeed(double rightSpeed)
 	{
 		rightFrontTalon.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT);
 		rightBackTalon.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT);
