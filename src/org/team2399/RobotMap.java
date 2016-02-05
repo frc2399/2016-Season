@@ -18,7 +18,8 @@ public class RobotMap
 	public static final int DRIVETRAIN_RIGHTBACK_TALON_ADDRESS = 5;
 	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
 
-	public static final int INTAKE_TALON_ADDRESS = 6;
+	public static final int INTAKE_TOP_TALON_ADDRESS = 6;
+	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 2399; //TODO figure out the actual port
 
 	// TODO: CHANGE PORT NUMBER
 	public static final int ARM_TALON_ADDRESS = 0;
@@ -33,7 +34,8 @@ public class RobotMap
 
 	public static final int DRIVETRAIN_FORWARD_RIGHT = -1;
 	public static final int DRIVETRAIN_FORWARD_LEFT = 1;
-	public static final int INTAKE_SPEED_IN_CONSTANT = 1;
+	public static final int INTAKE_TOP_SPEED_IN_CONSTANT = 1;
+	public static final int INTAKE_BOTTOM_SPEED_IN_CONSTANT = -1;
 	public static final int ARM_FORWARD = 1; // TODO: figure out what this
 												// constant actually is
 
