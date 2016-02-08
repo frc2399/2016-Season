@@ -18,8 +18,12 @@ public class RobotMap
 	public static final int DRIVETRAIN_RIGHTBACK_TALON_ADDRESS = 5;
 	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
 
+	public static final int DRIVETRAIN_ENCODER_COUNT = 256;
+
 	public static final int INTAKE_TOP_TALON_ADDRESS = 6;
-	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 2399; //TODO figure out the actual port
+	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 2399; // TODO figure
+																// out the
+																// actual port
 
 	// TODO: CHANGE PORT NUMBER
 	public static final int ARM_TALON_ADDRESS = 0;
@@ -48,6 +52,7 @@ public class RobotMap
 
 	public static final double ARM_P_CONSTANT = 0.0;
 	public static final double DRIVE_P_CONSTANT = 0.0;
+	public static final double INTAKE_P_CONSTANT = 0.0;
 
 	public static final double LOW_ANGLE_CONST = 0.0;
 	public static final double MED_ANGLE_CONST = 0.0;

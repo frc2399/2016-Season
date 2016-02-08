@@ -3,6 +3,7 @@ package org.team2399;
 import org.team2399.commands.IntakeBoulder;
 import org.team2399.commands.StopSpoon;
 import org.team2399.commands.AngleSpoon;
+import org.team2399.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -31,6 +32,8 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(armJoy, 1);
 	private static Button stopButt = new JoystickButton(armJoy, 10);
 
+	private static Button stopDriveButt = new JoystickButton(armJoy, 2399); //TODO change to actual button number
+	
 	private static AngleSpoon lowAngle = new AngleSpoon(RobotMap.LOW_ANGLE_CONST);
 	private static AngleSpoon medAngle = new AngleSpoon(RobotMap.MED_ANGLE_CONST);
 	private static AngleSpoon highAngle = new AngleSpoon(
@@ -44,6 +47,8 @@ public class OI
 	private static IntakeBoulder stopSpeed = new IntakeBoulder(
 			RobotMap.STOP_SPEED);
 	
+	private static Drivetrain stopDrive = new Drivetrain(RobotMap.DRIVETRAIN_ENCODER_COUNT, );
+	
 
 	public OI()
 	{
@@ -54,6 +59,7 @@ public class OI
 		medArmButt.whenPressed(medAngle);
 		highArmButt.whenPressed(highAngle);
 		stopArmButt.whenPressed(stopSpoon);
+		stopDriveButt.whenPressed(stopDrive);
 	}
 
 	public static double getLeftY()
