@@ -14,15 +14,17 @@ public class RobotMap
 	 * ports.
 	 */
 	public static final int DRIVETRAIN_RIGHTFRONT_TALON_ADDRESS = 3;
-	public static final int DRIVETRAIN_LEFTFRONT_TALON_ADDRESS = 4;
+	public static final int DRIVETRAIN_LEFTFRONT_TALON_ADDRESS = 2;
 	public static final int DRIVETRAIN_RIGHTBACK_TALON_ADDRESS = 5;
-	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
+	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 4;
 
-	public static final int INTAKE_TOP_TALON_ADDRESS = 6;
-	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 2399; //TODO figure out the actual port
+	public static final int INTAKE_TOP_TALON_ADDRESS = 1;
+	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 7; // TODO figure out
+																// the actual
+																// port
 
 	// TODO: CHANGE PORT NUMBER
-	public static final int ARM_TALON_ADDRESS = 0;
+	public static final int ARM_TALON_ADDRESS = 6;
 	// TODO: CHANGE PORT NUMBER
 	public static final int ARM_POT_PORT = 0;
 	/*
