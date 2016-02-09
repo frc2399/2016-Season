@@ -1,6 +1,7 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
+import org.team2399.commands.StopSpoon;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -26,6 +27,12 @@ public class Spoon extends Subsystem
 	// or master's
 
 	// sets what the desired angle is
+
+	public Spoon()
+	{
+		armTalon.enableBrakeMode(true);
+	}
+
 	public void setDesiredAngle(double goal)
 	{
 		desiredAngle = goal;
@@ -60,7 +67,6 @@ public class Spoon extends Subsystem
 
 	public void initDefaultCommand()
 	{
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new StopSpoon());
 	}
 }

@@ -1,8 +1,8 @@
 package org.team2399;
 
+import org.team2399.commands.AngleSpoon;
 import org.team2399.commands.IntakeBoulder;
 import org.team2399.commands.StopSpoon;
-import org.team2399.commands.AngleSpoon;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -25,14 +25,16 @@ public class OI
 	private static Button lowArmButt = new JoystickButton(armJoy, 11);
 	private static Button medArmButt = new JoystickButton(armJoy, 12);
 	private static Button highArmButt = new JoystickButton(armJoy, 13);
-	private static Button stopArmButt = new JoystickButton(armJoy, 14); 
+	private static Button stopArmButt = new JoystickButton(armJoy, 14);
 
 	private static Button intakeButt = new JoystickButton(armJoy, 1);
-	private static Button outtakeButt = new JoystickButton(armJoy, 1);
+	private static Button outtakeButt = new JoystickButton(armJoy, 2);
 	private static Button stopButt = new JoystickButton(armJoy, 10);
 
-	private static AngleSpoon lowAngle = new AngleSpoon(RobotMap.LOW_ANGLE_CONST);
-	private static AngleSpoon medAngle = new AngleSpoon(RobotMap.MED_ANGLE_CONST);
+	private static AngleSpoon lowAngle = new AngleSpoon(
+			RobotMap.LOW_ANGLE_CONST);
+	private static AngleSpoon medAngle = new AngleSpoon(
+			RobotMap.MED_ANGLE_CONST);
 	private static AngleSpoon highAngle = new AngleSpoon(
 			RobotMap.HIGH_ANGLE_CONST);
 	private static StopSpoon stopSpoon = new StopSpoon();
@@ -43,7 +45,6 @@ public class OI
 			RobotMap.OUTTAKE_SPEED);
 	private static IntakeBoulder stopSpeed = new IntakeBoulder(
 			RobotMap.STOP_SPEED);
-	
 
 	public OI()
 	{
@@ -66,6 +67,11 @@ public class OI
 		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
+	public static double getArmY()
+	{
+		return armJoy.getY() * RobotMap.ARM_JOY_FORWARD;
+	}
+
 	public static double getRightThrottle()
 	{
 		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD;
@@ -75,6 +81,12 @@ public class OI
 	public static double getLeftThrottle()
 	{
 		double throttle = leftJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		return (throttle + 1) / 2;
+	}
+
+	public static double getArmThrottle()
+	{
+		double throttle = armJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
 		return (throttle + 1) / 2;
 	}
 	// // CREATING BUTTONS
