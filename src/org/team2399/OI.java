@@ -32,11 +32,11 @@ public class OI
 	private static Button stopButt = new JoystickButton(armJoy, 10);
 
 	private static AngleSpoon lowAngle = new AngleSpoon(
-			RobotMap.LOW_ANGLE_CONST);
+			RobotMap.LOW_ANGLE_CONSTANT);
 	private static AngleSpoon medAngle = new AngleSpoon(
-			RobotMap.MED_ANGLE_CONST);
+			RobotMap.MED_ANGLE_CONSTANT);
 	private static AngleSpoon highAngle = new AngleSpoon(
-			RobotMap.HIGH_ANGLE_CONST);
+			RobotMap.HIGH_ANGLE_CONSTANT);
 	private static StopSpoon stopSpoon = new StopSpoon();
 
 	private static IntakeBoulder inSpeed = new IntakeBoulder(

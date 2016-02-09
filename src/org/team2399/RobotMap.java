@@ -52,10 +52,14 @@ public class RobotMap
 	public static final double ARM_P_CONSTANT = 0.0;
 	public static final double DRIVE_P_CONSTANT = 0.0;
 
-	public static final double LOW_ANGLE_CONST = 0.0;
-	public static final double MED_ANGLE_CONST = 0.0;
-	public static final double HIGH_ANGLE_CONST = 0.0;
-	public static final double STOP_ARM_SPEED_CONST = 0.0;
+	public static final double LOW_ANGLE_CONSTANT = 0.0;
+	public static final double MED_ANGLE_CONSTANT = 0.0;
+	public static final double HIGH_ANGLE_CONSTANT = 0.0;
+	public static final double STOP_ARM_SPEED_CONSTANT = 0.0;
+
+	// Hertz: number of times you go through a loop in a second
+	public static final double ARM_LOOP_HERTZ_CONSTANT = 100;
+	public static final double DRIVE_LOOP_HERTZ_CONSTANT = 100;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
