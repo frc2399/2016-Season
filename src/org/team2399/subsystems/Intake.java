@@ -1,7 +1,7 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
-import org.team2399.commands.IntakeBoulder;
+import org.team2399.commands.JoyIntake;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Timer;
@@ -35,6 +35,6 @@ public class Intake extends Subsystem
 
 	public void initDefaultCommand()
 	{
-		setDefaultCommand(new IntakeBoulder(RobotMap.STOP_SPEED));
+		setDefaultCommand(new JoyIntake(RobotMap.STOP_SPEED));
 	}
 }

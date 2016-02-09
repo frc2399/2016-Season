@@ -1,7 +1,7 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
-import org.team2399.commands.StopSpoon;
+import org.team2399.commands.JoyPitch;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 // The arm subsystem.
-public class Spoon extends Subsystem
+public class Pitch extends Subsystem
 {
 
 	private CANTalon armTalon = new CANTalon(RobotMap.ARM_TALON_ADDRESS);
@@ -30,7 +30,7 @@ public class Spoon extends Subsystem
 
 	// sets what the desired angle is
 
-	public Spoon()
+	public Pitch()
 	{
 		armTalon.enableBrakeMode(true);
 		timer.start();
@@ -76,6 +76,6 @@ public class Spoon extends Subsystem
 
 	public void initDefaultCommand()
 	{
-		setDefaultCommand(new StopSpoon());
+		setDefaultCommand(new JoyPitch());
 	}
 }

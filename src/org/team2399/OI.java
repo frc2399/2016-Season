@@ -1,8 +1,8 @@
 package org.team2399;
 
 import org.team2399.commands.AngleSpoon;
-import org.team2399.commands.IntakeBoulder;
-import org.team2399.commands.StopSpoon;
+import org.team2399.commands.JoyIntake;
+import org.team2399.commands.JoyPitch;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -37,14 +37,11 @@ public class OI
 			RobotMap.MED_ANGLE_CONSTANT);
 	private static AngleSpoon highAngle = new AngleSpoon(
 			RobotMap.HIGH_ANGLE_CONSTANT);
-	private static StopSpoon stopSpoon = new StopSpoon();
+	private static JoyPitch stopSpoon = new JoyPitch();
 
-	private static IntakeBoulder inSpeed = new IntakeBoulder(
-			RobotMap.INTAKE_SPEED);
-	private static IntakeBoulder outSpeed = new IntakeBoulder(
-			RobotMap.OUTTAKE_SPEED);
-	private static IntakeBoulder stopSpeed = new IntakeBoulder(
-			RobotMap.STOP_SPEED);
+	private static JoyIntake inSpeed = new JoyIntake(RobotMap.INTAKE_SPEED);
+	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
+	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
 	public OI()
 	{

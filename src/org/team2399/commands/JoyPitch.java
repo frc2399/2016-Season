@@ -2,19 +2,19 @@ package org.team2399.commands;
 
 import org.team2399.OI;
 import org.team2399.Robot;
-import org.team2399.subsystems.Spoon;
+import org.team2399.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class StopSpoon extends Command
+public class JoyPitch extends Command
 {
 
-	private Spoon spoon = Robot.spoon;
+	private Pitch spoon = Robot.spoon;
 
-	public StopSpoon()
+	public JoyPitch()
 	{
 		requires(spoon);
 		setInterruptible(true);

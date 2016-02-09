@@ -1,7 +1,7 @@
 package org.team2399.commands;
 
 import org.team2399.Robot;
-import org.team2399.subsystems.Spoon;
+import org.team2399.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 // Command that moves the arm
 public class AngleSpoon extends Command
 {
-	private Spoon spoon = Robot.spoon;
+	private Pitch spoon = Robot.spoon;
 	private double desiredAngle;
 
 	// arm constructor

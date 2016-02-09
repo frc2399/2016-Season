@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeBoulder extends Command
+public class JoyIntake extends Command
 {
 	double speed;
 	private Intake intake = Robot.intake;
 
-	public IntakeBoulder(double speed)
+	public JoyIntake(double speed)
 	{
 		this.speed = speed;
 		requires(intake);
