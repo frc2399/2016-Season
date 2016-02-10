@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem
 {
-
+	/*
+	 * Drivetrain motors
+	 */
 	private CANTalon leftFrontTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_LEFTFRONT_TALON_ADDRESS);
 	private CANTalon rightFrontTalon = new CANTalon(
@@ -22,15 +24,27 @@ public class Drivetrain extends Subsystem
 	private CANTalon rightBackTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
 
+	/*
+	 * Timer for P loop
+	 */
 	private Timer timer = new Timer();
 
+	/*
+	 * The distance you want to move
+	 */
 	private double desiredDistance;
 
+	/*
+	 * Drivetrain constructor
+	 */
 	public Drivetrain()
 	{
 		timer.start();
 	}
 
+	/*
+	 * Gets current position TODO: input encoder value
+	 */
 	public double getLeftPosition()
 	{
 		return 0;
@@ -41,6 +55,9 @@ public class Drivetrain extends Subsystem
 		return 0;
 	}
 
+	/*
+	 * Sets desired distance to the goal
+	 */
 	public void setLeftDesiredDistance(double goal)
 	{
 		desiredDistance = goal;
@@ -51,6 +68,9 @@ public class Drivetrain extends Subsystem
 		desiredDistance = goal;
 	}
 
+	/*
+	 * Gets desired distance
+	 */
 	public double getLeftDesiredDistance()
 	{
 		return desiredDistance;
@@ -61,6 +81,9 @@ public class Drivetrain extends Subsystem
 		return desiredDistance;
 	}
 
+	/*
+	 * P loop for going the distance Timer for loop speed control
+	 */
 	public void moveToLeftDistance()
 	{
 		double currentTime = timer.get();
@@ -87,19 +110,29 @@ public class Drivetrain extends Subsystem
 		}
 	}
 
+	/*
+	 * Sets the speed of the Drivetrain
+	 */
 	public void setLeftSpeed(double leftSpeed)
 	{
-		leftFrontTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);
-		leftBackTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);
+		leftFrontTalon.set(leftSpeed
+				* RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
+		leftBackTalon
+				.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
 	}
 
 	// If wired positively, negate the right speed
 	public void setRightSpeed(double rightSpeed)
 	{
-		rightFrontTalon.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT);
-		rightBackTalon.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT);
+		rightFrontTalon.set(rightSpeed
+				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
+		rightBackTalon.set(rightSpeed
+				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
 
+	/*
+	 * Sets the default command for the subsystem
+	 */
 	public void initDefaultCommand()
 	{
 		setDefaultCommand(new JoyDrive());

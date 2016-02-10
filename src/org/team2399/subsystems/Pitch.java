@@ -15,6 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Pitch extends Subsystem
 {
 
+	/*
+	 * Fields pitchTalon: Talon for the pitch pitchPot: potentiometer
+	 * desiredAngle: the angle you want timer: timer for the P loop
+	 */
 	private CANTalon pitchTalon = new CANTalon(RobotMap.PITCH_TALON_ADDRESS);
 	private AnalogPotentiometer pitchPot = new AnalogPotentiometer(
 			RobotMap.PITCH_POT_PORT);
@@ -30,12 +34,19 @@ public class Pitch extends Subsystem
 
 	// sets what the desired angle is
 
+	/*
+	 * Pitch constructor enableBreakMode stops the motor from moving without
+	 * input from the driver station
+	 */
 	public Pitch()
 	{
 		pitchTalon.enableBrakeMode(true);
 		timer.start();
 	}
 
+	/*
+	 * sets the desired angle for the Pitch
+	 */
 	public void setDesiredAngle(double goal)
 	{
 		desiredAngle = goal;
@@ -53,9 +64,9 @@ public class Pitch extends Subsystem
 		return pitchPot.get();
 	}
 
-	// finds the error and gets the output of the P loop (see Control Loops doc
-	// for more info) and
-	// sets the armTalon to the output
+	/*
+	 * P loop for going to an angle Timer for loop speed control
+	 */
 	public void movePitch()
 	{
 		double currentTime = timer.get();
@@ -69,11 +80,17 @@ public class Pitch extends Subsystem
 		}
 	}
 
+	/*
+	 * Sets the speed of the Pitch
+	 */
 	public void setPitchSpeed(double speed)
 	{
-		pitchTalon.set(speed * RobotMap.PITCH_FORWARD);
+		pitchTalon.set(speed * RobotMap.PITCH_FORWARD_CONSTANT);
 	}
 
+	/*
+	 * Sets the default command for the subsystem
+	 */
 	public void initDefaultCommand()
 	{
 		setDefaultCommand(new JoyPitch());

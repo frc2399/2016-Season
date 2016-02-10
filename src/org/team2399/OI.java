@@ -57,6 +57,9 @@ public class OI
 	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
+	/*
+	 * Sets what buttons do (OI constructor)
+	 */
 	public OI()
 	{
 		intakeButt.whileHeld(inSpeed);
@@ -68,36 +71,44 @@ public class OI
 		stopPitchButt.whenPressed(stopSpoon);
 	}
 
+	/*
+	 * Get values from Joystick to set speeds in other commands/subsystems
+	 */
 	public static double getLeftY()
 	{
-		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
+		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD_CONSTANT;
 	}
 
 	public static double getRightY()
 	{
-		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
+		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD_CONSTANT;
 	}
 
 	public static double getIntakeY()
 	{
-		return intakeJoy.getY() * RobotMap.PITCH_JOY_FORWARD;
+		return intakeJoy.getY() * RobotMap.PITCH_JOY_FORWARD_CONSTANT;
 	}
 
+	/*
+	 * Gets values from throttle for manual speed control
+	 */
 	public static double getRightThrottle()
 	{
-		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD;
+		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
 
 	public static double getLeftThrottle()
 	{
-		double throttle = leftJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		double throttle = leftJoy.getThrottle()
+				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
 
 	public static double getIntakeThrottle()
 	{
-		double throttle = intakeJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		double throttle = intakeJoy.getThrottle()
+				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
 	// // CREATING BUTTONS

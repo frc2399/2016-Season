@@ -20,12 +20,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot
 {
+	/*
+	 * Creates instances of subsystems for use in commands
+	 */
 	public static Intake intake = new Intake();
 	public static Drivetrain drivetrain = new Drivetrain();
 	public static Pitch pitch = new Pitch();
 
+	/*
+	 * Creates instance of OI for use in commands
+	 */
 	public static OI oi = new OI();;
 
+	/*
+	 * Sets the autonomous command
+	 */
 	Command autonomousCommand;
 	SendableChooser chooser;
 
