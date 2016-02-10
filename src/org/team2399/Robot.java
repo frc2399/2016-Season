@@ -22,7 +22,7 @@ public class Robot extends IterativeRobot
 {
 	public static Intake intake = new Intake();
 	public static Drivetrain drivetrain = new Drivetrain();
-	public static Pitch spoon = new Pitch();
+	public static Pitch pitch = new Pitch();
 
 	public static OI oi = new OI();;
 

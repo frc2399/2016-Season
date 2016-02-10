@@ -9,29 +9,29 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 // Command that moves the arm
-public class AngleSpoon extends Command
+public class AnglePitch extends Command
 {
-	private Pitch spoon = Robot.spoon;
+	private Pitch pitch = Robot.pitch;
 	private double desiredAngle;
 
 	// arm constructor
-	public AngleSpoon(double desiredAngle)
+	public AnglePitch(double desiredAngle)
 	{
 		this.desiredAngle = desiredAngle;
-		requires(spoon);
+		requires(pitch);
 		setInterruptible(true);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		spoon.setDesiredAngle(desiredAngle);
+		pitch.setDesiredAngle(desiredAngle);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		spoon.moveArm();
+		pitch.movePitch();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Pitch extends Subsystem
 {
 
-	private CANTalon armTalon = new CANTalon(RobotMap.ARM_TALON_ADDRESS);
-	private AnalogPotentiometer armPot = new AnalogPotentiometer(
-			RobotMap.ARM_POT_PORT);
+	private CANTalon pitchTalon = new CANTalon(RobotMap.PITCH_TALON_ADDRESS);
+	private AnalogPotentiometer pitchPot = new AnalogPotentiometer(
+			RobotMap.PITCH_POT_PORT);
 	private double desiredAngle;
 	private Timer timer = new Timer();
 
@@ -32,7 +32,7 @@ public class Pitch extends Subsystem
 
 	public Pitch()
 	{
-		armTalon.enableBrakeMode(true);
+		pitchTalon.enableBrakeMode(true);
 		timer.start();
 	}
 
@@ -50,28 +50,28 @@ public class Pitch extends Subsystem
 	// gets the current angle in degrees
 	public double getCurrentAngle()
 	{
-		return armPot.get();
+		return pitchPot.get();
 	}
 
 	// finds the error and gets the output of the P loop (see Control Loops doc
 	// for more info) and
 	// sets the armTalon to the output
-	public void moveArm()
+	public void movePitch()
 	{
 		double currentTime = timer.get();
 
-		if (currentTime > RobotMap.ARM_LOOP_HERTZ_CONSTANT)
+		if (currentTime > RobotMap.PITCH_LOOP_HERTZ_CONSTANT)
 		{
 			double error = getDesiredAngle() - getCurrentAngle();
-			double pOutput = error * RobotMap.ARM_P_CONSTANT;
-			setArmSpeed(pOutput);
+			double pOutput = error * RobotMap.PITCH_P_CONSTANT;
+			setPitchSpeed(pOutput);
 			timer.reset();
 		}
 	}
 
-	public void setArmSpeed(double speed)
+	public void setPitchSpeed(double speed)
 	{
-		armTalon.set(speed * RobotMap.ARM_FORWARD);
+		pitchTalon.set(speed * RobotMap.PITCH_FORWARD);
 	}
 
 	public void initDefaultCommand()

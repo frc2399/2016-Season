@@ -29,8 +29,8 @@ public class JoyIntake extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		intake.setIntakeSpeed(speed * OI.getArmThrottle());
-		System.out.println(speed * OI.getRightThrottle());
+		intake.setIntakeSpeed(speed * OI.getIntakeThrottle());
+		System.out.println(speed * OI.getIntakeThrottle());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

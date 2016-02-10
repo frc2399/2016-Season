@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class JoyPitch extends Command
 {
 
-	private Pitch spoon = Robot.spoon;
+	private Pitch pitch = Robot.pitch;
 
 	public JoyPitch()
 	{
-		requires(spoon);
+		requires(pitch);
 		setInterruptible(true);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -30,7 +30,7 @@ public class JoyPitch extends Command
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		spoon.setArmSpeed(OI.getArmY());
+		pitch.setPitchSpeed(OI.getIntakeY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
