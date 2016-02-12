@@ -19,6 +19,13 @@ public class RobotMap
 	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
 
 	public static final int DRIVETRAIN_ENCODER_COUNT = 256;
+	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_A = 1;
+	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_B = 1;
+	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A = 1;
+	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B = 1; //TODO find the actual ports for all encoder channels
+	public static final double WHEEL_CIRCUMFERENCE = 6 * Math.PI; //circumference of wheel in inches
+	public static final double DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE * (1/DRIVETRAIN_ENCODER_COUNT) / 12;
+	
 
 	public static final int INTAKE_TOP_TALON_ADDRESS = 6;
 	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 2399; // TODO figure
@@ -58,6 +65,10 @@ public class RobotMap
 	public static final double MED_ANGLE_CONST = 0.0;
 	public static final double HIGH_ANGLE_CONST = 0.0;
 	public static final double STOP_ARM_SPEED_CONST = 0.0;
+	
+	
+	
+	
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

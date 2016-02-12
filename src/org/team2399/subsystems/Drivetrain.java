@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  *
@@ -19,13 +20,14 @@ public class Drivetrain extends Subsystem
 	private CANTalon leftBackTalon;
 	private CANTalon rightBackTalon;
 
-	private RobotDrive drive;
-
+	private Encoder rightEncoder;
+	private Encoder leftEncoder;
+	
 	private double desiredDistance;
 	private double desiredAngleRight;
 	private double desiredAngleLeft;
 
-	public Drivetrain(int encodercounts, Gyro g)
+	public Drivetrain(int encodercounts)
 	{
 		leftFrontTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_LEFTFRONT_TALON_ADDRESS);
@@ -34,31 +36,29 @@ public class Drivetrain extends Subsystem
 		leftBackTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFTBACK_TALON_ADDRESS);
 		rightBackTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
-		drive = new RobotDrive(leftFrontTalon, rightFrontTalon, leftBackTalon,
-				rightBackTalon);
-
+		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B);
+		leftEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_B);
+		
+		rightEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
+		leftEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
 	}
 
 	// TODO: Put in actual encoder values
 	public double getLeftPosition()
 	{
-		return 0;
+		return leftEncoder.getDistance();
 	}
 
 	public double getRightPosition()
 	{
-		return 0;
+		return rightEncoder.getDistance();
 	}
 
-	public double getLeftCurrentAngle()
+	public double getCurrentAngle()
 	{
 		return 0; // left encoder value
 	}
 
-	public double getRightCurrentAngle()
-	{
-		return 0; // right encoder value
-	}
 
 	// TODO: Figure out math to put in degrees and get out encoder value
 	public void setRightDesiredAngle(double goalAngle)
@@ -73,11 +73,13 @@ public class Drivetrain extends Subsystem
 
 	public void setLeftDesiredDistance(double goalDistance)
 	{
+		leftEncoder.reset();
 		desiredDistance = goalDistance;
 	}
 
 	public void setRightDesiredDistance(double goalDistance)
 	{
+		rightEncoder.reset();
 		desiredDistance = goalDistance;
 	}
 
@@ -117,14 +119,14 @@ public class Drivetrain extends Subsystem
 
 	public void moveToRightAngle()
 	{
-		double error = getRightDesiredAngle() - getRightCurrentAngle();
+		double error = getRightDesiredAngle() - getCurrentAngle();
 		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
 		setRightSpeed(pOutput);
 	}
 
 	public void moveToLeftAngle()
 	{
-		double error = getLeftDesiredAngle() - getLeftCurrentAngle();
+		double error = getLeftDesiredAngle() - getCurrentAngle();
 		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
 		setRightSpeed(pOutput);
 	}

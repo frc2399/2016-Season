@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	public static Intake intake = new Intake();
-	public static Drivetrain drivetrain = new Drivetrain();
+	public static Drivetrain drivetrain = new Drivetrain(RobotMap.DRIVETRAIN_ENCODER_COUNT);
 	public static Spoon spoon = new Spoon();
 
 	public static OI oi = new OI();;
