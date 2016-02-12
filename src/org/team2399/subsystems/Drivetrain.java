@@ -19,7 +19,10 @@ public class Drivetrain extends Subsystem
 	private CANTalon rightFrontTalon;
 	private CANTalon leftBackTalon;
 	private CANTalon rightBackTalon;
-
+	
+	/*
+	 * Makes new encoders
+	 */
 	private Encoder rightEncoder;
 	private Encoder leftEncoder;
 	
@@ -27,6 +30,11 @@ public class Drivetrain extends Subsystem
 	private double desiredAngleRight;
 	private double desiredAngleLeft;
 
+	/*
+	 * Takes in counts for the encoder
+	 * Construct two new encoders
+	 * Setting the distance per pulse 
+	 */
 	public Drivetrain(int encodercounts)
 	{
 		leftFrontTalon = new CANTalon(
@@ -36,14 +44,17 @@ public class Drivetrain extends Subsystem
 		leftBackTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFTBACK_TALON_ADDRESS);
 		rightBackTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
+		
 		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B);
 		leftEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_B);
 		
-		rightEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
-		leftEncoder.setDistancePerPulse(RobotMap.DISTANCE_PER_PULSE);
+		rightEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
+		leftEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
 	}
-
-	// TODO: Put in actual encoder values
+	
+	/*
+	 * Gets position of left and right encoder
+	 */
 	public double getLeftPosition()
 	{
 		return leftEncoder.getDistance();
@@ -71,6 +82,9 @@ public class Drivetrain extends Subsystem
 		desiredAngleLeft = goalAngle;
 	}
 
+	/*
+	 * Resets the encoder
+	 */
 	public void setLeftDesiredDistance(double goalDistance)
 	{
 		leftEncoder.reset();

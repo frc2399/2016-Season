@@ -1,5 +1,6 @@
 package org.team2399.commands;
 
+import org.team2399.RobotMap;
 import org.team2399.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,7 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoIntakeBoulder extends Command
 {
 
-	private Intake intake = new Intake();
+	/* 
+	 * Take in encoder count 
+	 */
+	private Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
 	double desiredPosition;
 
 	public AutoIntakeBoulder(double desiredPosition)
@@ -26,13 +30,15 @@ public class AutoIntakeBoulder extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		intake.setDesiredPosition(desiredPosition);
+		intake.setTopDesiredPosition(desiredPosition);
+		intake.setBottomDesiredPosition(desiredPosition);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		intake.moveToPosition();
+		intake.moveToTopPosition();
+		intake.moveToBottomPosition();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

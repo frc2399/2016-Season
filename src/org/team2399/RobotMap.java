@@ -17,16 +17,41 @@ public class RobotMap
 	public static final int DRIVETRAIN_LEFTFRONT_TALON_ADDRESS = 4;
 	public static final int DRIVETRAIN_RIGHTBACK_TALON_ADDRESS = 5;
 	public static final int DRIVETRAIN_LEFTBACK_TALON_ADDRESS = 2;
-
+	
+	/* 
+	 * Sets the encoder counts for drivetrain and intake
+	 */
 	public static final int DRIVETRAIN_ENCODER_COUNT = 256;
+	public static final int INTAKE_ENCODER_COUNT = 0;
+	
+	/* 
+	 * Sets the drivetrain encoder port numbers
+	 */
 	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_A = 1;
 	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_B = 1;
 	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A = 1;
 	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B = 1; //TODO find the actual ports for all encoder channels
-	public static final double WHEEL_CIRCUMFERENCE = 6 * Math.PI; //circumference of wheel in inches
-	public static final double DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE * (1/DRIVETRAIN_ENCODER_COUNT) / 12;
 	
-
+	/* 
+	 * Calculates the distance robot travels per rotation of encoder in feet 
+	 */
+	public static final double WHEEL_CIRCUMFERENCE = 6 * Math.PI; //circumference of wheel in inches
+	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE * (1/DRIVETRAIN_ENCODER_COUNT) / 12;
+	
+	/* 
+	 * Sets the intake encoder port numbers 
+	 */
+	public static final int INTAKE_ENCODER_TOP_CHANNEL_A = 1;
+	public static final int INTAKE_ENCODER_TOP_CHANNEL_B = 1;
+	public static final int INTAKE_ENCODER_BOTTOM_CHANNEL_A = 1; 
+	public static final int INTAKE_ENCODER_BOTTOM_CHANNEL_B = 1;
+	//TODO find actual port numbers
+	
+	/* 
+	 * Finds the rotational distance of intake per one rotation of encoder
+	 */
+	public static final double INTAKE_DISTANCE_PER_PULSE = 0; //TODO: write actual calculation
+	
 	public static final int INTAKE_TOP_TALON_ADDRESS = 6;
 	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 2399; // TODO figure
 																// out the
