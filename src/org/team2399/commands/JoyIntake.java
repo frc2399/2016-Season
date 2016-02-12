@@ -11,9 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class JoyIntake extends Command
 {
+	/*
+	 * speed: speed of the intake intake: new instance of the intake subsystem
+	 */
 	double speed;
 	private Intake intake = Robot.intake;
 
+	/*
+	 * JoyIntake constructor Sets the intake speed, requires the intake
+	 * subsystem
+	 */
 	public JoyIntake(double speed)
 	{
 		this.speed = speed;
@@ -26,7 +33,11 @@ public class JoyIntake extends Command
 
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/*
+	 * Called repeatedly when this Command is scheduled to run Sets the intake
+	 * speed to the throttle value on the intake joystick prints out the intake
+	 * speed
+	 */
 	protected void execute()
 	{
 		intake.setIntakeSpeed(speed * OI.getIntakeThrottle());
@@ -34,6 +45,7 @@ public class JoyIntake extends Command
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
+	// TODO: Ask why this returns true rather than false
 	protected boolean isFinished()
 	{
 		return true;

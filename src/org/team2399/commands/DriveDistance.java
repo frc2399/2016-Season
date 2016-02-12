@@ -10,9 +10,17 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveDistance extends Command
 {
+	/*
+	 * drivetrain: Creates a new instance of the drivetrain subsystem
+	 * desiredDistance: where you want to go
+	 */
 	private Drivetrain driveTrain = Robot.drivetrain;
 	private double desiredDistance;
 
+	/*
+	 * DriveDistance constructor Sets the desired distance needs the drivetrain
+	 * subsystem allows command to be interrupted
+	 */
 	public DriveDistance(double desiredDistance)
 	{
 		this.desiredDistance = desiredDistance;
@@ -22,14 +30,20 @@ public class DriveDistance extends Command
 		// eg. requires(chassis);
 	}
 
-	// Called just before this Command runs the first time
+	/*
+	 * Called just before this Command runs the first time Sets the desired
+	 * distance (right and left)
+	 */
 	protected void initialize()
 	{
 		driveTrain.setLeftDesiredDistance(desiredDistance);
 		driveTrain.setRightDesiredDistance(desiredDistance);
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/*
+	 * Called repeatedly when this Command is scheduled to run(non-Javadoc)
+	 * Moves drivetrain to desired distance
+	 */
 	protected void execute()
 	{
 		driveTrain.moveToLeftDistance();
