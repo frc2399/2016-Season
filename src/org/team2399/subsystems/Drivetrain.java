@@ -4,6 +4,7 @@ import org.team2399.RobotMap;
 import org.team2399.commands.JoyDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,7 +23,14 @@ public class Drivetrain extends Subsystem
 	private CANTalon rightBackTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
 
+	private Timer timer = new Timer();
+
 	private double desiredDistance;
+
+	public Drivetrain()
+	{
+		timer.start();
+	}
 
 	public double getLeftPosition()
 	{
@@ -56,16 +64,28 @@ public class Drivetrain extends Subsystem
 
 	public void moveToLeftDistance()
 	{
-		double error = getLeftDesiredDistance() - getLeftPosition();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		setLeftSpeed(pOutput);
+		double currentTime = timer.get();
+
+		if (currentTime > RobotMap.DRIVE_LOOP_HERTZ_CONSTANT)
+		{
+			double error = getLeftDesiredDistance() - getLeftPosition();
+			double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+			setLeftSpeed(pOutput);
+			timer.reset();
+		}
 	}
 
 	public void moveToRightDistance()
 	{
-		double error = getRightDesiredDistance() - getRightPosition();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		setRightSpeed(pOutput);
+		double currentTime = timer.get();
+
+		if (currentTime > RobotMap.DRIVE_LOOP_HERTZ_CONSTANT)
+		{
+			double error = getRightDesiredDistance() - getRightPosition();
+			double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+			setRightSpeed(pOutput);
+			timer.reset();
+		}
 	}
 
 	public void setLeftSpeed(double leftSpeed)

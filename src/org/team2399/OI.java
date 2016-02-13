@@ -22,21 +22,21 @@ public class OI
 	private static Joystick armJoy = new Joystick(RobotMap.ARM_STICK_PORT);
 
 	// TODO: Set actual buttons for arm
-	// private static Button lowArmButt = new JoystickButton(armJoy, 11);
-	// private static Button medArmButt = new JoystickButton(armJoy, 12);
-	// private static Button highArmButt = new JoystickButton(armJoy, 13);
-	private static Button stopArmButt = new JoystickButton(armJoy, 8);
+	private static Button lowArmButt = new JoystickButton(armJoy, 11);
+	private static Button medArmButt = new JoystickButton(armJoy, 12);
+	private static Button highArmButt = new JoystickButton(armJoy, 13);
+	private static Button stopArmButt = new JoystickButton(armJoy, 14);
 
 	private static Button intakeButt = new JoystickButton(armJoy, 1);
-	private static Button outtakeButt = new JoystickButton(armJoy, 1);
+	private static Button outtakeButt = new JoystickButton(armJoy, 2);
 	private static Button stopButt = new JoystickButton(armJoy, 10);
 
 	private static AngleSpoon lowAngle = new AngleSpoon(
-			RobotMap.LOW_ANGLE_CONST);
+			RobotMap.LOW_ANGLE_CONSTANT);
 	private static AngleSpoon medAngle = new AngleSpoon(
-			RobotMap.MED_ANGLE_CONST);
+			RobotMap.MED_ANGLE_CONSTANT);
 	private static AngleSpoon highAngle = new AngleSpoon(
-			RobotMap.HIGH_ANGLE_CONST);
+			RobotMap.HIGH_ANGLE_CONSTANT);
 	private static StopSpoon stopSpoon = new StopSpoon();
 
 	private static IntakeBoulder inSpeed = new IntakeBoulder(
@@ -67,6 +67,11 @@ public class OI
 		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
 	}
 
+	public static double getArmY()
+	{
+		return armJoy.getY() * RobotMap.ARM_JOY_FORWARD;
+	}
+
 	public static double getRightThrottle()
 	{
 		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD;
@@ -79,9 +84,10 @@ public class OI
 		return (throttle + 1) / 2;
 	}
 
-	public static double getArmY()
+	public static double getArmThrottle()
 	{
-		return armJoy.getY();
+		double throttle = armJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		return (throttle + 1) / 2;
 	}
 	// // CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

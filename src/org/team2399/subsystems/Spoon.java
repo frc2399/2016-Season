@@ -1,9 +1,11 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
+import org.team2399.commands.StopSpoon;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,6 +19,7 @@ public class Spoon extends Subsystem
 	private AnalogPotentiometer armPot = new AnalogPotentiometer(
 			RobotMap.ARM_POT_PORT);
 	private double desiredAngle;
+	private Timer timer = new Timer();
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -26,6 +29,13 @@ public class Spoon extends Subsystem
 	// or master's
 
 	// sets what the desired angle is
+
+	public Spoon()
+	{
+		armTalon.enableBrakeMode(true);
+		timer.start();
+	}
+
 	public void setDesiredAngle(double goal)
 	{
 		desiredAngle = goal;
@@ -48,9 +58,15 @@ public class Spoon extends Subsystem
 	// sets the armTalon to the output
 	public void moveArm()
 	{
-		double error = getDesiredAngle() - getCurrentAngle();
-		double pOutput = error * RobotMap.ARM_P_CONSTANT;
-		setArmSpeed(pOutput);
+		double currentTime = timer.get();
+
+		if (currentTime > RobotMap.ARM_LOOP_HERTZ_CONSTANT)
+		{
+			double error = getDesiredAngle() - getCurrentAngle();
+			double pOutput = error * RobotMap.ARM_P_CONSTANT;
+			setArmSpeed(pOutput);
+			timer.reset();
+		}
 	}
 
 	public void setArmSpeed(double speed)
@@ -60,7 +76,6 @@ public class Spoon extends Subsystem
 
 	public void initDefaultCommand()
 	{
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new StopSpoon());
 	}
 }
