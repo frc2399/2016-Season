@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class JoyDrive extends Command
 {
 
-	/*
+	/**
 	 * drivetrain: new instance of the drivetrain subsystem
 	 */
 	private Drivetrain drivetrain = Robot.drivetrain;
 
-	/*
+	/**
 	 * needs the drivetrian subsystem
 	 */
 	public JoyDrive()
@@ -30,7 +30,7 @@ public class JoyDrive extends Command
 	{
 	}
 
-	/*
+	/**
 	 * Called repeatedly when this Command is scheduled to run(non-Javadoc) Sets
 	 * speed for left and right based on joystick values
 	 */

@@ -13,12 +13,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem
 {
+	/*
+	 * Creates new Talons
+	 */
 	private CANTalon intakeTopTalon;
 	private CANTalon intakeBottomTalon;
 
 	private double desiredPosition;
 
-	/*
+	/**
 	 * Created new encoders
 	 */
 	private Encoder topEncoder;
@@ -26,9 +29,11 @@ public class Intake extends Subsystem
 
 	private Timer timer = new Timer();
 
-	/*
-	 * Taking in the encoder counts Created two encoders Sets encoder intake
-	 * distance per pulse
+	/**
+	 * Takes in the encoder counts Created two encoders sets distance per pulse
+	 * 
+	 * @param encoderCounts
+	 *            : pulse per rotation
 	 */
 	public Intake(int encoderCounts)
 	{
@@ -51,8 +56,10 @@ public class Intake extends Subsystem
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
-	/*
+	/**
 	 * Gets the current position of the rotation
+	 * 
+	 * @return: the distance for the position
 	 */
 	public double getTopCurrentPosition()
 	{
@@ -64,8 +71,11 @@ public class Intake extends Subsystem
 		return bottomEncoder.getDistance();
 	}
 
-	/*
+	/**
 	 * Split desired position into top and bottom
+	 * 
+	 * @param goalPosition
+	 *            : saves the value into the field
 	 */
 
 	public void setTopDesiredPosition(double goalPosition)
@@ -78,8 +88,10 @@ public class Intake extends Subsystem
 		desiredPosition = goalPosition;
 	}
 
-	/*
+	/**
 	 * Resets encoder
+	 * 
+	 * @return: the desired position
 	 */
 	public double getTopDesiredPosition()
 	{
@@ -93,8 +105,9 @@ public class Intake extends Subsystem
 		return desiredPosition;
 	}
 
-	/*
-	 * Split move to position into top and bottom
+	/**
+	 * Split move to position into top and bottom P loop for moving to
+	 * top/bottom position
 	 */
 	// TODO: Get this checked over
 	public void moveToTopPosition()
@@ -111,8 +124,12 @@ public class Intake extends Subsystem
 		setBottomIntakeSpeed(pOutput);
 	}
 
-	/*
-	 * Added set intake speed for top and bottom
+	/**
+	 * Sets speed of top/bottom intake motors + method for setting both to same
+	 * speed
+	 * 
+	 * @param topSpeed
+	 *            : desired speed
 	 */
 	public void setTopIntakeSpeed(double topSpeed)
 	{
@@ -131,7 +148,7 @@ public class Intake extends Subsystem
 		intakeTopTalon.set(speed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
 	}
 
-	/*
+	/**
 	 * Sets the default command for the subsystem
 	 */
 	public void initDefaultCommand()

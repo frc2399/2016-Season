@@ -11,12 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoIntakeBoulder extends Command
 {
 
-	/* 
-	 * Take in encoder count 
+	/**
+	 * Take in encoder count
 	 */
 	private Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
 	double desiredPosition;
 
+	/**
+	 * takes local variable of desired position and saves value in the field
+	 * 
+	 * @param desiredPosition
+	 *            :takes the value of the local variable and saves in the field
+	 */
 	public AutoIntakeBoulder(double desiredPosition)
 	{
 		this.desiredPosition = desiredPosition;
@@ -27,14 +33,19 @@ public class AutoIntakeBoulder extends Command
 		// eg. requires(chassis);
 	}
 
-	// Called just before this Command runs the first time
+	/**
+	 * Called just before this Command runs the first time Sets desired position
+	 */
 	protected void initialize()
 	{
 		intake.setTopDesiredPosition(desiredPosition);
 		intake.setBottomDesiredPosition(desiredPosition);
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/**
+	 * Called repeatedly when this Command is scheduled to run Moves to desired
+	 * position
+	 */
 	protected void execute()
 	{
 		intake.moveToTopPosition();

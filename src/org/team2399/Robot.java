@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot
 {
-	/*
+	/**
 	 * Creates instances of subsystems for use in commands
 	 */
 	public static Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
@@ -28,12 +28,12 @@ public class Robot extends IterativeRobot
 			RobotMap.DRIVETRAIN_ENCODER_COUNT);
 	public static Pitch pitch = new Pitch();
 
-	/*
+	/**
 	 * Creates instance of OI for use in commands
 	 */
 	public static OI oi = new OI();;
 
-	/*
+	/**
 	 * Sets the autonomous command
 	 */
 	Command autonomousCommand;

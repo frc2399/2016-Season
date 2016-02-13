@@ -11,9 +11,21 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveAngle extends Command
 {
 
+	/**
+	 * drivetrain: new instance of drivetrain subsystem desiredAngle: angle you
+	 * want to be at
+	 */
 	private Drivetrain driveTrain = Robot.drivetrain;
 	private double desiredAngle;
 
+	/**
+	 * DriveAngle constructor sets desiredAngle to inputted value requires the
+	 * drivetrain subsystem, and this particular command can be interrupted by
+	 * other commands
+	 * 
+	 * @param desiredAngle
+	 *            :saves the value of desired angle in the field
+	 */
 	public DriveAngle(double desiredAngle)
 	{
 		this.desiredAngle = desiredAngle;
@@ -23,13 +35,18 @@ public class DriveAngle extends Command
 		// eg. requires(chassis);
 	}
 
-	// Called just before this Command runs the first time
+	/**
+	 * Called just before this Command runs the first time Sets desired angle
+	 */
 	protected void initialize()
 	{
 		driveTrain.setDesiredAngle(desiredAngle);
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/**
+	 * Called repeatedly when this Command is scheduled to run Move to desired
+	 * angle
+	 */
 	protected void execute()
 	{
 		driveTrain.moveToAngle();

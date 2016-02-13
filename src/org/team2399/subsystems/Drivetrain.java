@@ -6,11 +6,10 @@ import org.team2399.commands.JoyDrive;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.Encoder;
 
 /**
  *
@@ -18,32 +17,36 @@ import edu.wpi.first.wpilibj.Encoder;
 public class Drivetrain extends Subsystem
 {
 
-
+	/**
+	 * Makes new CANTalons
+	 */
 	private CANTalon leftFrontTalon;
 	private CANTalon rightFrontTalon;
 	private CANTalon leftBackTalon;
 	private CANTalon rightBackTalon;
-	
-	/*
+
+	/**
 	 * Makes new encoders
 	 */
 	private Encoder rightEncoder;
 	private Encoder leftEncoder;
-	
+
 	private double desiredDistance;
 	private double desiredAngle;
-	
-	/*
-	 *  Created an AHRS (the name of the type of object a NavX is)
+
+	/**
+	 * Created an AHRS (the name of the type of object a NavX is)
 	 */
 	private AHRS Navx = new AHRS(SPI.Port.kMXP);
-	
+
 	private Timer timer = new Timer();
 
-	/*
-	 * Takes in counts for the encoder
-	 * Construct two new encoders
-	 * Setting the distance per pulse 
+	/**
+	 * Takes in counts for the encoder Construct two new encoders Setting the
+	 * distance per pulse
+	 * 
+	 * @param encodercounts
+	 *            : pulse per revolution
 	 */
 	public Drivetrain(int encodercounts)
 	{
@@ -54,19 +57,23 @@ public class Drivetrain extends Subsystem
 		leftBackTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFTBACK_TALON_ADDRESS);
 		rightBackTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
-		
-		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B);
-		leftEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_B);
-		
-		rightEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
+
+		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A,
+				RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B);
+		leftEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_A,
+				RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_B);
+
+		rightEncoder
+				.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
 		leftEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
-		
+
 		timer.start();
 	}
 
-
-	/*
+	/**
 	 * Gets current position TODO: input encoder value
+	 * 
+	 * @return : the distance from the left encoder
 	 */
 	public double getLeftPosition()
 	{
@@ -78,8 +85,10 @@ public class Drivetrain extends Subsystem
 		return rightEncoder.getDistance();
 	}
 
-	/*
+	/**
 	 * Uses the NavX object to get the yaw (angle)
+	 * 
+	 * @return: the Yaw(angle)
 	 */
 	public double getCurrentAngle()
 	{
@@ -91,13 +100,17 @@ public class Drivetrain extends Subsystem
 	{
 		desiredAngle = goalAngle;
 	}
-	
-	public double getDesiredAngle(){
+
+	public double getDesiredAngle()
+	{
 		return desiredAngle;
 	}
 
-	/*
+	/**
 	 * Resets the encoder
+	 * 
+	 * @param goalDistance
+	 *            : saves the distance into the field
 	 */
 	public void setLeftDesiredDistance(double goalDistance)
 	{
@@ -111,8 +124,10 @@ public class Drivetrain extends Subsystem
 		desiredDistance = goalDistance;
 	}
 
-	/*
-	 * Gets desired distance
+	/**
+	 * gets the desired distance
+	 * 
+	 * @return: the desired distance
 	 */
 	public double getLeftDesiredDistance()
 	{
@@ -124,10 +139,9 @@ public class Drivetrain extends Subsystem
 		return desiredDistance;
 	}
 
-	/*
+	/**
 	 * P loop for going the distance Timer for loop speed control
 	 */
-
 	public void moveToLeftDistance()
 	{
 		double currentTime = timer.get();
@@ -153,24 +167,29 @@ public class Drivetrain extends Subsystem
 			timer.reset();
 		}
 	}
-	
-	/*
-	 *  Calculations to find the most efficient way to move to the desired angle
+
+	/**
+	 * Calculations to find the most efficient way to move to the desired angle
+	 * 
+	 * @return: error (desired angle - current angle)
 	 */
-	
-	public double calculateAngleError(){
+	public double calculateAngleError()
+	{
 		double newDesiredAngle;
-		if (getCurrentAngle() - 180 > getDesiredAngle()){
+		if (getCurrentAngle() - 180 > getDesiredAngle())
+		{
 			newDesiredAngle = getDesiredAngle() + 360;
-		} else if (getCurrentAngle() + 180 < getDesiredAngle()){
+		} else if (getCurrentAngle() + 180 < getDesiredAngle())
+		{
 			newDesiredAngle = getDesiredAngle() - 360;
-		} else {
+		} else
+		{
 			newDesiredAngle = getDesiredAngle();
 		}
-		return newDesiredAngle - getCurrentAngle(); 
+		return newDesiredAngle - getCurrentAngle();
 	}
 
-	/*
+	/**
 	 * replaced error with a method to calculate the error
 	 */
 	public void moveToAngle()
@@ -180,7 +199,12 @@ public class Drivetrain extends Subsystem
 		setLeftSpeed(pOutput);
 	}
 
-
+	/**
+	 * Sets the left talons to the inputted speed
+	 * 
+	 * @param leftSpeed
+	 *            : speed of the left side
+	 */
 	public void setLeftSpeed(double leftSpeed)
 	{
 		leftFrontTalon.set(leftSpeed
@@ -189,7 +213,12 @@ public class Drivetrain extends Subsystem
 				.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
 	}
 
-	// If wired positively, negate the right speed
+	/**
+	 * Sets the right talons to the inputted speed
+	 * 
+	 * @param rightSpeed
+	 *            : speed of the right side
+	 */
 	public void setRightSpeed(double rightSpeed)
 	{
 		rightFrontTalon.set(rightSpeed
@@ -198,7 +227,7 @@ public class Drivetrain extends Subsystem
 				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
 
-	/*
+	/**
 	 * Sets the default command for the subsystem
 	 */
 	public void initDefaultCommand()

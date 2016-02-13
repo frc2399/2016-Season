@@ -1,14 +1,8 @@
 package org.team2399;
 
-
-import org.team2399.commands.AutoIntakeBoulder;
-
-import org.team2399.subsystems.Drivetrain;
-
 import org.team2399.commands.AnglePitch;
 import org.team2399.commands.JoyIntake;
 import org.team2399.commands.JoyPitch;
-
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -21,7 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI
 {
 
-	/*
+	/**
 	 * Joysticks
 	 */
 	private static Joystick leftJoy = new Joystick(
@@ -31,7 +25,7 @@ public class OI
 
 	private static Joystick intakeJoy = new Joystick(RobotMap.INTAKE_STICK_PORT);
 
-	/*
+	/**
 	 * Pitch buttons (preset angles) TODO: Set actual buttons for pitch
 	 */
 	private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
@@ -39,14 +33,14 @@ public class OI
 	private static Button highPitchButt = new JoystickButton(intakeJoy, 13);
 	private static Button stopPitchButt = new JoystickButton(intakeJoy, 14);
 
-	/*
+	/**
 	 * Intake buttons
 	 */
 	private static Button intakeButt = new JoystickButton(intakeJoy, 1);
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-	/*
+	/**
 	 * Preset angles for pitch
 	 */
 	private static AnglePitch lowAngle = new AnglePitch(
@@ -57,14 +51,14 @@ public class OI
 			RobotMap.HIGH_ANGLE_CONSTANT);
 	private static JoyPitch stopSpoon = new JoyPitch();
 
-	/*
+	/**
 	 * Preset speeds
 	 */
 	private static JoyIntake inSpeed = new JoyIntake(RobotMap.INTAKE_SPEED);
 	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
-	/*
+	/**
 	 * Sets what buttons do (OI constructor)
 	 */
 
@@ -79,11 +73,12 @@ public class OI
 		highPitchButt.whenPressed(highAngle);
 		stopPitchButt.whenPressed(stopSpoon);
 
-
 	}
 
-	/*
+	/**
 	 * Get values from Joystick to set speeds in other commands/subsystems
+	 * 
+	 * @return; returns the y value from joystick
 	 */
 	public static double getLeftY()
 	{
@@ -100,8 +95,10 @@ public class OI
 		return intakeJoy.getY() * RobotMap.PITCH_JOY_FORWARD_CONSTANT;
 	}
 
-	/*
+	/**
 	 * Gets values from throttle for manual speed control
+	 * 
+	 * @return returns the values of throtte by manual control
 	 */
 	public static double getRightThrottle()
 	{

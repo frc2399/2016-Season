@@ -11,15 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class JoyIntake extends Command
 {
-	/*
+	/**
 	 * speed: speed of the intake intake: new instance of the intake subsystem
 	 */
 	double speed;
 	private Intake intake = Robot.intake;
 
-	/*
+	/**
 	 * JoyIntake constructor Sets the intake speed, requires the intake
 	 * subsystem
+	 * 
+	 * @param speed
+	 *            : saves the value of local into field
 	 */
 	public JoyIntake(double speed)
 	{
@@ -33,7 +36,7 @@ public class JoyIntake extends Command
 
 	}
 
-	/*
+	/**
 	 * Called repeatedly when this Command is scheduled to run Sets the intake
 	 * speed to the throttle value on the intake joystick prints out the intake
 	 * speed

@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class JoyPitch extends Command
 {
 
-	/*
+	/**
 	 * Creates new instance of pitch subsystem
 	 */
 	private Pitch pitch = Robot.pitch;
 
-	/*
+	/**
 	 * JoyPitch constructor Needs pitch subsystem, allows command to be
 	 * interrupted
 	 */
@@ -34,7 +34,7 @@ public class JoyPitch extends Command
 	{
 	}
 
-	/*
+	/**
 	 * Called repeatedly when this Command is scheduled to run Sets pitch speed
 	 * to value from joystick
 	 */

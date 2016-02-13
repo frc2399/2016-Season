@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-// The arm subsystem.
+
 public class Pitch extends Subsystem
 {
 
-	/*
+	/**
 	 * Fields pitchTalon: Talon for the pitch pitchPot: potentiometer
 	 * desiredAngle: the angle you want timer: timer for the P loop
 	 */
@@ -27,13 +27,7 @@ public class Pitch extends Subsystem
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
-	// This method isn't called getDegrees b/c we're not asking whether or not
-	// the arm (spoon) has a bachelor's
-	// or master's
-
-	// sets what the desired angle is
-
-	/*
+	/**
 	 * Pitch constructor enableBreakMode stops the motor from moving without
 	 * input from the driver station
 	 */
@@ -45,27 +39,38 @@ public class Pitch extends Subsystem
 		timer.start();
 	}
 
-	/*
+	/**
 	 * sets the desired angle for the Pitch
+	 * 
+	 * @param goal
+	 *            : saves the value of angle in the field
 	 */
 	public void setDesiredAngle(double goal)
 	{
 		desiredAngle = goal;
 	}
 
-	// gets the private variable of the desired angle
+	/**
+	 * gets the private variable of the desired angle
+	 * 
+	 * @return: the field of desired angle
+	 */
 	public double getDesiredAngle()
 	{
 		return desiredAngle;
 	}
 
-	// gets the current angle in degrees
+	/**
+	 * gets the current angle in degrees
+	 * 
+	 * @return: gets the current angle of the pitch
+	 */
 	public double getCurrentAngle()
 	{
 		return pitchEncoder.getDistance();
 	}
 
-	/*
+	/**
 	 * P loop for going to an angle Timer for loop speed control
 	 */
 	public void movePitch()
@@ -81,15 +86,18 @@ public class Pitch extends Subsystem
 		}
 	}
 
-	/*
-	 * Sets the speed of the Pitch
+	/**
+	 * * Sets the speed of the Pitch
+	 * 
+	 * @param speed
+	 *            : desired speed of the pitch
 	 */
 	public void setPitchSpeed(double speed)
 	{
 		pitchTalon.set(speed * RobotMap.PITCH_FORWARD_CONSTANT);
 	}
 
-	/*
+	/**
 	 * Sets the default command for the subsystem
 	 */
 	public void initDefaultCommand()
