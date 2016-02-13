@@ -20,8 +20,6 @@ public class Pitch extends Subsystem
 	 * desiredAngle: the angle you want timer: timer for the P loop
 	 */
 	private CANTalon pitchTalon = new CANTalon(RobotMap.PITCH_TALON_ADDRESS);
-	private AnalogPotentiometer pitchPot = new AnalogPotentiometer(
-			RobotMap.PITCH_POT_PORT);
 	private double desiredAngle;
 	private Timer timer = new Timer();
 
@@ -41,6 +39,7 @@ public class Pitch extends Subsystem
 	public Pitch()
 	{
 		pitchTalon.enableBrakeMode(true);
+		pitchTalon.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
 		timer.start();
 	}
 

@@ -76,7 +76,7 @@ public class Drivetrain extends Subsystem
 
 	public double getCurrentAngle()
 	{
-		return 0; // left encoder value
+		return Navx.getYaw();
 	}
 
 	// TODO: Figure out math to put in degrees and get out encoder value
@@ -151,8 +151,10 @@ public class Drivetrain extends Subsystem
 	{
 		double error = getDesiredAngle() - getCurrentAngle();
 		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		setRightSpeed(pOutput);
+		setRightSpeed(-pOutput);
+		setLeftSpeed(pOutput);
 	}
+
 
 	public void setLeftSpeed(double leftSpeed)
 	{
