@@ -3,8 +3,11 @@ package org.team2399.subsystems;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyDrive;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.Encoder;
@@ -14,6 +17,7 @@ import edu.wpi.first.wpilibj.Encoder;
  */
 public class Drivetrain extends Subsystem
 {
+
 
 	private CANTalon leftFrontTalon;
 	private CANTalon rightFrontTalon;
@@ -27,8 +31,10 @@ public class Drivetrain extends Subsystem
 	private Encoder leftEncoder;
 	
 	private double desiredDistance;
-	private double desiredAngleRight;
-	private double desiredAngleLeft;
+	private double desiredAngle;
+	
+	private AHRS Navx = new AHRS(SPI.Port.kMXP);
+	private Timer timer = new Timer();
 
 	/*
 	 * Takes in counts for the encoder
@@ -50,10 +56,13 @@ public class Drivetrain extends Subsystem
 		
 		rightEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
 		leftEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
+		
+		timer.start();
 	}
-	
+
+
 	/*
-	 * Gets position of left and right encoder
+	 * Gets current position TODO: input encoder value
 	 */
 	public double getLeftPosition()
 	{
@@ -70,16 +79,14 @@ public class Drivetrain extends Subsystem
 		return 0; // left encoder value
 	}
 
-
 	// TODO: Figure out math to put in degrees and get out encoder value
-	public void setRightDesiredAngle(double goalAngle)
+	public void setDesiredAngle(double goalAngle)
 	{
-		desiredAngleRight = goalAngle;
+		desiredAngle = goalAngle;
 	}
-
-	public void setLeftDesiredAngle(double goalAngle)
-	{
-		desiredAngleLeft = goalAngle;
+	
+	public double getDesiredAngle(){
+		return desiredAngle;
 	}
 
 	/*
@@ -97,6 +104,9 @@ public class Drivetrain extends Subsystem
 		desiredDistance = goalDistance;
 	}
 
+	/*
+	 * Gets desired distance
+	 */
 	public double getLeftDesiredDistance()
 	{
 		return desiredDistance;
@@ -107,57 +117,63 @@ public class Drivetrain extends Subsystem
 		return desiredDistance;
 	}
 
-	public double getLeftDesiredAngle()
-	{
-		return desiredAngleLeft;
-	}
-
-	public double getRightDesiredAngle()
-	{
-		return desiredAngleRight;
-	}
+	/*
+	 * P loop for going the distance Timer for loop speed control
+	 */
 
 	public void moveToLeftDistance()
 	{
-		double error = getLeftDesiredDistance() - getLeftPosition();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		setLeftSpeed(pOutput);
+		double currentTime = timer.get();
+
+		if (currentTime > RobotMap.DRIVE_LOOP_HERTZ_CONSTANT)
+		{
+			double error = getLeftDesiredDistance() - getLeftPosition();
+			double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+			setLeftSpeed(pOutput);
+			timer.reset();
+		}
 	}
 
 	public void moveToRightDistance()
 	{
-		double error = getRightDesiredDistance() - getRightPosition();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		setRightSpeed(pOutput);
+		double currentTime = timer.get();
+
+		if (currentTime > RobotMap.DRIVE_LOOP_HERTZ_CONSTANT)
+		{
+			double error = getRightDesiredDistance() - getRightPosition();
+			double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+			setRightSpeed(pOutput);
+			timer.reset();
+		}
 	}
 
-	public void moveToRightAngle()
+	public void moveToAngle()
 	{
-		double error = getRightDesiredAngle() - getCurrentAngle();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
-		setRightSpeed(pOutput);
-	}
-
-	public void moveToLeftAngle()
-	{
-		double error = getLeftDesiredAngle() - getCurrentAngle();
+		double error = getDesiredAngle() - getCurrentAngle();
 		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
 		setRightSpeed(pOutput);
 	}
 
 	public void setLeftSpeed(double leftSpeed)
 	{
-		leftFrontTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);
-		leftBackTalon.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT);
+		leftFrontTalon.set(leftSpeed
+				* RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
+		leftBackTalon
+				.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
 	}
 
 	// If wired positively, negate the right speed
 	public void setRightSpeed(double rightSpeed)
 	{
-		rightFrontTalon.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT);
-		rightBackTalon.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT);
+		rightFrontTalon.set(rightSpeed
+				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
+		rightBackTalon.set(rightSpeed
+				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
 
+	/*
+	 * Sets the default command for the subsystem
+	 */
 	public void initDefaultCommand()
 	{
 		setDefaultCommand(new JoyDrive());

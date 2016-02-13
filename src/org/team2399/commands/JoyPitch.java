@@ -1,37 +1,46 @@
 package org.team2399.commands;
 
+import org.team2399.OI;
 import org.team2399.Robot;
-import org.team2399.subsystems.Spoon;
+import org.team2399.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-// Command that moves the arm
-public class AngleSpoon extends Command
+public class JoyPitch extends Command
 {
-	private Spoon spoon = Robot.spoon;
-	private double desiredAngle;
 
-	// arm constructor
-	public AngleSpoon(double desiredAngle)
+	/*
+	 * Creates new instance of pitch subsystem
+	 */
+	private Pitch pitch = Robot.pitch;
+
+	/*
+	 * JoyPitch constructor Needs pitch subsystem, allows command to be
+	 * interrupted
+	 */
+	public JoyPitch()
 	{
-		this.desiredAngle = desiredAngle;
-		requires(spoon);
+		requires(pitch);
 		setInterruptible(true);
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		spoon.setDesiredAngle(desiredAngle);
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	/*
+	 * Called repeatedly when this Command is scheduled to run Sets pitch speed
+	 * to value from joystick
+	 */
 	protected void execute()
 	{
-		spoon.moveArm();
+		pitch.setPitchSpeed(OI.getIntakeY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

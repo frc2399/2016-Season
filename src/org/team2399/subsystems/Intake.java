@@ -1,10 +1,15 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
+<<<<<<< HEAD
 
 import org.team2399.commands.IntakeBoulder;
+=======
+import org.team2399.commands.JoyIntake;
+>>>>>>> NavX
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
 
@@ -23,6 +28,8 @@ public class Intake extends Subsystem
 	 */
 	private Encoder topEncoder; 
 	private Encoder bottomEncoder; 
+	
+	private Timer timer = new Timer();
 	
 	/* 
 	 * Taking in the encoder counts
@@ -44,7 +51,10 @@ public class Intake extends Subsystem
 	topEncoder.setDistancePerPulse(RobotMap.INTAKE_DISTANCE_PER_PULSE);
 	bottomEncoder.setDistancePerPulse(RobotMap.INTAKE_DISTANCE_PER_PULSE);
 	
+	timer.stop();
+	
 	}
+
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -129,8 +139,11 @@ public class Intake extends Subsystem
 	}
 	
 
+	/*
+	 * Sets the default command for the subsystem
+	 */
 	public void initDefaultCommand()
 	{
-		setDefaultCommand(new IntakeBoulder(RobotMap.STOP_SPEED));
+		setDefaultCommand(new JoyIntake(RobotMap.STOP_SPEED));
 	}
 }

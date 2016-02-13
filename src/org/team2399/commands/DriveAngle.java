@@ -26,15 +26,13 @@ public class DriveAngle extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		driveTrain.setLeftDesiredAngle(desiredAngle);
-		driveTrain.setRightDesiredAngle(desiredAngle);
+		driveTrain.setDesiredAngle(desiredAngle);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-		driveTrain.moveToLeftAngle();
-		driveTrain.moveToRightAngle();
+		driveTrain.moveToAngle();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
