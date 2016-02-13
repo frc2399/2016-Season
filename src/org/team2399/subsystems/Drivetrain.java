@@ -4,6 +4,7 @@ import org.team2399.RobotMap;
 import org.team2399.commands.JoyDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,6 +24,7 @@ public class Drivetrain extends Subsystem
 			RobotMap.DRIVETRAIN_LEFTBACK_TALON_ADDRESS);
 	private CANTalon rightBackTalon = new CANTalon(
 			RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
+	private AHRS Navx = new AHRS(SPI.Port.kMXP);
 
 	/*
 	 * Timer for P loop
