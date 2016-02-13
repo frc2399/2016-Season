@@ -33,7 +33,11 @@ public class Drivetrain extends Subsystem
 	private double desiredDistance;
 	private double desiredAngle;
 	
+	/*
+	 *  Created an AHRS (the name of the type of object a NavX is)
+	 */
 	private AHRS Navx = new AHRS(SPI.Port.kMXP);
+	
 	private Timer timer = new Timer();
 
 	/*
@@ -74,6 +78,9 @@ public class Drivetrain extends Subsystem
 		return rightEncoder.getDistance();
 	}
 
+	/*
+	 * Uses the NavX object to get the yaw (angle)
+	 */
 	public double getCurrentAngle()
 	{
 		return Navx.getYaw();
@@ -146,11 +153,29 @@ public class Drivetrain extends Subsystem
 			timer.reset();
 		}
 	}
+	
+	/*
+	 *  Calculations to find the most efficient way to move to the desired angle
+	 */
+	
+	public double calculateAngleError(){
+		double newDesiredAngle;
+		if (getCurrentAngle() - 180 > getDesiredAngle()){
+			newDesiredAngle = getDesiredAngle() + 360;
+		} else if (getCurrentAngle() + 180 < getDesiredAngle()){
+			newDesiredAngle = getDesiredAngle() - 360;
+		} else {
+			newDesiredAngle = getDesiredAngle();
+		}
+		return newDesiredAngle - getCurrentAngle(); 
+	}
 
+	/*
+	 * replaced error with a method to calculate the error
+	 */
 	public void moveToAngle()
 	{
-		double error = getDesiredAngle() - getCurrentAngle();
-		double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+		double pOutput = calculateAngleError() * RobotMap.DRIVE_P_CONSTANT;
 		setRightSpeed(-pOutput);
 		setLeftSpeed(pOutput);
 	}
