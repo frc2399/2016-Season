@@ -3,8 +3,8 @@ package org.team2399.subsystems;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyPitch;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,6 +21,7 @@ public class Pitch extends Subsystem
 	 */
 	private CANTalon pitchTalon = new CANTalon(RobotMap.PITCH_TALON_ADDRESS);
 	private double desiredAngle;
+	private Encoder pitchEncoder;
 	private Timer timer = new Timer();
 
 	// Put methods for controlling this subsystem
@@ -39,7 +40,8 @@ public class Pitch extends Subsystem
 	public Pitch()
 	{
 		pitchTalon.enableBrakeMode(true);
-		pitchTalon.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
+		pitchTalon
+				.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
 		timer.start();
 	}
 
@@ -60,7 +62,7 @@ public class Pitch extends Subsystem
 	// gets the current angle in degrees
 	public double getCurrentAngle()
 	{
-		return pitchPot.get();
+		return pitchEncoder.getDistance();
 	}
 
 	/*

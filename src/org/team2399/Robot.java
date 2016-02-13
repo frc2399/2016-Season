@@ -23,10 +23,10 @@ public class Robot extends IterativeRobot
 	/*
 	 * Creates instances of subsystems for use in commands
 	 */
-	public static Intake intake = new Intake();
-	public static Drivetrain drivetrain = new Drivetrain(RobotMap.DRIVETRAIN_ENCODER_COUNT);
+	public static Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
+	public static Drivetrain drivetrain = new Drivetrain(
+			RobotMap.DRIVETRAIN_ENCODER_COUNT);
 	public static Pitch pitch = new Pitch();
-
 
 	/*
 	 * Creates instance of OI for use in commands
