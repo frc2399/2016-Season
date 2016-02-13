@@ -1,8 +1,8 @@
 package org.team2399;
 
-import org.team2399.commands.AngleSpoon;
-import org.team2399.commands.IntakeBoulder;
-import org.team2399.commands.StopSpoon;
+import org.team2399.commands.AnglePitch;
+import org.team2399.commands.JoyIntake;
+import org.team2399.commands.JoyPitch;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -15,78 +15,101 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI
 {
 
+	/*
+	 * Joysticks
+	 */
 	private static Joystick leftJoy = new Joystick(
 			RobotMap.JOYDRIVE_LEFT_STICK_PORT);
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
-	private static Joystick armJoy = new Joystick(RobotMap.ARM_STICK_PORT);
+	private static Joystick intakeJoy = new Joystick(RobotMap.INTAKE_STICK_PORT);
 
-	// TODO: Set actual buttons for arm
-	private static Button lowArmButt = new JoystickButton(armJoy, 11);
-	private static Button medArmButt = new JoystickButton(armJoy, 12);
-	private static Button highArmButt = new JoystickButton(armJoy, 13);
-	private static Button stopArmButt = new JoystickButton(armJoy, 14);
+	/*
+	 * Pitch buttons (preset angles) TODO: Set actual buttons for pitch
+	 */
+	private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
+	private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
+	private static Button highPitchButt = new JoystickButton(intakeJoy, 13);
+	private static Button stopPitchButt = new JoystickButton(intakeJoy, 14);
 
-	private static Button intakeButt = new JoystickButton(armJoy, 1);
-	private static Button outtakeButt = new JoystickButton(armJoy, 2);
-	private static Button stopButt = new JoystickButton(armJoy, 10);
+	/*
+	 * Intake buttons
+	 */
+	private static Button intakeButt = new JoystickButton(intakeJoy, 1);
+	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
+	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-	private static AngleSpoon lowAngle = new AngleSpoon(
+	/*
+	 * Preset angles for pitch
+	 */
+	private static AnglePitch lowAngle = new AnglePitch(
 			RobotMap.LOW_ANGLE_CONSTANT);
-	private static AngleSpoon medAngle = new AngleSpoon(
+	private static AnglePitch medAngle = new AnglePitch(
 			RobotMap.MED_ANGLE_CONSTANT);
-	private static AngleSpoon highAngle = new AngleSpoon(
+	private static AnglePitch highAngle = new AnglePitch(
 			RobotMap.HIGH_ANGLE_CONSTANT);
-	private static StopSpoon stopSpoon = new StopSpoon();
+	private static JoyPitch stopSpoon = new JoyPitch();
 
-	private static IntakeBoulder inSpeed = new IntakeBoulder(
-			RobotMap.INTAKE_SPEED);
-	private static IntakeBoulder outSpeed = new IntakeBoulder(
-			RobotMap.OUTTAKE_SPEED);
-	private static IntakeBoulder stopSpeed = new IntakeBoulder(
-			RobotMap.STOP_SPEED);
+	/*
+	 * Preset speeds
+	 */
+	private static JoyIntake inSpeed = new JoyIntake(RobotMap.INTAKE_SPEED);
+	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
+	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
+	/*
+	 * Sets what buttons do (OI constructor)
+	 */
 	public OI()
 	{
 		intakeButt.whileHeld(inSpeed);
 		outtakeButt.whileHeld(outSpeed);
 		stopButt.whenPressed(stopSpeed);
-		// lowArmButt.whenPressed(lowAngle);
-		// medArmButt.whenPressed(medAngle);
-		// highArmButt.whenPressed(highAngle);
-		stopArmButt.whenPressed(stopSpoon);
+		lowPitchButt.whenPressed(lowAngle);
+		medPitchButt.whenPressed(medAngle);
+		highPitchButt.whenPressed(highAngle);
+		stopPitchButt.whenPressed(stopSpoon);
+
 	}
 
+	/*
+	 * Get values from Joystick to set speeds in other commands/subsystems
+	 */
 	public static double getLeftY()
 	{
-		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
+		return leftJoy.getY() * RobotMap.JOYDRIVE_FORWARD_CONSTANT;
 	}
 
 	public static double getRightY()
 	{
-		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD;
+		return rightJoy.getY() * RobotMap.JOYDRIVE_FORWARD_CONSTANT;
 	}
 
-	public static double getArmY()
+	public static double getIntakeY()
 	{
-		return armJoy.getY() * RobotMap.ARM_JOY_FORWARD;
+		return intakeJoy.getY() * RobotMap.PITCH_JOY_FORWARD_CONSTANT;
 	}
 
+	/*
+	 * Gets values from throttle for manual speed control
+	 */
 	public static double getRightThrottle()
 	{
-		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD;
+		double throttle = rightJoy.getZ() * RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
 
 	public static double getLeftThrottle()
 	{
-		double throttle = leftJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		double throttle = leftJoy.getThrottle()
+				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
 
-	public static double getArmThrottle()
+	public static double getIntakeThrottle()
 	{
-		double throttle = armJoy.getThrottle() * RobotMap.THROTTLE_FORWARD;
+		double throttle = intakeJoy.getThrottle()
+				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
 	// // CREATING BUTTONS
