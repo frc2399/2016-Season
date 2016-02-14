@@ -35,10 +35,18 @@ public class DriveAtAngleDistance extends Command
 
 	@Override
 	protected boolean isFinished()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
+	{ 
+		if(driveTrain.isDriveAngleFinished() == true && 
+			driveTrain.isDriveDistanceFinished() == true)
+		{ 
+			return true; 
+		}
+		else 
+		{ 
+			return false;
+		}
+	} 
+	
 
 	@Override
 	protected void end()

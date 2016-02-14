@@ -132,6 +132,7 @@ public class RobotMap
 	
 	//is converted in commands
 	public static final double DRIVE_DISTANCE_ERROR_CONSTANT = 3;
+	public static final double DRIVE_ANGLE_ERROR_CONSTANT = 7; 
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

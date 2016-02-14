@@ -1,6 +1,7 @@
 package org.team2399.commands;
 
 import org.team2399.Robot;
+import org.team2399.RobotMap;
 import org.team2399.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -55,7 +56,7 @@ public class DriveAngle extends Command
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return false;
+		return driveTrain.isDriveAngleFinished();
 	}
 
 	// Called once after isFinished returns true

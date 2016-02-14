@@ -191,6 +191,16 @@ public class Drivetrain extends Subsystem
 		return newDesiredAngle - getCurrentAngle();
 	}
 
+	public double calculateLeftDistanceError()
+	{ 
+		return getLeftDesiredDistance() - getLeftPosition();
+	}
+	
+	public double calculateRightDistanceError()
+	{ 
+		return getRightDesiredDistance() - getRightPosition();
+	}
+	
 	/**
 	 * replaced error with a method to calculate the error
 	 */
@@ -245,6 +255,32 @@ public class Drivetrain extends Subsystem
 				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
 	
+	public boolean isDriveAngleFinished()
+	{ 
+		if(Math.abs(calculateAngleError()) <= RobotMap.DRIVE_ANGLE_ERROR_CONSTANT)
+		{ 
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public boolean isDriveDistanceFinished()
+	{ 
+		if(Math.abs(calculateLeftDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT && 
+			Math.abs(calculateRightDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
+		{ 
+			return true;
+		}
+		else
+		{ 
+			return false;
+		}
+	}
+	
+
 	
 
 	/**
