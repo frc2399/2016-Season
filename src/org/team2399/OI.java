@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI
 {
+	/**
+	 * DEVICES
+	 */
 
 	/**
 	 * Joysticks
@@ -26,7 +29,8 @@ public class OI
 	private static Joystick intakeJoy = new Joystick(RobotMap.INTAKE_STICK_PORT);
 
 	/**
-	 * Pitch buttons (preset angles) TODO: Set actual buttons for pitch
+	 * Pitch buttons (preset angles)
+	 * TODO: Set actual buttons for pitch
 	 */
 	private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
 	private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
@@ -39,6 +43,10 @@ public class OI
 	private static Button intakeButt = new JoystickButton(intakeJoy, 1);
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
+
+	/**
+	 * PRESETS
+	 */
 
 	/**
 	 * Preset angles for pitch
@@ -72,13 +80,15 @@ public class OI
 		medPitchButt.whenPressed(medAngle);
 		highPitchButt.whenPressed(highAngle);
 		stopPitchButt.whenPressed(stopSpoon);
-
 	}
 
 	/**
+	 * JOYSTICK METHODS
+	 */
+
+	/**
 	 * Get values from Joystick to set speeds in other commands/subsystems
-	 * 
-	 * @return; returns the y value from joystick
+	 * @return: returns the y value from joystick
 	 */
 	public static double getLeftY()
 	{
@@ -96,9 +106,14 @@ public class OI
 	}
 
 	/**
+	 * THROTTLE METHODS
+	 */
+
+	/**
 	 * Gets values from throttle for manual speed control
-	 * 
-	 * @return returns the values of throtte by manual control
+	 * (throttle + 1)/2 sets throttle value range from 0 to 1 rather than -1 to
+	 * 1
+	 * @return: returns the values of throttle by manual control
 	 */
 	public static double getRightThrottle()
 	{
