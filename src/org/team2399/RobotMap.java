@@ -92,10 +92,27 @@ public class RobotMap
 	// TODO: figure out what this constant actually is
 	public static final int PITCH_FORWARD_CONSTANT = 1;
 
+	/**
+	 * Joystick forward constants
+	 */
 	public static final int JOYDRIVE_FORWARD_CONSTANT = -1;
 	public static final int PITCH_JOY_FORWARD_CONSTANT = -1;
 	public static final int THROTTLE_FORWARD_CONSTANT = -1;
 
+	/**
+	 * Sensor forward constants
+	 *TODO: set actual constants
+	 */
+	public static final int RIGHT_ENCODER_FORWARD_CONSTANT = 1;
+	public static final int LEFT_ENCODER_FORWARD_CONSTANT = 1;
+	
+	public static final int TOP_ENCODER_FORWARD_CONSTANT = 1;
+	public static final int BOTTOM_ENCODER_FORWARD_CONSTANT = 1;
+	
+	public static final int PITCH_ENCODER_FORWARD_CONSTANT = 1;
+	
+	public static final int GYRO_FORWARD_CONSTANT = 1;
+	
 	/**
 	 * Preset speeds for intake/pitch
 	 */
