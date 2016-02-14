@@ -23,6 +23,7 @@ public class AutoIntakeBoulder extends Command
 	 * @param desiredPosition
 	 *            :takes the value of the local variable and saves in the field
 	 */
+
 	public AutoIntakeBoulder(double desiredPosition)
 	{
 		this.desiredPosition = desiredPosition;
