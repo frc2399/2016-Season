@@ -18,7 +18,7 @@ public class JoyDrive extends Command
 	private Drivetrain drivetrain = Robot.drivetrain;
 
 	/**
-	 * needs the drivetrian subsystem
+	 * needs the drivetrain subsystem
 	 */
 	public JoyDrive()
 	{
@@ -31,8 +31,8 @@ public class JoyDrive extends Command
 	}
 
 	/**
-	 * Called repeatedly when this Command is scheduled to run(non-Javadoc) Sets
-	 * speed for left and right based on joystick values
+	 * Called repeatedly when this Command is scheduled to run
+	 * Sets speed for left and right based on Joystick values
 	 */
 	protected void execute()
 	{

@@ -19,9 +19,8 @@ public class AutoIntakeBoulder extends Command
 
 	/**
 	 * takes local variable of desired position and saves value in the field
-	 * 
-	 * @param desiredPosition
-	 *            :takes the value of the local variable and saves in the field
+	 * @param desiredPosition:takes the value of the local variable and saves in
+	 * the field
 	 */
 
 	public AutoIntakeBoulder(double desiredPosition)
@@ -35,7 +34,8 @@ public class AutoIntakeBoulder extends Command
 	}
 
 	/**
-	 * Called just before this Command runs the first time Sets desired position
+	 * Called just before this Command runs the first time
+	 * Sets desired position
 	 */
 	protected void initialize()
 	{
@@ -44,8 +44,8 @@ public class AutoIntakeBoulder extends Command
 	}
 
 	/**
-	 * Called repeatedly when this Command is scheduled to run Moves to desired
-	 * position
+	 * Called repeatedly when this Command is scheduled to run
+	 * Moves intake to desired position
 	 */
 	protected void execute()
 	{

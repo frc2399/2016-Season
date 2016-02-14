@@ -18,8 +18,9 @@ public class JoyPitch extends Command
 	private Pitch pitch = Robot.pitch;
 
 	/**
-	 * JoyPitch constructor Needs pitch subsystem, allows command to be
-	 * interrupted
+	 * JoyPitch constructor
+	 * needs pitch subsystem
+	 * allows command to be interrupted
 	 */
 	public JoyPitch()
 	{
@@ -35,8 +36,8 @@ public class JoyPitch extends Command
 	}
 
 	/**
-	 * Called repeatedly when this Command is scheduled to run Sets pitch speed
-	 * to value from joystick
+	 * Called repeatedly when this Command is scheduled to run
+	 * Sets pitch speed to value from joystick
 	 */
 	protected void execute()
 	{

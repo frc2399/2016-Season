@@ -14,17 +14,17 @@ public class AnglePitch extends Command
 	/**
 	 * pitch: Creates a new instance of the pitch subsystem desiredAngle: where
 	 * you want to go
+	 * desiredAngle: angle you want the pitch to go to
 	 */
 	private Pitch pitch = Robot.pitch;
 	private double desiredAngle;
 
 	/**
-	 * AnglePitch constructor Sets the desired angle needs the pitch subsystem
+	 * AnglePitch constructor
+	 * Sets the desired angle needs the pitch subsystem
 	 * allows command to be interrupted
-	 * 
-	 * @param desiredAngle
-	 *            :takes the local variable and saves the value of it in the
-	 *            field
+	 * @param desiredAngle:takes the local variable and saves the value of it in the
+	 * field
 	 */
 	public AnglePitch(double desiredAngle)
 	{

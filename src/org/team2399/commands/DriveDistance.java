@@ -1,7 +1,6 @@
 package org.team2399.commands;
 
 import org.team2399.Robot;
-import org.team2399.RobotMap;
 import org.team2399.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,11 +18,11 @@ public class DriveDistance extends Command
 	private double desiredDistance;
 
 	/**
-	 * DriveDistance constructor sets the desired distance needs the drivetrain
-	 * subsystem and particular command allows commands to interrupt
-	 * 
-	 * @param desiredDistance
-	 *            :saves the value into the field
+	 * DriveDistance constructor
+	 * sets the desired distance
+	 * needs the drivetrain subsystem
+	 * allows command to be interrupted by other commands
+	 * @param desiredDistance: saves the value into the field
 	 */
 	public DriveDistance(double desiredDistance)
 	{
@@ -35,8 +34,8 @@ public class DriveDistance extends Command
 	}
 
 	/**
-	 * Called just before this Command runs the first time Sets the desired
-	 * distance (right and left)
+	 * Called just before this Command runs the first time
+	 * Sets the desired distance (right and left)
 	 */
 	protected void initialize()
 	{
@@ -45,7 +44,7 @@ public class DriveDistance extends Command
 	}
 
 	/**
-	 * Called repeatedly when this Command is scheduled to run(non-Javadoc)
+	 * Called repeatedly when this Command is scheduled to run
 	 * Moves drivetrain to desired distance
 	 */
 	protected void execute()
@@ -55,7 +54,7 @@ public class DriveDistance extends Command
 	}
 
 	/**
-	 * @return: checks if robot is within acceptable margin of 
+	 * @return: checks if robot is within acceptable margin of
 	 * error for distance and if so, stops it
 	 */
 	protected boolean isFinished()
