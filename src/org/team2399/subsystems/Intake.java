@@ -127,7 +127,7 @@ public class Intake extends Subsystem
 	/**
 	 * Sets speed of top/bottom intake motors + method for setting both to same
 	 * speed
-	 * 
+	 *TODO: makeactual loops 
 	 * @param topSpeed
 	 *            : desired speed
 	 */

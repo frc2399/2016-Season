@@ -51,6 +51,9 @@ public class RobotMap
 	 */
 	public static final int DRIVETRAIN_ENCODER_COUNT = 256;
 	public static final int INTAKE_ENCODER_COUNT = 0;
+	
+	public static final double PITCH_GEAR_RATIO = 18.0/84.0;
+	
 
 	/**
 	 * Calculates the distance robot travels per rotation of encoder in feet
@@ -107,7 +110,11 @@ public class RobotMap
 	 */
 	public static final double PITCH_P_CONSTANT = 0.0;
 	public static final double DRIVE_P_CONSTANT = 0.0;
+	public static final double DRIVE_ANGLE_P_CONSTANT = 0.0;
 	public static final double INTAKE_P_CONSTANT = 0.0;
+	
+	public static final double DRIVE_MIXED_LINEAR_CONSTANT = 1;
+	public static final double DRIVE_MIXED_ANGULAR_CONSTANT = -1;
 
 	/**
 	 * Present angles
@@ -122,6 +129,9 @@ public class RobotMap
 	 */
 	public static final double PITCH_LOOP_HERTZ_CONSTANT = 100;
 	public static final double DRIVE_LOOP_HERTZ_CONSTANT = 100;
+	
+	//is converted in commands
+	public static final double DRIVE_DISTANCE_ERROR_CONSTANT = 3;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

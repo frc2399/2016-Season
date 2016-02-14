@@ -176,13 +176,15 @@ public class Drivetrain extends Subsystem
 	public double calculateAngleError()
 	{
 		double newDesiredAngle;
-		if (getCurrentAngle() - 180 > getDesiredAngle())
+		if (getCurrentAngle() - 180 >= getDesiredAngle())
 		{
 			newDesiredAngle = getDesiredAngle() + 360;
-		} else if (getCurrentAngle() + 180 < getDesiredAngle())
+		} 
+		else if (getCurrentAngle() + 180 < getDesiredAngle())
 		{
 			newDesiredAngle = getDesiredAngle() - 360;
-		} else
+		} 
+		else
 		{
 			newDesiredAngle = getDesiredAngle();
 		}
@@ -194,9 +196,25 @@ public class Drivetrain extends Subsystem
 	 */
 	public void moveToAngle()
 	{
-		double pOutput = calculateAngleError() * RobotMap.DRIVE_P_CONSTANT;
+		double pOutput = calculateAngleError() * RobotMap.DRIVE_ANGLE_P_CONSTANT;
 		setRightSpeed(-pOutput);
 		setLeftSpeed(pOutput);
+	}
+	
+	public void driveAtAngleToDistance()
+	{
+		double rightDistanceError = getRightDesiredDistance() - getRightPosition();
+		double leftDistanceError = getLeftDesiredDistance() - getLeftPosition();
+		double angleError = calculateAngleError();
+		
+		double rightPOutput = rightDistanceError * RobotMap.DRIVE_P_CONSTANT;
+		double leftPOutput = leftDistanceError * RobotMap.DRIVE_P_CONSTANT;
+		double anglePOutput = angleError * RobotMap.DRIVE_ANGLE_P_CONSTANT;
+		
+		setRightSpeed(rightPOutput * RobotMap.DRIVE_MIXED_LINEAR_CONSTANT - 
+				anglePOutput * RobotMap.DRIVE_MIXED_ANGULAR_CONSTANT);
+		setLeftSpeed(leftPOutput * RobotMap.DRIVE_MIXED_LINEAR_CONSTANT
+				+ anglePOutput * RobotMap.DRIVE_MIXED_ANGULAR_CONSTANT);
 	}
 
 	/**
@@ -226,6 +244,8 @@ public class Drivetrain extends Subsystem
 		rightBackTalon.set(rightSpeed
 				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
+	
+	
 
 	/**
 	 * Sets the default command for the subsystem

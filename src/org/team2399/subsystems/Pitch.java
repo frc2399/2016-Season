@@ -59,15 +59,33 @@ public class Pitch extends Subsystem
 	{
 		return desiredAngle;
 	}
+	
+	/**
+	 * 
+	 * @param degrees
+	 * @return the rotations of the pitch
+	 */
+	public double degreesToRotations(double degrees){
+		return degrees / (360 * RobotMap.PITCH_GEAR_RATIO);
+	}
+	
+	/**
+	 * 
+	 * @param rotations
+	 * @return the number of degrees
+	 */
+	public double rotationsToDegrees(double rotations){
+		return rotations * 360 * RobotMap.PITCH_GEAR_RATIO;
+	}
 
 	/**
 	 * gets the current angle in degrees
 	 * 
-	 * @return: gets the current angle of the pitch
+	 * @return: gets the current angle of the pitch in degrees
 	 */
 	public double getCurrentAngle()
 	{
-		return pitchEncoder.getDistance();
+		return pitchTalon.getPosition() * 360 * RobotMap.PITCH_GEAR_RATIO;
 	}
 
 	/**
