@@ -16,8 +16,11 @@ public class Pitch extends Subsystem
 {
 
 	/**
-	 * Fields pitchTalon: Talon for the pitch pitchPot: potentiometer
-	 * desiredAngle: the angle you want timer: timer for the P loop
+	 * Fields
+	 * pitchTalon: Talon for the pitch
+	 * pitchPot: potentiometer
+	 * desiredAngle: the angle you want
+	 * timer: timer for the P loop
 	 */
 	private CANTalon pitchTalon = new CANTalon(RobotMap.PITCH_TALON_ADDRESS);
 	private double desiredAngle;
@@ -28,8 +31,10 @@ public class Pitch extends Subsystem
 	// here. Call these from Commands.
 
 	/**
-	 * Pitch constructor enableBreakMode stops the motor from moving without
-	 * input from the driver station
+	 * Pitch constructor
+	 * enableBreakMode stops the motor from moving without input from the driver
+	 * station
+	 * TODO: What does setFeedbackDevice do?
 	 */
 	public Pitch()
 	{
@@ -40,10 +45,8 @@ public class Pitch extends Subsystem
 	}
 
 	/**
-	 * sets the desired angle for the Pitch
-	 * 
-	 * @param goal
-	 *            : saves the value of angle in the field
+	 * Sets the desired angle for the Pitch
+	 * @param goal: saves the value of angle in the field
 	 */
 	public void setDesiredAngle(double goal)
 	{
@@ -51,36 +54,36 @@ public class Pitch extends Subsystem
 	}
 
 	/**
-	 * gets the private variable of the desired angle
-	 * 
-	 * @return: the field of desired angle
+	 * Gets the desired angle
+	 * @return: the desired angle
 	 */
 	public double getDesiredAngle()
 	{
 		return desiredAngle;
 	}
-	
+
 	/**
-	 * 
 	 * @param degrees
-	 * @return the rotations of the pitch
+	 * @return the rotations of the pitch (converted from degrees)
+	 * for use with limit switches, etc.
 	 */
-	public double degreesToRotations(double degrees){
+	public double degreesToRotations(double degrees)
+	{
 		return degrees / (360 * RobotMap.PITCH_GEAR_RATIO);
 	}
-	
+
 	/**
-	 * 
 	 * @param rotations
-	 * @return the number of degrees
+	 * @return the number of degrees (converted from rotations)
+	 * for use with limit switches, etc.
 	 */
-	public double rotationsToDegrees(double rotations){
+	public double rotationsToDegrees(double rotations)
+	{
 		return rotations * 360 * RobotMap.PITCH_GEAR_RATIO;
 	}
 
 	/**
 	 * gets the current angle in degrees
-	 * 
 	 * @return: gets the current angle of the pitch in degrees
 	 */
 	public double getCurrentAngle()
@@ -89,7 +92,8 @@ public class Pitch extends Subsystem
 	}
 
 	/**
-	 * P loop for going to an angle Timer for loop speed control
+	 * P loop for going to an angle
+	 * Timer for loop speed control
 	 */
 	public void movePitch()
 	{
@@ -105,10 +109,8 @@ public class Pitch extends Subsystem
 	}
 
 	/**
-	 * * Sets the speed of the Pitch
-	 * 
-	 * @param speed
-	 *            : desired speed of the pitch
+	 * Sets the speed of the Pitch
+	 * @param speed: desired speed of the pitch
 	 */
 	public void setPitchSpeed(double speed)
 	{

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem
 {
-	/*
+	/**
 	 * Creates new Talons
 	 */
 	private CANTalon intakeTopTalon;
@@ -27,28 +27,34 @@ public class Intake extends Subsystem
 	private Encoder topEncoder;
 	private Encoder bottomEncoder;
 
+	/**
+	 * timer for use in loops
+	 */
 	private Timer timer = new Timer();
 
 	/**
-	 * Takes in the encoder counts Created two encoders sets distance per pulse
-	 * 
-	 * @param encoderCounts
-	 *            : pulse per rotation
+	 * Takes in the encoder counts
+	 * sets channels for encoders
+	 * sets distance per pulse
+	 * @param encoderCounts: pulse per rotation
 	 */
 	public Intake(int encoderCounts)
 	{
-
+		// sets talon addresses
 		intakeTopTalon = new CANTalon(RobotMap.INTAKE_TOP_TALON_ADDRESS);
 		intakeBottomTalon = new CANTalon(RobotMap.INTAKE_BOTTOM_TALON_ADDRESS);
 
+		// sets encoder channels
 		topEncoder = new Encoder(RobotMap.INTAKE_ENCODER_TOP_CHANNEL_A,
 				RobotMap.INTAKE_ENCODER_TOP_CHANNEL_B);
 		bottomEncoder = new Encoder(RobotMap.INTAKE_ENCODER_BOTTOM_CHANNEL_A,
 				RobotMap.INTAKE_ENCODER_BOTTOM_CHANNEL_B);
 
+		// sets distance per pulse for encoders
 		topEncoder.setDistancePerPulse(RobotMap.INTAKE_DISTANCE_PER_PULSE);
 		bottomEncoder.setDistancePerPulse(RobotMap.INTAKE_DISTANCE_PER_PULSE);
 
+		// TODO: Why is this stop and not start?
 		timer.stop();
 
 	}
@@ -57,8 +63,7 @@ public class Intake extends Subsystem
 	// here. Call these from Commands.
 
 	/**
-	 * Gets the current position of the rotation
-	 * 
+	 * Gets the current position from the top encoder
 	 * @return: the distance for the position
 	 */
 	public double getTopCurrentPosition()
@@ -66,23 +71,28 @@ public class Intake extends Subsystem
 		return topEncoder.getDistance(); // TODO find actual value
 	}
 
+	/**
+	 * Gets the current position from the bottom encoder
+	 * @return: the distance for the position
+	 */
 	public double getBottomCurrentPosition()
 	{
 		return bottomEncoder.getDistance();
 	}
 
 	/**
-	 * Split desired position into top and bottom
-	 * 
-	 * @param goalPosition
-	 *            : saves the value into the field
+	 * Sets the desired position for the top encoder
+	 * @param goalPosition: saves the value into the field
 	 */
-
 	public void setTopDesiredPosition(double goalPosition)
 	{
 		desiredPosition = goalPosition;
 	}
 
+	/**
+	 * Sets the desired position for the top encoder
+	 * @param goalPosition: saves the value into the field
+	 */
 	public void setBottomDesiredPosition(double goalPosition)
 	{
 		desiredPosition = goalPosition;
@@ -90,8 +100,7 @@ public class Intake extends Subsystem
 
 	/**
 	 * Resets encoder
-	 * 
-	 * @return: the desired position
+	 * @return: the top desired position
 	 */
 	public double getTopDesiredPosition()
 	{
@@ -99,6 +108,10 @@ public class Intake extends Subsystem
 		return desiredPosition;
 	}
 
+	/**
+	 * Resets encoder
+	 * @return: the bottom desired position
+	 */
 	public double getBottomDesiredPosition()
 	{
 		bottomEncoder.reset();
@@ -106,10 +119,8 @@ public class Intake extends Subsystem
 	}
 
 	/**
-	 * Split move to position into top and bottom P loop for moving to
-	 * top/bottom position
+	 * P loop for moving the top to a desired position
 	 */
-	// TODO: Get this checked over
 	public void moveToTopPosition()
 	{
 		double error = getTopDesiredPosition() - getTopCurrentPosition();
@@ -117,6 +128,9 @@ public class Intake extends Subsystem
 		setTopIntakeSpeed(pOutput);
 	}
 
+	/**
+	 * P loop for moving the bottom to a desired position
+	 */
 	public void moveToBottomPosition()
 	{
 		double error = getBottomDesiredPosition() - getBottomCurrentPosition();
@@ -125,11 +139,9 @@ public class Intake extends Subsystem
 	}
 
 	/**
-	 * Sets speed of top/bottom intake motors + method for setting both to same
-	 * speed
-	 *TODO: makeactual loops 
-	 * @param topSpeed
-	 *            : desired speed
+	 * Sets speed of top motor
+	 * TODO: make actual loops
+	 * @param topSpeed: desired speed
 	 */
 	public void setTopIntakeSpeed(double topSpeed)
 	{
@@ -137,11 +149,10 @@ public class Intake extends Subsystem
 	}
 
 	/**
-	 * Sets speed of top/bottom intake motors + method for setting both to same
+	 * Sets speed of bottom intake motor
 	 * speed
-	 *TODO: makeactual loops 
-	 * @param topSpeed
-	 *            : desired speed
+	 * TODO: make actual loops
+	 * @param topSpeed: desired speed
 	 */
 	public void setBottomIntakeSpeed(double bottomSpeed)
 	{
@@ -150,11 +161,9 @@ public class Intake extends Subsystem
 	}
 
 	/**
-	 * Sets speed of top/bottom intake motors + method for setting both to same
-	 * speed
-	 *TODO: makeactual loops 
-	 * @param topSpeed
-	 *            : desired speed
+	 * Setstop/bottom intake motors to the same speed
+	 * TODO: make actual loops
+	 * @param topSpeed: desired speed
 	 */
 	public void setIntakeSpeed(double speed)
 	{

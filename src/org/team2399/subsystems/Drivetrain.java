@@ -31,25 +31,33 @@ public class Drivetrain extends Subsystem
 	private Encoder rightEncoder;
 	private Encoder leftEncoder;
 
+	/**
+	 * desiredDistance: distance you want to be at
+	 * desiredAngle: angle you want to be at
+	 */
 	private double desiredDistance;
 	private double desiredAngle;
 
 	/**
-	 * Created an AHRS (the name of the type of object a NavX is)
+	 * Navx gyro (object type AHRS)
 	 */
 	private AHRS Navx = new AHRS(SPI.Port.kMXP);
 
+	/**
+	 * timer for use with loops
+	 */
 	private Timer timer = new Timer();
 
 	/**
-	 * Takes in counts for the encoder Construct two new encoders Setting the
-	 * distance per pulse
-	 * 
-	 * @param encodercounts
-	 *            : pulse per revolution
+	 * Drivetrain constructor
+	 * Takes in counts for the encoder
+	 * Construct two new encoders
+	 * Sets the distance per pulse
+	 * @param encodercounts: pulse per revolution
 	 */
 	public Drivetrain(int encodercounts)
 	{
+		// creates talons
 		leftFrontTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_LEFTFRONT_TALON_ADDRESS);
 		rightFrontTalon = new CANTalon(
@@ -58,21 +66,28 @@ public class Drivetrain extends Subsystem
 		rightBackTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
 
+		// sets encoder channels
 		rightEncoder = new Encoder(RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A,
 				RobotMap.DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B);
 		leftEncoder = new Encoder(RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_A,
 				RobotMap.DRIVETRAIN_LEFT_ENCODER_CHANNEL_B);
 
+		// sets distance per pulse
 		rightEncoder
 				.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
 		leftEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
 
+		// starts the timer
 		timer.start();
 	}
 
 	/**
-	 * Gets current position TODO: input encoder value
-	 * 
+	 * ENCODER/DRIVE DISTANCE METHODS
+	 */
+
+	/**
+	 * Gets current left position
+	 * TODO: input encoder value
 	 * @return : the distance from the left encoder
 	 */
 	public double getLeftPosition()
@@ -80,37 +95,19 @@ public class Drivetrain extends Subsystem
 		return leftEncoder.getDistance();
 	}
 
+	/**
+	 * Gets current right position
+	 * TODO: input encoder value
+	 * @return : the distance from the right encoder
+	 */
 	public double getRightPosition()
 	{
 		return rightEncoder.getDistance();
 	}
 
 	/**
-	 * Uses the NavX object to get the yaw (angle)
-	 * 
-	 * @return: the Yaw(angle)
-	 */
-	public double getCurrentAngle()
-	{
-		return Navx.getYaw();
-	}
-
-	// TODO: Figure out math to put in degrees and get out encoder value
-	public void setDesiredAngle(double goalAngle)
-	{
-		desiredAngle = goalAngle;
-	}
-
-	public double getDesiredAngle()
-	{
-		return desiredAngle;
-	}
-
-	/**
-	 * Resets the encoder
-	 * 
-	 * @param goalDistance
-	 *            : saves the distance into the field
+	 * Resets the left encoder
+	 * @param goalDistance: saves the local variable into the field
 	 */
 	public void setLeftDesiredDistance(double goalDistance)
 	{
@@ -118,6 +115,10 @@ public class Drivetrain extends Subsystem
 		desiredDistance = goalDistance;
 	}
 
+	/**
+	 * Resets the right encoder
+	 * @param goalDistance: saves the local variable into the field
+	 */
 	public void setRightDesiredDistance(double goalDistance)
 	{
 		rightEncoder.reset();
@@ -125,22 +126,26 @@ public class Drivetrain extends Subsystem
 	}
 
 	/**
-	 * gets the desired distance
-	 * 
-	 * @return: the desired distance
+	 * gets the left desired distance for use in other classes
+	 * @return: the left desired distance
 	 */
 	public double getLeftDesiredDistance()
 	{
 		return desiredDistance;
 	}
 
+	/**
+	 * gets the right desired distance for use in other classes
+	 * @return: the right desired distance
+	 */
 	public double getRightDesiredDistance()
 	{
 		return desiredDistance;
 	}
 
 	/**
-	 * P loop for going the distance Timer for loop speed control
+	 * P loop for going a desired distance (left)
+	 * Timer for loop speed control
 	 */
 	public void moveToLeftDistance()
 	{
@@ -155,6 +160,10 @@ public class Drivetrain extends Subsystem
 		}
 	}
 
+	/**
+	 * P loop for going a desired distance (right)
+	 * Timer for loop speed control
+	 */
 	public void moveToRightDistance()
 	{
 		double currentTime = timer.get();
@@ -169,8 +178,76 @@ public class Drivetrain extends Subsystem
 	}
 
 	/**
+	 * Calculates left error for use in commands (determining if robot is within
+	 * acceptable error range)
+	 * @return: error (desired - current)
+	 */
+	public double calculateLeftDistanceError()
+	{
+		return getLeftDesiredDistance() - getLeftPosition();
+	}
+
+	/**
+	 * Calculates right error for use in commands (determining if robot is
+	 * within
+	 * acceptable error range)
+	 * @return: error (desired - current)
+	 */
+	public double calculateRightDistanceError()
+	{
+		return getRightDesiredDistance() - getRightPosition();
+	}
+
+	/**
+	 * If error is within an acceptable range, return true
+	 * for use in isFinished method in commands
+	 * @return: true/false
+	 */
+	public boolean isDriveDistanceFinished()
+	{
+		if (Math.abs(calculateLeftDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT
+				&& Math.abs(calculateRightDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
+		{
+			return true;
+		} else
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * GYRO/ANGLE METHODS
+	 */
+
+	/**
+	 * Uses the NavX object to get the yaw (angle)
+	 * @return: the yaw (angle)
+	 */
+	public double getCurrentAngle()
+	{
+		return Navx.getYaw();
+	}
+
+	/**
+	 * sets desired angle for pitch
+	 * @param goalAngle: desired angle
+	 */
+	public void setDesiredAngle(double goalAngle)
+	{
+		desiredAngle = goalAngle;
+	}
+
+	/**
+	 * gets desired angle for use in other classes
+	 * @return: desired angle
+	 */
+	public double getDesiredAngle()
+	{
+		return desiredAngle;
+	}
+
+	/**
 	 * Calculations to find the most efficient way to move to the desired angle
-	 * 
 	 * @return: error (desired angle - current angle)
 	 */
 	public double calculateAngleError()
@@ -179,12 +256,10 @@ public class Drivetrain extends Subsystem
 		if (getCurrentAngle() - 180 >= getDesiredAngle())
 		{
 			newDesiredAngle = getDesiredAngle() + 360;
-		} 
-		else if (getCurrentAngle() + 180 < getDesiredAngle())
+		} else if (getCurrentAngle() + 180 < getDesiredAngle())
 		{
 			newDesiredAngle = getDesiredAngle() - 360;
-		} 
-		else
+		} else
 		{
 			newDesiredAngle = getDesiredAngle();
 		}
@@ -192,53 +267,63 @@ public class Drivetrain extends Subsystem
 	}
 
 	/**
-	 * Calculates error for driving to a distance
-	 * @return: distance error
-	 */
-	public double calculateLeftDistanceError()
-	{ 
-		return getLeftDesiredDistance() - getLeftPosition();
-	}
-	
-	public double calculateRightDistanceError()
-	{ 
-		return getRightDesiredDistance() - getRightPosition();
-	}
-	
-	/**
-	 * replaced error with a method to calculate the error
+	 * P loop for driving to a specified angle
 	 */
 	public void moveToAngle()
 	{
-		double pOutput = calculateAngleError() * RobotMap.DRIVE_ANGLE_P_CONSTANT;
+		double pOutput = calculateAngleError()
+				* RobotMap.DRIVE_ANGLE_P_CONSTANT;
 		setRightSpeed(-pOutput);
 		setLeftSpeed(pOutput);
 	}
-	
+
 	/**
-	 *P loop for driving at a constant angle to a distance
+	 * If error is within an acceptable range, return true
+	 * for use in isFinished method in commands
+	 * @return: true/false
+	 */
+	public boolean isDriveAngleFinished()
+	{
+		if (Math.abs(calculateAngleError()) <= RobotMap.DRIVE_ANGLE_ERROR_CONSTANT)
+		{
+			return true;
+		} else
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * DISTANCE + ANGLE METHODS
+	 */
+
+	/**
+	 * P loop for driving at a constant angle to a distance
 	 */
 	public void driveAtAngleToDistance()
 	{
-		double rightDistanceError = getRightDesiredDistance() - getRightPosition();
+		double rightDistanceError = getRightDesiredDistance()
+				- getRightPosition();
 		double leftDistanceError = getLeftDesiredDistance() - getLeftPosition();
 		double angleError = calculateAngleError();
-		
+
 		double rightPOutput = rightDistanceError * RobotMap.DRIVE_P_CONSTANT;
 		double leftPOutput = leftDistanceError * RobotMap.DRIVE_P_CONSTANT;
 		double anglePOutput = angleError * RobotMap.DRIVE_ANGLE_P_CONSTANT;
-		
-		setRightSpeed(rightPOutput * RobotMap.DRIVE_MIXED_LINEAR_CONSTANT - 
-				anglePOutput * RobotMap.DRIVE_MIXED_ANGULAR_CONSTANT);
+
+		setRightSpeed(rightPOutput * RobotMap.DRIVE_MIXED_LINEAR_CONSTANT
+				- anglePOutput * RobotMap.DRIVE_MIXED_ANGULAR_CONSTANT);
 		setLeftSpeed(leftPOutput * RobotMap.DRIVE_MIXED_LINEAR_CONSTANT
 				+ anglePOutput * RobotMap.DRIVE_MIXED_ANGULAR_CONSTANT);
 	}
 
 	/**
-	 * Sets the left talons to the inputted speed
-	 * 
-	 * @param leftSpeed
-	 *            : speed of the left side
+	 * SPEED METHODS
+	 */
+
+	/**
+	 * Sets the left Talons to the inputed speed
+	 * @param leftSpeed: speed of the left side
 	 */
 	public void setLeftSpeed(double leftSpeed)
 	{
@@ -250,9 +335,7 @@ public class Drivetrain extends Subsystem
 
 	/**
 	 * Sets the right talons to the inputted speed
-	 * 
-	 * @param rightSpeed
-	 *            : speed of the right side
+	 * @param rightSpeed: speed of the right side
 	 */
 	public void setRightSpeed(double rightSpeed)
 	{
@@ -261,39 +344,6 @@ public class Drivetrain extends Subsystem
 		rightBackTalon.set(rightSpeed
 				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
-	
-	/**
-	 * Determines if margin of error is within an acceptable range
-	 * to finish the command
-	 * @return: whether margin of error is acceptable (true/false)
-	 */
-	public boolean isDriveAngleFinished()
-	{ 
-		if(Math.abs(calculateAngleError()) <= RobotMap.DRIVE_ANGLE_ERROR_CONSTANT)
-		{ 
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	
-	public boolean isDriveDistanceFinished()
-	{ 
-		if(Math.abs(calculateLeftDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT && 
-			Math.abs(calculateRightDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
-		{ 
-			return true;
-		}
-		else
-		{ 
-			return false;
-		}
-	}
-	
-
-	
 
 	/**
 	 * Sets the default command for the subsystem
