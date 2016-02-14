@@ -7,10 +7,20 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveAtAngleDistance extends Command
 {
+	/**
+	 * creates new instance of drivetrain subsystem
+	 * variables desiredAngle and desiredDistance 
+	 */
 	private Drivetrain driveTrain = Robot.drivetrain;
 	private double desiredAngle;
 	private double desiredDistance;
 	
+	/**
+	 * DriveAtAngleDistance constructor
+	 * can be interrupted by other commands
+	 * @param desiredAngle: stored in field
+	 * @param desiredDistance: stored in field
+	 */
 	public DriveAtAngleDistance(double desiredAngle, double desiredDistance)
 	{
 		this.desiredAngle = desiredAngle;
@@ -18,7 +28,9 @@ public class DriveAtAngleDistance extends Command
 		setInterruptible(true);
 	}
 
-	@Override
+	/**
+	 * setting desired angles and distances
+	 */
 	protected void initialize()
 	{
 		driveTrain.setDesiredAngle(desiredAngle);
@@ -26,14 +38,19 @@ public class DriveAtAngleDistance extends Command
 		driveTrain.setLeftDesiredDistance(desiredDistance);
 	}
 
-	@Override
+	/**
+	 * implements P loop
+	 */
 	protected void execute()
 	{
 		driveTrain.driveAtAngleToDistance();
 		
 	}
 
-	@Override
+	/**
+	 * If robot is within acceptable margin of error
+	 * for both angle and distance, command is finished
+	 */
 	protected boolean isFinished()
 	{ 
 		if(driveTrain.isDriveAngleFinished() == true && 

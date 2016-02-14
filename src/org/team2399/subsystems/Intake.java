@@ -136,12 +136,26 @@ public class Intake extends Subsystem
 		intakeTopTalon.set(topSpeed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
 	}
 
+	/**
+	 * Sets speed of top/bottom intake motors + method for setting both to same
+	 * speed
+	 *TODO: makeactual loops 
+	 * @param topSpeed
+	 *            : desired speed
+	 */
 	public void setBottomIntakeSpeed(double bottomSpeed)
 	{
 		intakeBottomTalon.set(bottomSpeed
 				* RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
 	}
 
+	/**
+	 * Sets speed of top/bottom intake motors + method for setting both to same
+	 * speed
+	 *TODO: makeactual loops 
+	 * @param topSpeed
+	 *            : desired speed
+	 */
 	public void setIntakeSpeed(double speed)
 	{
 		intakeBottomTalon.set(speed * RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);

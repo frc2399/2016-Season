@@ -3,10 +3,12 @@ package org.team2399.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ *Autonomous command for driving forward at a set distance starting at
+ *an angle of 0 (straight)
  */
 public class DriveForwardAuton extends CommandGroup {
     
+	
     public  DriveForwardAuton() {
     	addSequential(new DriveAtAngleDistance(0,10)); // TODO: Find Actual Distance
         // Add Commands here:

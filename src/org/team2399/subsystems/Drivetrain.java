@@ -191,6 +191,10 @@ public class Drivetrain extends Subsystem
 		return newDesiredAngle - getCurrentAngle();
 	}
 
+	/**
+	 * Calculates error for driving to a distance
+	 * @return: distance error
+	 */
 	public double calculateLeftDistanceError()
 	{ 
 		return getLeftDesiredDistance() - getLeftPosition();
@@ -211,6 +215,9 @@ public class Drivetrain extends Subsystem
 		setLeftSpeed(pOutput);
 	}
 	
+	/**
+	 *P loop for driving at a constant angle to a distance
+	 */
 	public void driveAtAngleToDistance()
 	{
 		double rightDistanceError = getRightDesiredDistance() - getRightPosition();
@@ -255,6 +262,11 @@ public class Drivetrain extends Subsystem
 				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
 	
+	/**
+	 * Determines if margin of error is within an acceptable range
+	 * to finish the command
+	 * @return: whether margin of error is acceptable (true/false)
+	 */
 	public boolean isDriveAngleFinished()
 	{ 
 		if(Math.abs(calculateAngleError()) <= RobotMap.DRIVE_ANGLE_ERROR_CONSTANT)

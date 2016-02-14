@@ -54,7 +54,10 @@ public class DriveDistance extends Command
 		driveTrain.moveToRightDistance();
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	/**
+	 * @return: checks if robot is within acceptable margin of 
+	 * error for distance and if so, stops it
+	 */
 	protected boolean isFinished()
 	{
 		return driveTrain.isDriveDistanceFinished();

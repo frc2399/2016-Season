@@ -53,7 +53,9 @@ public class DriveAngle extends Command
 		driveTrain.moveToAngle();
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	/**
+	 * @return: whether the robot is finished driving to the angle
+	 */
 	protected boolean isFinished()
 	{
 		return driveTrain.isDriveAngleFinished();
