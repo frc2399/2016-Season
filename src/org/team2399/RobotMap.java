@@ -33,18 +33,18 @@ public class RobotMap
 	 * TODO: set actual encoder channels
 	 */
 	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_A = 1;
-	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_B = 1;
-	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A = 1;
-	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B = 1;
+	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_B = 2;
+	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A = 3;
+	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B = 4;
 
 	/**
 	 * Sets the intake encoder channels
 	 * TODO: set actual encoder channels
 	 */
-	public static final int INTAKE_ENCODER_TOP_CHANNEL_A = 1;
-	public static final int INTAKE_ENCODER_TOP_CHANNEL_B = 1;
-	public static final int INTAKE_ENCODER_BOTTOM_CHANNEL_A = 1;
-	public static final int INTAKE_ENCODER_BOTTOM_CHANNEL_B = 1;
+	public static final int INTAKE_ENCODER_TOP_CHANNEL_A = 5;
+	public static final int INTAKE_ENCODER_TOP_CHANNEL_B = 6;
+	public static final int INTAKE_ENCODER_BOTTOM_CHANNEL_A = 7;
+	public static final int INTAKE_ENCODER_BOTTOM_CHANNEL_B = 8;
 
 	/**
 	 * Ports for sensors and joysticks
@@ -175,7 +175,7 @@ public class RobotMap
 	public static final double LOW_ANGLE_CONSTANT = 0.0;
 	public static final double MED_ANGLE_CONSTANT = 0.0;
 	public static final double HIGH_ANGLE_CONSTANT = 0.0;
-	
+
 	/**
 	 * Preset auto distances
 	 * TODO: figure out actual distance
