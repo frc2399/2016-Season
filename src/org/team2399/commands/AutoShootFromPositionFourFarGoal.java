@@ -10,11 +10,10 @@ public class AutoShootFromPositionFourFarGoal extends CommandGroup
 
 	public AutoShootFromPositionFourFarGoal()
 	{
-		addSequential(new DriveAngle(-30)); // TODO: Find actual angle
-		addSequential(new DriveAtAngleDistance(-30, 9)); // TODO: determine
-															// angle and
-															// distance
-		addSequential(new DriveAngle(30)); // TODO: determine angle
+		// TODO: test/find measurements
+		addSequential(new DriveAngle(-30));
+		addSequential(new DriveAtAngleDistance(-30, 9));
+		addSequential(new DriveAngle(30));
 		addSequential(new IntakeBoulder(5, -1));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());

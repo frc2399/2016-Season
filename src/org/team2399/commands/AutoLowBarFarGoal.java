@@ -10,14 +10,13 @@ public class AutoLowBarFarGoal extends CommandGroup
 
 	public AutoLowBarFarGoal()
 	{
-		addSequential(new DriveAtAngleDistance(0, 10)); // TODO:Find actual
-														// distance // DISTANCE
+		// TODO: test/find measurements
+		addSequential(new DriveAtAngleDistance(0, 10));
 		addSequential(new DriveAtAngleDistance(0, 3.92));
 		addSequential(new DriveAngle(120));
-		addSequential(new DriveAtAngleDistance(120, 15)); // TODO: Find actual
-															// distance
-		addSequential(new DriveAngle(-60)); // TODO: Find actual angle
-		addSequential(new IntakeBoulder(5, -1)); // TODO: find actual speed/time
+		addSequential(new DriveAtAngleDistance(120, 15));
+		addSequential(new DriveAngle(-60));
+		addSequential(new IntakeBoulder(5, -1));
 
 		// Add Commands here:
 		// e.g. addSequential(new Command1());

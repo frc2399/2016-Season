@@ -5,18 +5,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoDefenseCrossDrawbridge extends CommandGroup
+public class AutoSpyBot extends CommandGroup
 {
 
-	public AutoDefenseCrossDrawbridge()
+	public AutoSpyBot()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 2));
-		addSequential(new AnglePitch(-10));
-		addParallel(new DriveAtAngleDistance(0, -1));
-		addParallel(new AnglePitch(-70));
-		addParallel(new DriveAtAngleDistance(0, 4));
-		addParallel(new AnglePitch(90));
+		addSequential(new DriveAngle(60));
+		addSequential(new DriveAtAngleDistance(60, 6));
+		addSequential(new DriveAngle(-120));
+		addSequential(new IntakeBoulder(5, -1));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

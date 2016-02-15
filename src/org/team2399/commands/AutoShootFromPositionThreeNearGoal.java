@@ -10,9 +10,9 @@ public class AutoShootFromPositionThreeNearGoal extends CommandGroup
 
 	public AutoShootFromPositionThreeNearGoal()
 	{
-		addSequential(new DriveAtAngleDistance(0, 9)); // TODO: Find actual
-														// distance
-		addSequential(new DriveAngle(45)); // TODO: Find actual angle
+		// TODO: test/find measurements
+		addSequential(new DriveAtAngleDistance(0, 9));
+		addSequential(new DriveAngle(45));
 		addSequential(new IntakeBoulder(5, -1));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());

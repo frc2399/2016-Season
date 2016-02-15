@@ -10,7 +10,7 @@ public class AutoDefenseCrossPortcullis extends CommandGroup
 
 	public AutoDefenseCrossPortcullis()
 	{
-		// TODO: test
+		// TODO: test/find measurements
 		addSequential(new DriveAtAngleDistance(0, 2));
 		addSequential(new IntakeBoulder(2, 1));
 		addSequential(new DriveAtAngleDistance(0, 4));

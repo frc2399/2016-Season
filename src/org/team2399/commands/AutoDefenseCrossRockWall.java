@@ -10,7 +10,7 @@ public class AutoDefenseCrossRockWall extends CommandGroup
 
 	public AutoDefenseCrossRockWall()
 	{
-		// TODO: test
+		// TODO: test/find measurements
 		addSequential(new DriveAtAngleDistance(0, 2));
 		addSequential(new DriveDistance(4));
 		addSequential(new DriveAtAngleDistance(0, 4));

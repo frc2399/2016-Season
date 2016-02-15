@@ -10,7 +10,7 @@ public class AutoShootFromPositionFiveFarGoal extends CommandGroup
 
 	public AutoShootFromPositionFiveFarGoal()
 	{
-		// TODO: Determine actual measurements
+		// TODO: test/find measurements
 		addSequential(new DriveAngle(-120));
 		addSequential(new DriveAtAngleDistance(-120, 15));
 		addSequential(new DriveAngle(60));

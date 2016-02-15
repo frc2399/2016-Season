@@ -10,11 +10,11 @@ public class AutoShootFromPositionTwoFarGoal extends CommandGroup
 
 	public AutoShootFromPositionTwoFarGoal()
 	{
-		addSequential(new DriveAngle(45)); // TODO; FIND actual angle
-		addSequential(new DriveAtAngleDistance(0, 12)); // TODO find actual
-														// distance
-		addSequential(new DriveAngle(-60)); // TODO: FIND actual angle
-		addSequential(new IntakeBoulder(5, -1)); // TODO: find actual time
+		// TODO: test/find measurements
+		addSequential(new DriveAngle(45));
+		addSequential(new DriveAtAngleDistance(0, 12));
+		addSequential(new DriveAngle(-60));
+		addSequential(new IntakeBoulder(5, -1));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
