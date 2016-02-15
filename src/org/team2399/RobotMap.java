@@ -27,6 +27,8 @@ public class RobotMap
 	public static final int INTAKE_BOTTOM_TALON_ADDRESS = 7;
 
 	public static final int PITCH_TALON_ADDRESS = 6;
+	
+	public static final 
 
 	/**
 	 * Sets the drivetrain encoder channels

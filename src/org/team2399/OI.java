@@ -44,6 +44,7 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
+	private static Button cameraSwitchButt = new JoystickButton(intakeJoy, 2399); //TODO find port
 	/**
 	 * PRESETS
 	 */
@@ -133,6 +134,10 @@ public class OI
 		double throttle = intakeJoy.getThrottle()
 				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
+	}
+	
+	public static boolean isCameraSwitchButtPressed(){
+		
 	}
 	// // CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
