@@ -1,5 +1,7 @@
 package org.team2399.commands;
 
+import org.team2399.Utility;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -11,10 +13,10 @@ public class AutoLowBarFarGoal extends CommandGroup
 	public AutoLowBarFarGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 10));
-		addSequential(new DriveAtAngleDistance(0, 3.92));
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10)));
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(3.92)));
 		addSequential(new DriveAngle(120));
-		addSequential(new DriveAtAngleDistance(120, 15));
+		addSequential(new DriveAtAngleDistance(120, Utility.feetToInches(5)));
 		addSequential(new DriveAngle(-60));
 		addSequential(new IntakeBoulder(5, -1));
 

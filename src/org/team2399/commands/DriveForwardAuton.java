@@ -1,5 +1,6 @@
 package org.team2399.commands;
 
+import org.team2399.Utility;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -10,11 +11,14 @@ public class DriveForwardAuton extends CommandGroup {
     
 	
     public  DriveForwardAuton() {
-    	addSequential(new DriveAtAngleDistance(0,10)); // TODO: Find Actual Distance
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10))); // TODO:
+																				// Find
+																				// Actual
+																				// Distance
 
         // To run multiple commands at the same time,
         // use addParallel()

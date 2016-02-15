@@ -82,8 +82,8 @@ public class RobotMap
 	 * TODO: double check drivetrain calculation
 	 */
 	public static final double INTAKE_DISTANCE_PER_PULSE = 0;
-	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = 6 * Math.PI
-			* (1 / DRIVETRAIN_ENCODER_COUNT) / 12;
+	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE
+			* (1 / DRIVETRAIN_ENCODER_COUNT);
 
 	/**
 	 * P constants

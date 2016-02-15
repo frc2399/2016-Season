@@ -1,5 +1,7 @@
 package org.team2399.commands;
 
+import org.team2399.Utility;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -12,8 +14,10 @@ public class AutoDriveForward extends CommandGroup
 	public AutoDriveForward()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 10)); // TODO: Find Actual
-														// Distance
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10))); // TODO:
+																				// Find
+																				// Actual
+		// Distance
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

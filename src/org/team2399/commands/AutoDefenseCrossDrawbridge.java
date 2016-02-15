@@ -1,5 +1,7 @@
 package org.team2399.commands;
 
+import org.team2399.Utility;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -11,11 +13,11 @@ public class AutoDefenseCrossDrawbridge extends CommandGroup
 	public AutoDefenseCrossDrawbridge()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 2));
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(2)));
 		addSequential(new AnglePitch(-10));
-		addParallel(new DriveAtAngleDistance(0, -1));
+		addParallel(new DriveAtAngleDistance(0, Utility.feetToInches(-1)));
 		addParallel(new AnglePitch(-70));
-		addParallel(new DriveAtAngleDistance(0, 4));
+		addParallel(new DriveAtAngleDistance(0, Utility.feetToInches(4)));
 		addParallel(new AnglePitch(90));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
