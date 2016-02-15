@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoShootFromPositionTwo extends CommandGroup {
+public class AutoShootFromPositionTwoNearGoal extends CommandGroup {
     
-    public  AutoShootFromPositionTwo() {
+    public  AutoShootFromPositionTwoNearGoal() {
     	addSequential(new DriveAtAngleDistance(0,9)); //TODO find actual distance
     	addSequential(new DriveAngle(45));
     	addSequential(new IntakeBoulder(5,-1)); //TODO: find actual time 
