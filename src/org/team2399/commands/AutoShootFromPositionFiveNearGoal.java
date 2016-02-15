@@ -10,6 +10,7 @@ public class AutoShootFromPositionFiveNearGoal extends CommandGroup
 
 	public AutoShootFromPositionFiveNearGoal()
 	{
+		// TODO: Determine actual measurments
 		addSequential(new DriveAtAngleDistance(0, 9));
 		addSequential(new DriveAngle(-60));
 		addSequential(new IntakeBoulder(5, -1));

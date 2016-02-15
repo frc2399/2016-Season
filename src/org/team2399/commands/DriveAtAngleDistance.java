@@ -9,12 +9,12 @@ public class DriveAtAngleDistance extends Command
 {
 	/**
 	 * creates new instance of drivetrain subsystem
-	 * variables desiredAngle and desiredDistance 
+	 * variables desiredAngle and desiredDistance
 	 */
 	private Drivetrain driveTrain = Robot.drivetrain;
 	private double desiredAngle;
 	private double desiredDistance;
-	
+
 	/**
 	 * DriveAtAngleDistance constructor
 	 * can be interrupted by other commands
@@ -44,7 +44,7 @@ public class DriveAtAngleDistance extends Command
 	protected void execute()
 	{
 		driveTrain.driveAtAngleToDistance();
-		
+
 	}
 
 	/**
@@ -52,31 +52,29 @@ public class DriveAtAngleDistance extends Command
 	 * for both angle and distance, command is finished
 	 */
 	protected boolean isFinished()
-	{ 
-		if(driveTrain.isDriveAngleFinished() == true && 
-			driveTrain.isDriveDistanceFinished() == true)
-		{ 
-			return true; 
-		}
-		else 
-		{ 
+	{
+		if (driveTrain.isDriveAngleFinished() == true
+				&& driveTrain.isDriveDistanceFinished() == true)
+		{
+			return true;
+		} else
+		{
 			return false;
 		}
-	} 
-	
+	}
 
 	@Override
 	protected void end()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void interrupted()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
