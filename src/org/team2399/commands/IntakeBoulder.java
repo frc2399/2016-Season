@@ -3,6 +3,7 @@ package org.team2399.commands;
 import org.team2399.RobotMap;
 import org.team2399.subsystems.Intake;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,20 +13,26 @@ public class IntakeBoulder extends Command
 {
 
 	/**
-	 * Take in encoder count
+	 * Fields
+	 * intake: new instance of the intake subsystem
+	 * desiredTime: how long you want the intake to run
+	 * desiredSpeed: how fast you want the intake to run
+	 * timer: timer for how long you want the intake to run
 	 */
 	private Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
+	double desiredTime;
 	double desiredSpeed;
+	private Timer timer = new Timer();
 
 	/**
-	 * takes local variable of desired position and saves value in the field
-	 * 
-	 * @param desiredSpeed
-	 *            :takes the value of the local variable and saves in the field
+	 * takes local variables of desiredTime and desiredSpeed and assigns them to field
+	 * @param desiredTime: how long you want the intake to run for
+	 * @param desiredSpeed: how fast you want the intake to run
 	 */
-	public IntakeBoulder(double desiredSpeed)
+	public IntakeBoulder(double desiredTime, double desiredSpeed)
 	{
-		this.desiredSpeed = desiredSpeed; 
+		this.desiredTime = desiredTime;
+		this.desiredSpeed = desiredSpeed;
 		requires(intake);
 		setInterruptible(true);
 
@@ -34,26 +41,42 @@ public class IntakeBoulder extends Command
 	}
 
 	/**
-	 * Called just before this Command runs the first time Sets desired position
+	 * Called just before this Command runs the first time
+	 * Starts the timer
 	 */
 	protected void initialize()
 	{
-		
+		timer.start();
 	}
 
 	/**
-	 * Called repeatedly when this Command is scheduled to run Moves to desired
-	 * position
+	 * Called repeatedly when this Command is scheduled to run
+	 * Set intake to desired speed
 	 */
 	protected void execute()
 	{
 		intake.setIntakeSpeed(desiredSpeed);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	/**
+	 * If time >= desired time, stop running the command
+	 * If time < desired time, keep running the command
+	 * If neither, stop running the command
+	 */
 	protected boolean isFinished()
 	{
-		return false;
+		if(timer.get() >= desiredTime)
+		{
+			return true;
+		}
+		else if(timer.get() < desiredTime)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	// Called once after isFinished returns true

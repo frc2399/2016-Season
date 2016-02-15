@@ -175,6 +175,12 @@ public class RobotMap
 	public static final double LOW_ANGLE_CONSTANT = 0.0;
 	public static final double MED_ANGLE_CONSTANT = 0.0;
 	public static final double HIGH_ANGLE_CONSTANT = 0.0;
+	
+	/**
+	 * Preset auto distances
+	 * TODO: figure out actual distance
+	 */
+	public static final double AUTOLINE_TO_DEFENSE_CONSTANT = 10;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
