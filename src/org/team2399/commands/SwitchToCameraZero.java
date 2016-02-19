@@ -1,22 +1,25 @@
 package org.team2399.commands;
 
 import org.team2399.Robot;
+import org.team2399.subsystems.CameraFeeds;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CameraSwitch extends Command
+public class SwitchToCameraZero extends Command
 {
+
+	private CameraFeeds camerafeeds = Robot.camerafeeds;
 	/**
 	 * Boolean to assign false to cameraSwitchButtStatus
 	 */
 	private boolean cameraSwitchButtStatus = false;
 
-	public CameraSwitch()
+	public SwitchToCameraZero()
 	{
+		requires(camerafeeds);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -42,19 +45,7 @@ public class CameraSwitch extends Command
 	protected void execute()
 	{
 
-		if (cameraSwitchButtStatus == false)
-		{
-			Robot.camServer1 = CameraServer.getInstance();
-			Robot.camServer1.setSize(100);
-			Robot.camServer1.startAutomaticCapture();
-			cameraSwitchButtStatus = true;
-		} else
-		{
-			Robot.camServer0 = CameraServer.getInstance();
-			Robot.camServer0.setSize(100);
-			Robot.camServer0.startAutomaticCapture();
-			cameraSwitchButtStatus = false;
-		}
+		camerafeeds.switchToCameraZero();
 
 	}
 

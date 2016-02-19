@@ -1,5 +1,6 @@
 package org.team2399;
 
+import org.team2399.subsystems.CameraFeeds;
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
 import org.team2399.subsystems.Pitch;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot
 	public static Drivetrain drivetrain = new Drivetrain(
 			RobotMap.DRIVETRAIN_ENCODER_COUNT);
 	public static Pitch pitch = new Pitch();
+	public static CameraFeeds camerafeeds = new CameraFeeds();
 
 	/**
 	 * Creates instance of OI for use in commands
@@ -64,13 +66,6 @@ public class Robot extends IterativeRobot
 		 * startCapture: command to start streaming the data
 		 * setQuality: command to set the quality of the data
 		 * If the computer runs into a problem, it'll return the error
-		 */
-
-		/*
-		 * camServer0 = CameraServer.getInstance();
-		 * // camServer0.setQuality(25);
-		 * camServer0.setSize(100);
-		 * camServer0.startAutomaticCapture();
 		 */
 
 	}

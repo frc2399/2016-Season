@@ -1,9 +1,10 @@
 package org.team2399;
 
 import org.team2399.commands.AnglePitch;
-import org.team2399.commands.CameraSwitch;
 import org.team2399.commands.JoyIntake;
 import org.team2399.commands.JoyPitch;
+import org.team2399.commands.SwitchToCameraOne;
+import org.team2399.commands.SwitchToCameraZero;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -48,9 +49,11 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-	private static Button cameraSwitchButt = new JoystickButton(intakeJoy, 12); // TODO
-																				// find
-																				// port
+	private static Button switchToCameraOneButt = new JoystickButton(intakeJoy,
+			5); // TODO
+	private static Button switchToCameraZeroButt = new JoystickButton(
+			intakeJoy, 6); // find
+	// port
 	/**
 	 * PRESETS
 	 */
@@ -73,7 +76,8 @@ public class OI
 	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
-	private static CameraSwitch cameraSwitch = new CameraSwitch();
+	private static SwitchToCameraZero switchToCameraZero = new SwitchToCameraZero();
+	private static SwitchToCameraOne switchToCameraOne = new SwitchToCameraOne();
 
 	/**
 	 * Sets what buttons do (OI constructor)
@@ -95,7 +99,8 @@ public class OI
 		 * stopPitchButt.whenPressed(stopSpoon);
 		 */
 
-		cameraSwitchButt.whenPressed(cameraSwitch);
+		switchToCameraOneButt.whenPressed(switchToCameraOne);
+		switchToCameraZeroButt.whenPressed(switchToCameraZero);
 	}
 
 	/**
