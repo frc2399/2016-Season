@@ -1,6 +1,7 @@
 package org.team2399;
 
 import org.team2399.commands.AnglePitch;
+import org.team2399.commands.CameraSwitch;
 import org.team2399.commands.JoyIntake;
 import org.team2399.commands.JoyPitch;
 
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI
 {
+
 	/**
 	 * DEVICES
 	 */
@@ -32,10 +34,12 @@ public class OI
 	 * Pitch buttons (preset angles)
 	 * TODO: Set actual buttons for pitch
 	 */
-	private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
-	private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
-	private static Button highPitchButt = new JoystickButton(intakeJoy, 13);
-	private static Button stopPitchButt = new JoystickButton(intakeJoy, 14);
+	/*
+	 * private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
+	 * private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
+	 * private static Button highPitchButt = new JoystickButton(intakeJoy, 13);
+	 * private static Button stopPitchButt = new JoystickButton(intakeJoy, 14);
+	 */
 
 	/**
 	 * Intake buttons
@@ -44,7 +48,9 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-	private static Button cameraSwitchButt = new JoystickButton(intakeJoy, 2399); //TODO find port
+	private static Button cameraSwitchButt = new JoystickButton(intakeJoy, 12); // TODO
+																				// find
+																				// port
 	/**
 	 * PRESETS
 	 */
@@ -67,20 +73,29 @@ public class OI
 	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
+	private static CameraSwitch cameraSwitch = new CameraSwitch();
+
 	/**
 	 * Sets what buttons do (OI constructor)
 	 */
 
+	/**
+	 * cameraSwitchButt: switches cameras when pressed
+	 */
 	public OI()
 	{
 		intakeButt.whileHeld(inSpeed);
 		outtakeButt.whileHeld(outSpeed);
 		stopButt.whenPressed(stopSpeed);
 
-		lowPitchButt.whenPressed(lowAngle);
-		medPitchButt.whenPressed(medAngle);
-		highPitchButt.whenPressed(highAngle);
-		stopPitchButt.whenPressed(stopSpoon);
+		/*
+		 * lowPitchButt.whenPressed(lowAngle);
+		 * medPitchButt.whenPressed(medAngle);
+		 * highPitchButt.whenPressed(highAngle);
+		 * stopPitchButt.whenPressed(stopSpoon);
+		 */
+
+		cameraSwitchButt.whenPressed(cameraSwitch);
 	}
 
 	/**
@@ -135,10 +150,7 @@ public class OI
 				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
-	
-	public static boolean isCameraSwitchButtPressed(){
-		
-	}
+
 	// // CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	// joystick.

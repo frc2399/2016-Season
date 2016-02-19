@@ -3,8 +3,8 @@ package org.team2399;
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
 import org.team2399.subsystems.Pitch;
-import org.team2399.OI;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -12,12 +12,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import edu.wpi.first.wpilibj.vision.USBCamera;
-import com.ni.vision.NIVision;
-import com.ni.vision.VisionException;
-import com.ni.vision.NIVision.Image;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.image.NIVisionException;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -45,15 +39,14 @@ public class Robot extends IterativeRobot
 	 */
 	Command autonomousCommand;
 	SendableChooser chooser;
-	
-	boolean cameraSwitchButtPressed = false;
-	Image img = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-	boolean isCameraOneOn = false;
-	
-	public static USBCamera cameraZero;
-	public static USBCamera cameraOne;
-	
-	public static CameraServer camServer = CameraServer.getInstance();
+
+	/**
+	 * Creates the camera
+	 */
+
+	public static CameraServer camServer0;
+
+	public static CameraServer camServer1;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -64,17 +57,22 @@ public class Robot extends IterativeRobot
 		chooser = new SendableChooser();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		
-		try {
-			cameraZero = new USBCamera("cam0"); //TODO: find actual camera name
-			cameraOne = new USBCamera("cam1");
-			cameraZero.openCamera();
-			cameraOne.openCamera();
-			cameraZero.startCapture();
-			camServer.setQuality(100);
-		} catch(VisionException e) {
-			System.out.println("VISION EXCEPTION " + e);
-		}
+
+		/**
+		 * Cameras are named for when roborio is connected
+		 * openCamera: command to open the camera
+		 * startCapture: command to start streaming the data
+		 * setQuality: command to set the quality of the data
+		 * If the computer runs into a problem, it'll return the error
+		 */
+
+		/*
+		 * camServer0 = CameraServer.getInstance();
+		 * // camServer0.setQuality(25);
+		 * camServer0.setSize(100);
+		 * camServer0.startAutomaticCapture();
+		 */
+
 	}
 
 	/**
@@ -143,10 +141,6 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
-		
-		try {
-			boolean isCameraSwitchButtPressed = OI.intakeJoy.getRawButton(RobotMap.)
-		}
 	}
 
 	/**

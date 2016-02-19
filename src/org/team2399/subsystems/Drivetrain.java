@@ -3,13 +3,11 @@ package org.team2399.subsystems;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyDrive;
 
-import com.kauailabs.navx.frc.AHRS;
-
+import edu.wpi.first.wpilibj.command.Subsystem;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -41,7 +39,7 @@ public class Drivetrain extends Subsystem
 	/**
 	 * Navx gyro (object type AHRS)
 	 */
-	private AHRS Navx = new AHRS(SPI.Port.kMXP);
+	// private AHRS Navx = new AHRS(SPI.Port.kMXP);
 
 	/**
 	 * timer for use with loops
@@ -225,7 +223,8 @@ public class Drivetrain extends Subsystem
 	 */
 	public double getCurrentAngle()
 	{
-		return Navx.getYaw();
+		// return Navx.getYaw();
+		return 0;
 	}
 
 	/**
