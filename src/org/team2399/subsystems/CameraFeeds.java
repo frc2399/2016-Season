@@ -25,13 +25,24 @@ public class CameraFeeds extends Subsystem
 
 	public CameraFeeds()
 	{
+		/*
+		 * IMAGE_U8(0), The image type is 8-bit unsigned integer grayscale.
+		 * IMAGE_U16(7), The image type is 16-bit unsigned integer grayscale.
+		 * IMAGE_I16(1), The image type is 16-bit signed integer grayscale.
+		 * IMAGE_SGL(2), The image type is 32-bit floating-point grayscale.
+		 * IMAGE_COMPLEX(3), The image type is complex.
+		 * IMAGE_RGB(4), The image type is RGB color.
+		 * IMAGE_HSL(5), The image type is HSL color.
+		 * IMAGE_RGB_U64(6), The image type is 64-bit unsigned RGB color.
+		 */
+		// consider putting this in greyscale
 		cam0 = NIVision.IMAQdxOpenCamera("cam0",
 				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		cam1 = NIVision.IMAQdxOpenCamera("cam1",
 				NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		currentCamera = cam0;
 
-		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_SGL, 0);
 		server = CameraServer.getInstance();
 		server.setQuality(25);
 
