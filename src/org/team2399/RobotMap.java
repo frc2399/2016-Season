@@ -62,18 +62,21 @@ public class RobotMap
 	 * TODO: set actual encoder counts for intake
 	 */
 	public static final int DRIVETRAIN_ENCODER_COUNT = 256;
-	public static final int INTAKE_ENCODER_COUNT = 0;
+	public static final int INTAKE_ENCODER_COUNT = 1024;
 
 	/**
-	 * Gear ratio from pitch motor to pitch device
+	 * Gear ratios
 	 */
 	public static final double PITCH_GEAR_RATIO = 18.0 / 84.0;
+	public static final double DRIVETRAIN_SPROCKET_RATIO = 20.0 / 34.0;
+	public static final double INTAKE_GEAR_RATIO = 16.0 / 1.0;
 
 	/**
 	 * Calculates the distance robot travels per rotation of encoder in feet
 	 * circumference of the wheel is in inches
 	 */
-	public static final double WHEEL_CIRCUMFERENCE = 6 * Math.PI;
+	public static final double DRIVETRAIN_WHEEL_CIRCUMFERENCE = 6 * Math.PI;
+	public static final double INTAKE_WHEEL_CIRCUMFERENCE = 1.625 * Math.PI;
 
 	/**
 	 * Finds the rotational distance of intake/drivetrain per one rotation of
@@ -81,9 +84,10 @@ public class RobotMap
 	 * TODO: set actual value of intake distance per encoder pulse
 	 * TODO: double check drivetrain calculation
 	 */
-	public static final double INTAKE_DISTANCE_PER_PULSE = 0;
-	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = WHEEL_CIRCUMFERENCE
-			* (1 / DRIVETRAIN_ENCODER_COUNT);
+	public static final double INTAKE_DISTANCE_PER_PULSE = INTAKE_WHEEL_CIRCUMFERENCE
+			* (1 / INTAKE_GEAR_RATIO) * (1 / INTAKE_ENCODER_COUNT);
+	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_CIRCUMFERENCE
+			* (1 / DRIVETRAIN_ENCODER_COUNT) * (1 / DRIVETRAIN_SPROCKET_RATIO);
 
 	/**
 	 * P constants
@@ -175,7 +179,7 @@ public class RobotMap
 	public static final double LOW_ANGLE_CONSTANT = 0.0;
 	public static final double MED_ANGLE_CONSTANT = 0.0;
 	public static final double HIGH_ANGLE_CONSTANT = 0.0;
-	
+
 	/**
 	 * Preset auto distances
 	 * TODO: figure out actual distance
