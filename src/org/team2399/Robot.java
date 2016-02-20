@@ -1,9 +1,11 @@
 package org.team2399;
 
+import org.team2399.subsystems.CameraFeeds;
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
 import org.team2399.subsystems.Pitch;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -27,17 +29,26 @@ public class Robot extends IterativeRobot
 	public static Drivetrain drivetrain = new Drivetrain(
 			RobotMap.DRIVETRAIN_ENCODER_COUNT);
 	public static Pitch pitch = new Pitch();
+	public static CameraFeeds camerafeeds = new CameraFeeds();
 
 	/**
 	 * Creates instance of OI for use in commands
 	 */
-	public static OI oi = new OI();;
+	public static OI oi = new OI();
 
 	/**
 	 * Sets the autonomous command
 	 */
 	Command autonomousCommand;
 	SendableChooser chooser;
+
+	/**
+	 * Creates the camera
+	 */
+
+	public static CameraServer camServer0;
+
+	public static CameraServer camServer1;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -48,6 +59,15 @@ public class Robot extends IterativeRobot
 		chooser = new SendableChooser();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+
+		/**
+		 * Cameras are named for when roborio is connected
+		 * openCamera: command to open the camera
+		 * startCapture: command to start streaming the data
+		 * setQuality: command to set the quality of the data
+		 * If the computer runs into a problem, it'll return the error
+		 */
+
 	}
 
 	/**
