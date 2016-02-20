@@ -1,25 +1,21 @@
 package org.team2399.commands;
 
-import org.team2399.Utility;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoLowBarFarGoal extends CommandGroup
+public class AutoShootFromPositionThreeRightGoal extends CommandGroup
 {
 
-	public AutoLowBarFarGoal()
+	public AutoShootFromPositionThreeRightGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10)));
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(3.92)));
-		addSequential(new DriveAngle(120));
-		addSequential(new DriveAtAngleDistance(120, Utility.feetToInches(5)));
+		addSequential(new DriveAtAngleDistance(0, 90));
+		addSequential(new DriveAngle(30));
+		addSequential(new DriveAtAngleDistance(30, 60));
 		addSequential(new DriveAngle(-60));
-		addSequential(new IntakeBoulder(5, -1));
-
+		addSequential(new IntakeBoulder(-1), 5);
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

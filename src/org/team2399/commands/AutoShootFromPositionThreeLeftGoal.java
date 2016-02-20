@@ -1,21 +1,21 @@
 package org.team2399.commands;
 
-import org.team2399.Utility;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoShootFromPositionThreeNearGoal extends CommandGroup
+public class AutoShootFromPositionThreeLeftGoal extends CommandGroup
 {
 
-	public AutoShootFromPositionThreeNearGoal()
+	public AutoShootFromPositionThreeLeftGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(9)));
-		addSequential(new DriveAngle(45));
-		addSequential(new IntakeBoulder(5, -1));
+		addSequential(new DriveAtAngleDistance(0, 90));
+		addSequential(new DriveAngle(-30));
+		addSequential(new DriveAtAngleDistance(-30, 55));
+		addSequential(new DriveAngle(60));
+		addSequential(new IntakeBoulder(-1), 5);
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

@@ -1,7 +1,5 @@
 package org.team2399.commands;
 
-import org.team2399.Utility;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -13,9 +11,9 @@ public class AutoShootFromPositionTwoNearGoal extends CommandGroup
 	public AutoShootFromPositionTwoNearGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(9)));
+		addSequential(new DriveAtAngleDistance(0, 120));
 		addSequential(new DriveAngle(45));
-		addSequential(new IntakeBoulder(5, -1));
+		addSequential(new IntakeBoulder(-1), 5);
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

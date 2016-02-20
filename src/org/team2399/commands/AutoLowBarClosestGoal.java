@@ -15,9 +15,10 @@ public class AutoLowBarClosestGoal extends CommandGroup
 		// TODO: test/find measurements
 		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10)));
 		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(3.92)));
+		addSequential(new DriveAtAngleDistance(0, 110));
 		addSequential(new DriveAngle(60));
-		addSequential(new DriveAtAngleDistance(60, Utility.feetToInches(9)));
-		addSequential(new IntakeBoulder(5, -1));
+		addSequential(new DriveAtAngleDistance(60, 20));
+		addSequential(new IntakeBoulder(-1), 5);
 
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
