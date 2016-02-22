@@ -180,6 +180,10 @@ public class RobotMap
 	public static final double MED_ANGLE_CONSTANT = 0.0;
 	public static final double HIGH_ANGLE_CONSTANT = 0.0;
 
+	// TODO: Set actual numbers
+	public static final double PITCH_ANGLE_REFERENCE_ROTATIONS = .5;
+	public static final double PITCH_ANGLE_REFERENCE_DEGREES = 120;
+
 	/**
 	 * Preset auto distances
 	 * TODO: figure out actual distance

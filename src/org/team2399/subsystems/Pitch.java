@@ -42,6 +42,7 @@ public class Pitch extends Subsystem
 		pitchTalon
 				.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
 		timer.start();
+		// pitchTalon.adjustRange();
 	}
 
 	/**
@@ -88,7 +89,17 @@ public class Pitch extends Subsystem
 	 */
 	public double getCurrentAngle()
 	{
-		return pitchTalon.getPosition() * 360 * RobotMap.PITCH_GEAR_RATIO;
+		return rotationsToDegrees(pitchTalon.getPosition());
+	}
+
+	public void adjustRange()
+	{
+		double nonZeroedStartUpDegrees = rotationsToDegrees(RobotMap.PITCH_ANGLE_REFERENCE_ROTATIONS
+				- pitchTalon.getPosition());
+		double zeroedStartUpDegrees = RobotMap.PITCH_ANGLE_REFERENCE_DEGREES
+				- nonZeroedStartUpDegrees;
+		double zeroedStartUpRotations = degreesToRotations(zeroedStartUpDegrees);
+		pitchTalon.setPosition(zeroedStartUpRotations);
 	}
 
 	/**
