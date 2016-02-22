@@ -5,7 +5,8 @@ import org.team2399.Utility;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Be sure to end your defense crossing with the robot as far away from the wall
+ * as you can make it (otherwise you won't be able to make the turn)
  */
 public class AutoLowBarClosestGoal extends CommandGroup
 {
@@ -15,9 +16,9 @@ public class AutoLowBarClosestGoal extends CommandGroup
 		// TODO: test/find measurements
 		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10)));
 		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(3.92)));
-		addSequential(new DriveAtAngleDistance(0, 110));
+		addSequential(new DriveAtAngleDistance(0, 120));
 		addSequential(new DriveAngle(60));
-		addSequential(new DriveAtAngleDistance(60, 20));
+		addSequential(new DriveAtAngleDistance(60, 50));
 		addSequential(new IntakeBoulder(-1), 5);
 
 		// Add Commands here:
