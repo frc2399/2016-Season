@@ -1,19 +1,22 @@
 package org.team2399.commands;
 
+import org.team2399.Utility;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoShootFromPositionThree extends CommandGroup
+public class AutoDefenseCrossMoat extends CommandGroup
 {
 
-	public AutoShootFromPositionThree()
+	public AutoDefenseCrossMoat()
 	{
-		addSequential(new DriveAtAngleDistance(0, 9)); // TODO: Find actual
-														// distance
-		addSequential(new DriveAngle(45)); // TODO: Find actual angle
-		addSequential(new IntakeBoulder(-1), 5);
+		// TODO: test/find measurements
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(2)));
+		addSequential(new DriveDistance(4));
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(2)));
+
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

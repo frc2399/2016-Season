@@ -1,31 +1,38 @@
 package org.team2399.commands;
 
+import org.team2399.Utility;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *Autonomous command for driving forward at a set distance starting at
- *an angle of 0 (straight)
+ * Autonomous command for driving forward at a set distance starting at
+ * an angle of 0 (straight)
  */
-public class AutoDriveForward extends CommandGroup {
-    
-	
-    public  AutoDriveForward() {
-    	addSequential(new DriveAtAngleDistance(0,10)); // TODO: Find Actual Distance
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+public class AutoDriveForward extends CommandGroup
+{
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+	public AutoDriveForward()
+	{
+		// TODO: test/find measurements
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10))); // TODO:
+																				// Find
+																				// Actual
+		// Distance
+		// Add Commands here:
+		// e.g. addSequential(new Command1());
+		// addSequential(new Command2());
+		// these will run in order.
 
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    }
+		// To run multiple commands at the same time,
+		// use addParallel()
+		// e.g. addParallel(new Command1());
+		// addSequential(new Command2());
+		// Command1 and Command2 will run in parallel.
+
+		// A command group will require all of the subsystems that each member
+		// would require.
+		// e.g. if Command1 requires chassis, and Command2 requires arm,
+		// a CommandGroup containing them would require both the chassis and the
+		// arm.
+	}
 }

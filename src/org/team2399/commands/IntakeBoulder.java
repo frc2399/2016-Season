@@ -3,7 +3,6 @@ package org.team2399.commands;
 import org.team2399.RobotMap;
 import org.team2399.subsystems.Intake;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -20,18 +19,20 @@ public class IntakeBoulder extends Command
 	 * timer: timer for how long you want the intake to run
 	 */
 	private Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
-	double desiredTime;
+	// double desiredTime;
 	double desiredSpeed;
-	private Timer timer = new Timer();
+
+	// private Timer timer = new Timer();
 
 	/**
-	 * takes local variables of desiredTime and desiredSpeed and assigns them to field
+	 * takes local variables of desiredTime and desiredSpeed and assigns them to
+	 * field
 	 * @param desiredTime: how long you want the intake to run for
 	 * @param desiredSpeed: how fast you want the intake to run
 	 */
-	public IntakeBoulder(double desiredTime, double desiredSpeed)
+	public IntakeBoulder(/* double desiredTime, */double desiredSpeed)
 	{
-		this.desiredTime = desiredTime;
+		// this.desiredTime = desiredTime;
 		this.desiredSpeed = desiredSpeed;
 		requires(intake);
 		setInterruptible(true);
@@ -46,7 +47,7 @@ public class IntakeBoulder extends Command
 	 */
 	protected void initialize()
 	{
-		timer.start();
+		// timer.start();
 	}
 
 	/**
@@ -65,18 +66,22 @@ public class IntakeBoulder extends Command
 	 */
 	protected boolean isFinished()
 	{
-		if(timer.get() >= desiredTime)
-		{
-			return true;
-		}
-		else if(timer.get() < desiredTime)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		// TODO: What should this return?
+		return false;
+		/*
+		 * if(timer.get() >= desiredTime)
+		 * {
+		 * return true;
+		 * }
+		 * else if(timer.get() < desiredTime)
+		 * {
+		 * return false;
+		 * }
+		 * else
+		 * {
+		 * return true;
+		 * }
+		 */
 	}
 
 	// Called once after isFinished returns true

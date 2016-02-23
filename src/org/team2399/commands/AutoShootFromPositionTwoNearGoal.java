@@ -5,14 +5,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoShootFromPositionThree extends CommandGroup
+public class AutoShootFromPositionTwoNearGoal extends CommandGroup
 {
 
-	public AutoShootFromPositionThree()
+	public AutoShootFromPositionTwoNearGoal()
 	{
-		addSequential(new DriveAtAngleDistance(0, 9)); // TODO: Find actual
-														// distance
-		addSequential(new DriveAngle(45)); // TODO: Find actual angle
+		// TODO: test/find measurements
+		addSequential(new DriveAtAngleDistance(0, 143));
+		addSequential(new DriveAngle(60));
 		addSequential(new IntakeBoulder(-1), 5);
 		// Add Commands here:
 		// e.g. addSequential(new Command1());

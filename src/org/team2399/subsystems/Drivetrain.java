@@ -45,6 +45,9 @@ public class Drivetrain extends Subsystem
 	 * timer for use with loops
 	 */
 	private Timer timer = new Timer();
+	
+	private double distancePConstant = 0.01;
+	private double anglePConstant = 0.01;
 
 	/**
 	 * Drivetrain constructor
@@ -152,7 +155,7 @@ public class Drivetrain extends Subsystem
 		if (currentTime > RobotMap.DRIVE_LOOP_HERTZ_CONSTANT)
 		{
 			double error = getLeftDesiredDistance() - getLeftPosition();
-			double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+			double pOutput = error * distancePConstant;
 			setLeftSpeed(pOutput);
 			timer.reset();
 		}
@@ -169,7 +172,7 @@ public class Drivetrain extends Subsystem
 		if (currentTime > RobotMap.DRIVE_LOOP_HERTZ_CONSTANT)
 		{
 			double error = getRightDesiredDistance() - getRightPosition();
-			double pOutput = error * RobotMap.DRIVE_P_CONSTANT;
+			double pOutput = error * distancePConstant;
 			setRightSpeed(pOutput);
 			timer.reset();
 		}
@@ -212,6 +215,26 @@ public class Drivetrain extends Subsystem
 			return false;
 		}
 	}
+	
+	/**
+	 * the units for this is inches/percent
+	 */
+	public void incrementDistancePConstant()
+	{
+		distancePConstant += 0.005;
+	}
+	
+	public void decrementDistancePConstant()
+	{
+		distancePConstant -= 0.005;
+	}
+	
+	public double getDistancePConstant()
+	{
+		return distancePConstant;
+	}
+	
+	
 
 	/**
 	 * GYRO/ANGLE METHODS
@@ -271,7 +294,7 @@ public class Drivetrain extends Subsystem
 	public void moveToAngle()
 	{
 		double pOutput = calculateAngleError()
-				* RobotMap.DRIVE_ANGLE_P_CONSTANT;
+				* anglePConstant;
 		setRightSpeed(-pOutput);
 		setLeftSpeed(pOutput);
 	}
@@ -291,6 +314,24 @@ public class Drivetrain extends Subsystem
 			return false;
 		}
 	}
+	
+	/**
+	 * the units for this is percent/degrees
+	 */
+	public void incrementAnglePConstant()
+	{
+		anglePConstant += 0.005;
+	}
+	
+	public void decrementAnglePConstant()
+	{
+		anglePConstant -= 0.005;
+	}
+	
+	public double getAnglePConstant()
+	{
+		return anglePConstant;
+	}
 
 	/**
 	 * DISTANCE + ANGLE METHODS
@@ -306,9 +347,9 @@ public class Drivetrain extends Subsystem
 		double leftDistanceError = getLeftDesiredDistance() - getLeftPosition();
 		double angleError = calculateAngleError();
 
-		double rightPOutput = rightDistanceError * RobotMap.DRIVE_P_CONSTANT;
-		double leftPOutput = leftDistanceError * RobotMap.DRIVE_P_CONSTANT;
-		double anglePOutput = angleError * RobotMap.DRIVE_ANGLE_P_CONSTANT;
+		double rightPOutput = rightDistanceError * distancePConstant;
+		double leftPOutput = leftDistanceError * distancePConstant;
+		double anglePOutput = angleError * anglePConstant;
 
 		setRightSpeed(rightPOutput * RobotMap.DRIVE_MIXED_LINEAR_CONSTANT
 				- anglePOutput * RobotMap.DRIVE_MIXED_ANGULAR_CONSTANT);
