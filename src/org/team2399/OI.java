@@ -41,8 +41,8 @@ public class OI
 	
 	  private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
 	  private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
-	  private static Button highPitchButt = new JoystickButton(intakeJoy, 13);
-	  private static Button stopPitchButt = new JoystickButton(intakeJoy, 14);
+	  private static Button highPitchButt = new JoystickButton(intakeJoy, 9);
+	  private static Button stopPitchButt = new JoystickButton(intakeJoy, 10);
 	 
 
 	/**

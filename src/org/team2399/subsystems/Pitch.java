@@ -1,12 +1,15 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
+
 import org.team2399.commands.JoyPitch;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  *
@@ -143,6 +146,8 @@ public class Pitch extends Subsystem
 	public void setPitchSpeed(double speed)
 	{
 		pitchTalon.set(speed * RobotMap.PITCH_FORWARD_CONSTANT);
+		SmartDashboard.putDouble("Encoder Pitch", pitchTalon.getPulseWidthPosition());
+		SmartDashboard.putString("Is Encoder Connected?", pitchTalon.isSensorPresent(FeedbackDevice.CtreMagEncoder_Absolute).name());
 	}
 
 	/**
