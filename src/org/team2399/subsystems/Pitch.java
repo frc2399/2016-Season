@@ -26,6 +26,8 @@ public class Pitch extends Subsystem
 	private double desiredAngle;
 	private Encoder pitchEncoder;
 	private Timer timer = new Timer();
+	
+	private double pitchAnglePConstant;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -113,10 +115,25 @@ public class Pitch extends Subsystem
 		if (currentTime > RobotMap.PITCH_LOOP_HERTZ_CONSTANT)
 		{
 			double error = getDesiredAngle() - getCurrentAngle();
-			double pOutput = error * RobotMap.PITCH_P_CONSTANT;
+			double pOutput = error * pitchAnglePConstant;
 			setPitchSpeed(pOutput);
 			timer.reset();
 		}
+	}
+	
+	public void incrementAnglePConstant()
+	{
+		pitchAnglePConstant += 0.005;
+	}
+	
+	public void decrementAnglePConstant()
+	{
+		pitchAnglePConstant -= 0.005;
+	}
+	
+	public double getAnglePConstant()
+	{
+		return pitchAnglePConstant;
 	}
 
 	/**

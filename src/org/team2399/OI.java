@@ -1,8 +1,11 @@
 package org.team2399;
 
 import org.team2399.commands.AnglePitch;
+import org.team2399.commands.DistancePConstantAdjustment;
+import org.team2399.commands.DrivetrainAnglePConstantAdjustment;
 import org.team2399.commands.JoyIntake;
 import org.team2399.commands.JoyPitch;
+import org.team2399.commands.PitchAnglePConstantAdjustment;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -44,6 +47,15 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
+	private static Button incrementDistancePConstantButt = new JoystickButton(rightJoy, 5);
+	private static Button decrementDistancePConstantButt = new JoystickButton(rightJoy, 6);
+	
+	private static Button incrementDrivetrainAnglePConstantButt = new JoystickButton(rightJoy, 3);
+	private static Button decrementDrivetrainAnglePConstantButt = new JoystickButton(rightJoy, 4);
+	
+	private static Button incrementPitchAnglePConstantButt = new JoystickButton(leftJoy, 3);
+	private static Button decrementPitchAnglePConstantButt = new JoystickButton(leftJoy, 4);
+	
 	/**
 	 * PRESETS
 	 */
@@ -66,6 +78,16 @@ public class OI
 	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
+	private static DistancePConstantAdjustment incrementDistancePConstant = new DistancePConstantAdjustment(true);
+	private static DistancePConstantAdjustment decrementDistancePConstant = new DistancePConstantAdjustment(false);
+
+
+	private static DrivetrainAnglePConstantAdjustment incrementDrivetrainAnglePConstant = new DrivetrainAnglePConstantAdjustment(true);
+	private static DrivetrainAnglePConstantAdjustment decrementDrivetrainAnglePConstant = new DrivetrainAnglePConstantAdjustment(false);
+	
+	private static PitchAnglePConstantAdjustment incrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(true);
+	private static PitchAnglePConstantAdjustment decrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(false);
+	
 	/**
 	 * Sets what buttons do (OI constructor)
 	 */
@@ -80,6 +102,18 @@ public class OI
 		medPitchButt.whenPressed(medAngle);
 		highPitchButt.whenPressed(highAngle);
 		stopPitchButt.whenPressed(stopSpoon);
+		
+		incrementDistancePConstantButt.whenPressed(incrementDistancePConstant);
+		decrementDistancePConstantButt.whenPressed(decrementDistancePConstant);
+	
+		incrementDrivetrainAnglePConstantButt.whenPressed(incrementDrivetrainAnglePConstant);
+		decrementDrivetrainAnglePConstantButt.whenPressed(decrementDrivetrainAnglePConstant);
+		
+		incrementPitchAnglePConstantButt.whenPressed(incrementPitchAnglePConstant);
+		decrementPitchAnglePConstantButt.whenPressed(decrementPitchAnglePConstant);
+
+
+	
 	}
 
 	/**
