@@ -159,6 +159,9 @@ public class RobotMap
 
 	public static final int GYRO_FORWARD_CONSTANT = 1;
 
+	public static final int RIGHT_WHISPER_SWITCH_PORT_CONSTANT = 2399; 
+	public static final int LEFT_WHISPER_SWITCH_PORT_CONSTANT = 2399;
+	//TODO figure out actual ports
 	/**
 	 * PRESETS
 	 */

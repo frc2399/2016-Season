@@ -4,6 +4,7 @@ import org.team2399.RobotMap;
 import org.team2399.commands.JoyIntake;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -32,6 +33,8 @@ public class Intake extends Subsystem
 	 */
 	private Timer timer = new Timer();
 
+	private DigitalInput rightWhisperSwitch = new DigitalInput(RobotMap.RIGHT_WHISPER_SWITCH_PORT_CONSTANT);
+	private DigitalInput leftWhisperSwitch = new DigitalInput(RobotMap.LEFT_WHISPER_SWITCH_PORT_CONSTANT);
 	/**
 	 * Takes in the encoder counts
 	 * sets channels for encoders
@@ -169,6 +172,11 @@ public class Intake extends Subsystem
 	{
 		intakeBottomTalon.set(speed * RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
 		intakeTopTalon.set(speed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
+	}
+	
+	public boolean isWhisperSwitchTriggered(){
+		return (rightWhisperSwitch.get() == true) || (leftWhisperSwitch.get() == true);
+	
 	}
 
 	/**

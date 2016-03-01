@@ -51,7 +51,12 @@ public class JoyIntake extends Command
 	// TODO: Ask why this returns true rather than false
 	protected boolean isFinished()
 	{
-		return true;
+		return intake.isWhisperSwitchTriggered(); 
+		/*TODO this currently returns true when the switch is triggered
+		 * but if we try and outtake the ball, the switch is no longer triggered and stops moving
+		 * when we try to outtake the ball, the switch starts triggered, but when it stops being triggered the intake stops moving
+		 * we need to make it so that we can outtake the ball without the intake stopping
+		*/
 	}
 
 	// Called once after isFinished returns true
