@@ -13,7 +13,7 @@ public class AutoShootFromPositionThree extends CommandGroup
 		addSequential(new DriveAtAngleDistance(0, 9)); // TODO: Find actual
 														// distance
 		addSequential(new DriveAngle(45)); // TODO: Find actual angle
-		addSequential(new IntakeBoulder(-1), 5);
+		addSequential(new AutoIntakeBoulder(-1, 5));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

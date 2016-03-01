@@ -29,7 +29,7 @@ public class JoyIntake extends Command
 		this.speed = speed;
 		requires(intake);
 	}
-
+	
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{

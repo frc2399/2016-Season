@@ -15,7 +15,7 @@ public class AutoShootFromPositionFourFarGoal extends CommandGroup
 		addSequential(new DriveAngle(-55));
 		addSequential(new DriveAtAngleDistance(-55, 132.5));
 		addSequential(new DriveAngle(60));
-		addSequential(new IntakeBoulder(-1), 5);
+		addSequential(new AutoIntakeBoulder(-1, 5));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

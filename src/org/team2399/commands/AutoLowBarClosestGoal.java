@@ -19,7 +19,7 @@ public class AutoLowBarClosestGoal extends CommandGroup
 		addSequential(new DriveAtAngleDistance(0, 120));
 		addSequential(new DriveAngle(60));
 		addSequential(new DriveAtAngleDistance(60, 50));
-		addSequential(new IntakeBoulder(-1), 5);
+		addSequential(new AutoIntakeBoulder(-1, 5));
 
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
