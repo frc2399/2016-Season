@@ -29,7 +29,7 @@ public class JoyIntake extends Command
 		this.speed = speed;
 		requires(intake);
 	}
-	
+
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
@@ -51,12 +51,16 @@ public class JoyIntake extends Command
 	// TODO: Ask why this returns true rather than false
 	protected boolean isFinished()
 	{
-		return intake.isWhisperSwitchTriggered(); 
-		/*TODO this currently returns true when the switch is triggered
-		 * but if we try and outtake the ball, the switch is no longer triggered and stops moving
-		 * when we try to outtake the ball, the switch starts triggered, but when it stops being triggered the intake stops moving
-		 * we need to make it so that we can outtake the ball without the intake stopping
-		*/
+		/*
+		 * If the speed is positive (see preset speeds in RobotMap), finish the
+		 * command. Otherwise, return false.
+		 */
+		if (speed > 0)
+		{
+			return intake.isWhisperSwitchTriggered();
+		}
+		return false;
+
 	}
 
 	// Called once after isFinished returns true
