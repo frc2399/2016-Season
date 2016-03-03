@@ -136,7 +136,10 @@ public class RobotMap
 	public static final int INTAKE_TOP_SPEED_IN_CONSTANT = 1;
 	public static final int INTAKE_BOTTOM_SPEED_IN_CONSTANT = 1;
 
-	public static final int PITCH_FORWARD_CONSTANT = -1;
+	// Replaced forward constant; used for setting whether or not the motor
+	// operates as an inverted or non-inverted one. Used due to need for soft
+	// limits
+	public static final boolean IS_PITCH_MOTOR_INVERTED = true;
 
 	/**
 	 * Joystick forward constants
@@ -159,9 +162,9 @@ public class RobotMap
 
 	public static final int GYRO_FORWARD_CONSTANT = 1;
 
-	public static final int RIGHT_WHISPER_SWITCH_PORT_CONSTANT = 2399; 
+	public static final int RIGHT_WHISPER_SWITCH_PORT_CONSTANT = 2399;
 	public static final int LEFT_WHISPER_SWITCH_PORT_CONSTANT = 2399;
-	//TODO figure out actual ports
+	// TODO figure out actual ports
 	/**
 	 * PRESETS
 	 */
@@ -192,6 +195,12 @@ public class RobotMap
 	 * TODO: figure out actual distance
 	 */
 	public static final double AUTOLINE_TO_DEFENSE_CONSTANT = 10;
+
+	/**
+	 * TODO: Find actual limits
+	 */
+	public static final double UPPER_PITCH_LIMIT = 122;
+	public static final double LOWER_PITCH_LIMIT = -30;
 
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.

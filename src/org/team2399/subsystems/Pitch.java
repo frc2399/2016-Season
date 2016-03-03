@@ -1,7 +1,6 @@
 package org.team2399.subsystems;
 
 import org.team2399.RobotMap;
-
 import org.team2399.commands.JoyPitch;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -9,7 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,7 +28,7 @@ public class Pitch extends Subsystem
 	private double desiredAngle;
 	private Encoder pitchEncoder;
 	private Timer timer = new Timer();
-	
+
 	private double pitchAnglePConstant;
 
 	// Put methods for controlling this subsystem
@@ -44,10 +43,24 @@ public class Pitch extends Subsystem
 	public Pitch()
 	{
 		pitchTalon.enableBrakeMode(true);
+
+		/*
+		 * If the constant in robot map is true, code operates under the
+		 * assumption that the motor is inverted.
+		 */
+		pitchTalon.setInverted(RobotMap.IS_PITCH_MOTOR_INVERTED);
 		pitchTalon
 				.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
 		timer.start();
+		// TODO: Running this will currently break things
 		// pitchTalon.adjustRange();
+
+		// Sets soft limits (coded in rotations that the pitch can't go past)
+		pitchTalon
+				.setReverseSoftLimit(degreesToRotations(RobotMap.LOWER_PITCH_LIMIT));
+		pitchTalon
+				.setForwardSoftLimit(degreesToRotations(RobotMap.UPPER_PITCH_LIMIT));
+
 	}
 
 	/**
@@ -123,17 +136,17 @@ public class Pitch extends Subsystem
 			timer.reset();
 		}
 	}
-	
+
 	public void incrementAnglePConstant()
 	{
 		pitchAnglePConstant += 0.005;
 	}
-	
+
 	public void decrementAnglePConstant()
 	{
 		pitchAnglePConstant -= 0.005;
 	}
-	
+
 	public double getAnglePConstant()
 	{
 		return pitchAnglePConstant;
@@ -145,9 +158,18 @@ public class Pitch extends Subsystem
 	 */
 	public void setPitchSpeed(double speed)
 	{
-		pitchTalon.set(speed * RobotMap.PITCH_FORWARD_CONSTANT);
-		SmartDashboard.putDouble("Encoder Pitch", pitchTalon.getPulseWidthPosition());
-		SmartDashboard.putString("Is Encoder Connected?", pitchTalon.isSensorPresent(FeedbackDevice.CtreMagEncoder_Absolute).name());
+		/*
+		 * No forward constant needed because we check if the motor is inverted
+		 * in the constructor (the motor does the math for us)
+		 */
+		pitchTalon.set(speed);
+		SmartDashboard.putDouble("Encoder Pitch",
+				pitchTalon.getPulseWidthPosition());
+		SmartDashboard
+				.putString(
+						"Is Encoder Connected?",
+						pitchTalon.isSensorPresent(
+								FeedbackDevice.CtreMagEncoder_Absolute).name());
 	}
 
 	/**
