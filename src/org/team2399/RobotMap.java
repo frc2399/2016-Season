@@ -53,6 +53,8 @@ public class RobotMap
 	public static final int JOYDRIVE_RIGHT_STICK_PORT = 1;
 	public static final int INTAKE_STICK_PORT = 2;
 
+	public static final int WHISKER_SWITCH_PORT_CONSTANT = 2399;
+
 	/**
 	 * DEVICE VALUES AND CALCULATION CONSTANTS
 	 */
@@ -162,9 +164,8 @@ public class RobotMap
 
 	public static final int GYRO_FORWARD_CONSTANT = 1;
 
-	public static final int RIGHT_WHISKER_SWITCH_PORT_CONSTANT = 2399;
-	public static final int LEFT_WHISKER_SWITCH_PORT_CONSTANT = 2399;
-	// TODO figure out actual ports
+	// TODO: Figure out atual ports
+
 	/**
 	 * PRESETS
 	 */

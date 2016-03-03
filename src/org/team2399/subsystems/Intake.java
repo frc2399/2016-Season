@@ -33,8 +33,9 @@ public class Intake extends Subsystem
 	 */
 	private Timer timer = new Timer();
 
-	private DigitalInput rightWhiskerSwitch = new DigitalInput(RobotMap.RIGHT_WHISKER_SWITCH_PORT_CONSTANT);
-	private DigitalInput leftWhiskerSwitch = new DigitalInput(RobotMap.LEFT_WHISKER_SWITCH_PORT_CONSTANT);
+	private DigitalInput whiskerSwitch = new DigitalInput(
+			RobotMap.WHISKER_SWITCH_PORT_CONSTANT);
+
 	/**
 	 * Takes in the encoder counts
 	 * sets channels for encoders
@@ -173,10 +174,11 @@ public class Intake extends Subsystem
 		intakeBottomTalon.set(speed * RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
 		intakeTopTalon.set(speed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
 	}
-	
-	public boolean isWhiskerSwitchTriggered(){
-		return (rightWhiskerSwitch.get() == true) || (leftWhiskerSwitch.get() == true);
-	
+
+	public boolean isWhiskerSwitchTriggered()
+	{
+		return (whiskerSwitch.get() == true);
+
 	}
 
 	/**
