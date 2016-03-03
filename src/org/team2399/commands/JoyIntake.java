@@ -57,7 +57,7 @@ public class JoyIntake extends Command
 		 */
 		if (speed > 0)
 		{
-			return intake.isWhisperSwitchTriggered();
+			return intake.isWhiskerSwitchTriggered();
 		}
 		return false;
 
