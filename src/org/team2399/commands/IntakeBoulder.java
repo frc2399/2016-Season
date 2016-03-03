@@ -66,7 +66,10 @@ public class IntakeBoulder extends Command
 	 */
 	protected boolean isFinished()
 	{
-		// TODO: What should this return?
+		if (desiredSpeed > 0)
+		{
+			return intake.isWhiskerSwitchTriggered();
+		}
 		return false;
 		/*
 		 * if(timer.get() >= desiredTime)
@@ -87,6 +90,7 @@ public class IntakeBoulder extends Command
 	// Called once after isFinished returns true
 	protected void end()
 	{
+
 	}
 
 	// Called when another command which requires one or more of the same

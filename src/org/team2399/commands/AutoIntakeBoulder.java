@@ -48,7 +48,7 @@ public class AutoIntakeBoulder extends Command
 	 */
 	protected void initialize()
 	{
-		 timer.start();
+		timer.start();
 	}
 
 	/**
@@ -68,21 +68,17 @@ public class AutoIntakeBoulder extends Command
 	protected boolean isFinished()
 	{
 		// TODO: What should this return?
-		//return false;
-		
-		  if(timer.get() >= desiredTime)
-		  {
-		  return true;
-		  }
-		  else if(timer.get() < desiredTime)
-		  {
-		  return false;
-		  }
-		  else
-		  {
-		  return true;
-		  }
-		 
+		// return false;
+
+		if (timer.get() >= desiredTime
+				|| (desiredSpeed > 0 && intake.isWhiskerSwitchTriggered()))
+		{
+			return true;
+		} else
+		{
+			return false;
+		}
+
 	}
 
 	// Called once after isFinished returns true

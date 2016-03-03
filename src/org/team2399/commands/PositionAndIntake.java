@@ -1,5 +1,7 @@
 package org.team2399.commands;
 
+import org.team2399.RobotMap;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -12,7 +14,7 @@ public class PositionAndIntake extends CommandGroup
 	{
 		// TODO: Find actual angle and preferred wait time
 		addSequential(new AnglePitch(-20));
-		addSequential(new IntakeBoulder(-1), 5);
+		addSequential(new IntakeBoulder(RobotMap.INTAKE_SPEED));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

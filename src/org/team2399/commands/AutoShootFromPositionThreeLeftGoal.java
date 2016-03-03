@@ -1,5 +1,7 @@
 package org.team2399.commands;
 
+import org.team2399.RobotMap;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -15,7 +17,7 @@ public class AutoShootFromPositionThreeLeftGoal extends CommandGroup
 		addSequential(new DriveAngle(-60));
 		addSequential(new DriveAtAngleDistance(-60, 98.5));
 		addSequential(new DriveAngle(60));
-		addSequential(new AutoIntakeBoulder(-1, 5));
+		addSequential(new AutoIntakeBoulder(RobotMap.OUTTAKE_SPEED, 5));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
