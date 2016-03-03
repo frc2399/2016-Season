@@ -5,9 +5,10 @@ import org.team2399.commands.DistancePConstantAdjustment;
 import org.team2399.commands.DrivetrainAnglePConstantAdjustment;
 import org.team2399.commands.JoyIntake;
 import org.team2399.commands.JoyPitch;
+import org.team2399.commands.PitchAnglePConstantAdjustment;
+import org.team2399.commands.PositionAndIntake;
 import org.team2399.commands.SwitchToCameraOne;
 import org.team2399.commands.SwitchToCameraZero;
-import org.team2399.commands.PitchAnglePConstantAdjustment;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -38,12 +39,14 @@ public class OI
 	 * Pitch buttons (preset angles)
 	 * TODO: Set actual buttons for pitch
 	 */
-	
-	  private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
-	  private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
-	  private static Button highPitchButt = new JoystickButton(intakeJoy, 9);
-	  private static Button stopPitchButt = new JoystickButton(intakeJoy, 10);
-	 
+
+	private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
+	private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
+	private static Button highPitchButt = new JoystickButton(intakeJoy, 9);
+	private static Button stopPitchButt = new JoystickButton(intakeJoy, 10);
+
+	private static Button automaticPitchAndIntakeButt = new JoystickButton(
+			rightJoy, 1);
 
 	/**
 	 * Intake buttons
@@ -52,27 +55,32 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-
 	private static Button switchToCameraOneButt = new JoystickButton(intakeJoy,
 			5); // TODO
 	private static Button switchToCameraZeroButt = new JoystickButton(
 			intakeJoy, 6); // find
 	// port
 
-	private static Button incrementDistancePConstantButt = new JoystickButton(rightJoy, 5);
-	private static Button decrementDistancePConstantButt = new JoystickButton(rightJoy, 6);
-	
-	private static Button incrementDrivetrainAnglePConstantButt = new JoystickButton(rightJoy, 3);
-	private static Button decrementDrivetrainAnglePConstantButt = new JoystickButton(rightJoy, 4);
-	
-	private static Button incrementPitchAnglePConstantButt = new JoystickButton(leftJoy, 3);
-	private static Button decrementPitchAnglePConstantButt = new JoystickButton(leftJoy, 4);
-	
+	private static Button incrementDistancePConstantButt = new JoystickButton(
+			rightJoy, 5);
+	private static Button decrementDistancePConstantButt = new JoystickButton(
+			rightJoy, 6);
+
+	private static Button incrementDrivetrainAnglePConstantButt = new JoystickButton(
+			rightJoy, 3);
+	private static Button decrementDrivetrainAnglePConstantButt = new JoystickButton(
+			rightJoy, 4);
+
+	private static Button incrementPitchAnglePConstantButt = new JoystickButton(
+			leftJoy, 3);
+	private static Button decrementPitchAnglePConstantButt = new JoystickButton(
+			leftJoy, 4);
 
 	/**
 	 * PRESETS
 	 */
 
+	private static PositionAndIntake positionAndIntake = new PositionAndIntake();
 	/**
 	 * Preset angles for pitch
 	 */
@@ -94,16 +102,21 @@ public class OI
 	private static SwitchToCameraZero switchToCameraZero = new SwitchToCameraZero();
 	private static SwitchToCameraOne switchToCameraOne = new SwitchToCameraOne();
 
-	private static DistancePConstantAdjustment incrementDistancePConstant = new DistancePConstantAdjustment(true);
-	private static DistancePConstantAdjustment decrementDistancePConstant = new DistancePConstantAdjustment(false);
+	private static DistancePConstantAdjustment incrementDistancePConstant = new DistancePConstantAdjustment(
+			true);
+	private static DistancePConstantAdjustment decrementDistancePConstant = new DistancePConstantAdjustment(
+			false);
 
+	private static DrivetrainAnglePConstantAdjustment incrementDrivetrainAnglePConstant = new DrivetrainAnglePConstantAdjustment(
+			true);
+	private static DrivetrainAnglePConstantAdjustment decrementDrivetrainAnglePConstant = new DrivetrainAnglePConstantAdjustment(
+			false);
 
-	private static DrivetrainAnglePConstantAdjustment incrementDrivetrainAnglePConstant = new DrivetrainAnglePConstantAdjustment(true);
-	private static DrivetrainAnglePConstantAdjustment decrementDrivetrainAnglePConstant = new DrivetrainAnglePConstantAdjustment(false);
-	
-	private static PitchAnglePConstantAdjustment incrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(true);
-	private static PitchAnglePConstantAdjustment decrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(false);
-	
+	private static PitchAnglePConstantAdjustment incrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(
+			true);
+	private static PitchAnglePConstantAdjustment decrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(
+			false);
+
 	/**
 	 * Sets what buttons do (OI constructor)
 	 */
@@ -117,21 +130,27 @@ public class OI
 		outtakeButt.whileHeld(outSpeed);
 		stopButt.whenPressed(stopSpeed);
 
+		automaticPitchAndIntakeButt.whenPressed(positionAndIntake);
+
 		switchToCameraOneButt.whenPressed(switchToCameraOne);
 		switchToCameraZeroButt.whenPressed(switchToCameraZero);
 		lowPitchButt.whenPressed(lowAngle);
 		medPitchButt.whenPressed(medAngle);
 		highPitchButt.whenPressed(highAngle);
 		stopPitchButt.whenPressed(stopSpoon);
-		
+
 		incrementDistancePConstantButt.whenPressed(incrementDistancePConstant);
 		decrementDistancePConstantButt.whenPressed(decrementDistancePConstant);
-	
-		incrementDrivetrainAnglePConstantButt.whenPressed(incrementDrivetrainAnglePConstant);
-		decrementDrivetrainAnglePConstantButt.whenPressed(decrementDrivetrainAnglePConstant);
-		
-		incrementPitchAnglePConstantButt.whenPressed(incrementPitchAnglePConstant);
-		decrementPitchAnglePConstantButt.whenPressed(decrementPitchAnglePConstant);
+
+		incrementDrivetrainAnglePConstantButt
+				.whenPressed(incrementDrivetrainAnglePConstant);
+		decrementDrivetrainAnglePConstantButt
+				.whenPressed(decrementDrivetrainAnglePConstant);
+
+		incrementPitchAnglePConstantButt
+				.whenPressed(incrementPitchAnglePConstant);
+		decrementPitchAnglePConstantButt
+				.whenPressed(decrementPitchAnglePConstant);
 
 	}
 
