@@ -1,5 +1,17 @@
 package org.team2399;
 
+import org.team2399.commands.AutoDefenseCrossDrawbridge;
+import org.team2399.commands.AutoDefenseCrossMoat;
+import org.team2399.commands.AutoDefenseCrossPortcullis;
+import org.team2399.commands.AutoDefenseCrossRockWall;
+import org.team2399.commands.AutoDriveForward;
+import org.team2399.commands.AutoShootFromPositionFiveNearGoal;
+import org.team2399.commands.AutoShootFromPositionFourFarGoal;
+import org.team2399.commands.AutoShootFromPositionFourNearGoal;
+import org.team2399.commands.AutoShootFromPositionThreeLeftGoal;
+import org.team2399.commands.AutoShootFromPositionThreeRightGoal;
+import org.team2399.commands.AutoShootFromPositionTwoFarGoal;
+import org.team2399.commands.AutoShootFromPositionTwoNearGoal;
 import org.team2399.subsystems.CameraFeeds;
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
@@ -39,8 +51,13 @@ public class Robot extends IterativeRobot
 	/**
 	 * Sets the autonomous command
 	 */
-	Command autonomousCommand;
-	SendableChooser chooser;
+	Command autonForward;
+	Command defenseCross;
+	Command positionAndGoal;
+
+	SendableChooser driveForward;
+	SendableChooser defenseChooser;
+	SendableChooser positionChooser;
 
 	/**
 	 * Creates the camera
@@ -56,9 +73,39 @@ public class Robot extends IterativeRobot
 	 */
 	public void robotInit()
 	{
-		chooser = new SendableChooser();
+		driveForward = new SendableChooser();
+		defenseChooser = new SendableChooser();
+		positionChooser = new SendableChooser();
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData("Drive Forward", driveForward);
+		SmartDashboard.putData("Defense Cross", defenseChooser);
+		SmartDashboard.putData("Position and Goal", positionChooser);
+
+		driveForward.addObject("Drive to defense", new AutoDriveForward());
+
+		defenseChooser.addObject("Cross Lowbar", new AutoDriveForward());
+		defenseChooser.addObject("Cross Drawbridge",
+				new AutoDefenseCrossDrawbridge());
+		defenseChooser.addObject("Cross Moat", new AutoDefenseCrossMoat());
+		defenseChooser.addObject("Cross Portcullis",
+				new AutoDefenseCrossPortcullis());
+		defenseChooser.addObject("Cross RockWall",
+				new AutoDefenseCrossRockWall());
+
+		positionChooser.addObject("Position 5 Near Goal",
+				new AutoShootFromPositionFiveNearGoal());
+		positionChooser.addObject("Position 4 Far Goal",
+				new AutoShootFromPositionFourFarGoal());
+		positionChooser.addObject("Position 4 Near Goal",
+				new AutoShootFromPositionFourNearGoal());
+		positionChooser.addObject("Position 3 Left Goal",
+				new AutoShootFromPositionThreeLeftGoal());
+		positionChooser.addObject("Position 3 Right Goal",
+				new AutoShootFromPositionThreeRightGoal());
+		positionChooser.addObject("Position 2 Far Goal",
+				new AutoShootFromPositionTwoFarGoal());
+		positionChooser.addObject("Position 2 Near Goal",
+				new AutoShootFromPositionTwoNearGoal());
 
 		/**
 		 * Cameras are named for when roborio is connected
@@ -98,7 +145,9 @@ public class Robot extends IterativeRobot
 	 */
 	public void autonomousInit()
 	{
-		autonomousCommand = (Command) chooser.getSelected();
+		autonForward = (Command) driveForward.getSelected();
+		defenseCross = (Command) defenseChooser.getSelected();
+		positionAndGoal = (Command) positionChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -108,8 +157,13 @@ public class Robot extends IterativeRobot
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		if (autonForward != null)
+			autonForward.start();
+		if (autonForward.isRunning() == false)
+			defenseCross.start();
+		if (defenseCross.isRunning() == false)
+			positionAndGoal.start();
+
 	}
 
 	/**
@@ -126,8 +180,13 @@ public class Robot extends IterativeRobot
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		if (autonForward != null)
+			autonForward.cancel();
+		if (defenseCross != null)
+			defenseCross.cancel();
+		if (positionAndGoal != null)
+			positionAndGoal.cancel();
+
 	}
 
 	/**
