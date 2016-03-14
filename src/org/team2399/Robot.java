@@ -1,6 +1,5 @@
 package org.team2399;
 
-import org.team2399.commands.AutoDefenseCrossDrawbridge;
 import org.team2399.commands.AutoDefenseCrossMoat;
 import org.team2399.commands.AutoDefenseCrossPortcullis;
 import org.team2399.commands.AutoDefenseCrossRockWall;
@@ -20,6 +19,7 @@ import org.team2399.subsystems.Pitch;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -55,6 +55,8 @@ public class Robot extends IterativeRobot
 	Command defenseCross;
 	Command positionAndGoal;
 
+	CommandGroup finalAuton;
+
 	SendableChooser driveForward;
 	SendableChooser defenseChooser;
 	SendableChooser positionChooser;
@@ -84,8 +86,6 @@ public class Robot extends IterativeRobot
 		driveForward.addObject("Drive to defense", new AutoDriveForward());
 
 		defenseChooser.addObject("Cross Lowbar", new AutoDriveForward());
-		defenseChooser.addObject("Cross Drawbridge",
-				new AutoDefenseCrossDrawbridge());
 		defenseChooser.addObject("Cross Moat", new AutoDefenseCrossMoat());
 		defenseChooser.addObject("Cross Portcullis",
 				new AutoDefenseCrossPortcullis());
@@ -157,12 +157,15 @@ public class Robot extends IterativeRobot
 		 */
 
 		// schedule the autonomous command (example)
+
+		finalAuton.addSequential(autonForward, 2);
+		finalAuton.addSequential(defenseCross, 7);
+		finalAuton.addSequential(positionAndGoal, 6);
+
 		if (autonForward != null)
-			autonForward.start();
-		if (autonForward.isRunning() == false)
-			defenseCross.start();
-		if (defenseCross.isRunning() == false)
-			positionAndGoal.start();
+		{
+			finalAuton.start();
+		}
 
 	}
 
@@ -181,11 +184,9 @@ public class Robot extends IterativeRobot
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		if (autonForward != null)
-			autonForward.cancel();
-		if (defenseCross != null)
-			defenseCross.cancel();
-		if (positionAndGoal != null)
-			positionAndGoal.cancel();
+		{
+			finalAuton.cancel();
+		}
 
 	}
 
