@@ -1,5 +1,6 @@
 package org.team2399.subsystems;
 
+import org.team2399.OI;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyIntake;
 
@@ -147,9 +148,15 @@ public class Intake extends Subsystem
 	 * TODO: make actual loops
 	 * @param topSpeed: desired speed
 	 */
+	
 	public void setTopIntakeSpeed(double topSpeed)
 	{
+		if (OI.isPorticullasButtPressed() == true){
+			intakeTopTalon.set(topSpeed * Math.abs(RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT));
+		}
+		else {
 		intakeTopTalon.set(topSpeed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
+		}
 	}
 
 	/**
@@ -160,8 +167,12 @@ public class Intake extends Subsystem
 	 */
 	public void setBottomIntakeSpeed(double bottomSpeed)
 	{
-		intakeBottomTalon.set(bottomSpeed
-				* RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
+		if (OI.isPorticullasButtPressed() == true){
+			intakeTopTalon.set(bottomSpeed * Math.abs(RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT));
+		}
+		else {
+		intakeTopTalon.set(bottomSpeed * RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
+		}
 	}
 
 	/**

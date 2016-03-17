@@ -76,6 +76,7 @@ public class OI
 	private static Button decrementPitchAnglePConstantButt = new JoystickButton(
 			leftJoy, 4);
 
+	private static Button porticulliusButt = new JoystickButton(intakeJoy, 3);
 	/**
 	 * PRESETS
 	 */
@@ -116,6 +117,10 @@ public class OI
 			true);
 	private static PitchAnglePConstantAdjustment decrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(
 			false);
+	
+	
+	
+	
 
 	/**
 	 * Sets what buttons do (OI constructor)
@@ -151,6 +156,8 @@ public class OI
 				.whenPressed(incrementPitchAnglePConstant);
 		decrementPitchAnglePConstantButt
 				.whenPressed(decrementPitchAnglePConstant);
+		
+		porticulliusButt.whileHeld(inSpeed); //TODO forgive me java for i have sinned
 
 	}
 
@@ -205,6 +212,10 @@ public class OI
 		double throttle = intakeJoy.getThrottle()
 				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
+	}
+	
+	public static boolean isPorticullasButtPressed(){
+		return porticulliusButt.get();
 	}
 
 	// // CREATING BUTTONS
