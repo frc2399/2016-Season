@@ -1,16 +1,7 @@
 package org.team2399;
 
-import org.team2399.commands.AutoDefenseCrossMoat;
-import org.team2399.commands.AutoDefenseCrossPortcullis;
-import org.team2399.commands.AutoDefenseCrossRockWall;
-import org.team2399.commands.AutoDriveForward;
-import org.team2399.commands.AutoShootFromPositionFiveNearGoal;
-import org.team2399.commands.AutoShootFromPositionFourFarGoal;
-import org.team2399.commands.AutoShootFromPositionFourNearGoal;
-import org.team2399.commands.AutoShootFromPositionThreeLeftGoal;
-import org.team2399.commands.AutoShootFromPositionThreeRightGoal;
-import org.team2399.commands.AutoShootFromPositionTwoFarGoal;
-import org.team2399.commands.AutoShootFromPositionTwoNearGoal;
+
+import org.team2399.commands.*;
 import org.team2399.subsystems.CameraFeeds;
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
@@ -78,6 +69,7 @@ public class Robot extends IterativeRobot
 		driveForward = new SendableChooser();
 		defenseChooser = new SendableChooser();
 		positionChooser = new SendableChooser();
+		
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Drive Forward", driveForward);
 		SmartDashboard.putData("Defense Cross", defenseChooser);
@@ -85,12 +77,18 @@ public class Robot extends IterativeRobot
 
 		driveForward.addObject("Drive to defense", new AutoDriveForward());
 
-		defenseChooser.addObject("Cross Lowbar", new AutoDriveForward());
+		defenseChooser.addObject("Cross Lowbar Only", new AutoCrossLowBar());
 		defenseChooser.addObject("Cross Moat", new AutoDefenseCrossMoat());
-		defenseChooser.addObject("Cross Portcullis",
+		defenseChooser.addObject("Cross Portcullis Only",
 				new AutoDefenseCrossPortcullis());
 		defenseChooser.addObject("Cross RockWall",
 				new AutoDefenseCrossRockWall());
+		defenseChooser.addObject("Cross Lowbar and Shoot", new AutoLowBarClosestGoal());
+		defenseChooser.addObject("Cross Ramparts Only", new AutoCrossRamparts());
+		defenseChooser.addObject("Cross Cheval de Fris Only", new AutoCrossChevalDeFrise());
+		defenseChooser.addObject("Cross Rough Terrain Only", new AutoCrossRoughTerrain());
+		defenseChooser.addObject("No Defense", new AutoStopRobot());
+		
 
 		positionChooser.addObject("Position 5 Near Goal",
 				new AutoShootFromPositionFiveNearGoal());
@@ -106,6 +104,7 @@ public class Robot extends IterativeRobot
 				new AutoShootFromPositionTwoFarGoal());
 		positionChooser.addObject("Position 2 Near Goal",
 				new AutoShootFromPositionTwoNearGoal());
+		positionChooser.addObject("Stop", new AutoStopRobot());
 
 		/**
 		 * Cameras are named for when roborio is connected
