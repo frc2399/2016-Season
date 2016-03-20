@@ -14,7 +14,7 @@ public class AutoDriveForward extends CommandGroup
 	public AutoDriveForward()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10))); // TODO:
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10), 7)); // TODO:
 																				// Find
 																				// Actual
 		// Distance
