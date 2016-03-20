@@ -3,6 +3,7 @@ package org.team2399.commands;
 import org.team2399.Robot;
 import org.team2399.subsystems.Drivetrain;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveAtAngleDistance extends Command
@@ -14,6 +15,8 @@ public class DriveAtAngleDistance extends Command
 	private Drivetrain driveTrain = Robot.drivetrain;
 	private double desiredAngle;
 	private double desiredDistance;
+	private double desiredTime;
+	private Timer timer;
 
 	/**
 	 * DriveAtAngleDistance constructor
@@ -21,11 +24,13 @@ public class DriveAtAngleDistance extends Command
 	 * @param desiredAngle: stored in field
 	 * @param desiredDistance: stored in field
 	 */
-	public DriveAtAngleDistance(double desiredAngle, double desiredDistance)
+	public DriveAtAngleDistance(double desiredAngle, double desiredDistance, double time)
 	{
 		this.desiredAngle = desiredAngle;
 		this.desiredDistance = desiredDistance;
+		this.desiredTime = time;
 		setInterruptible(true);
+		timer = new Timer();
 	}
 
 	/**
@@ -36,6 +41,7 @@ public class DriveAtAngleDistance extends Command
 		driveTrain.setDesiredAngle(desiredAngle);
 		driveTrain.setRightDesiredDistance(desiredDistance);
 		driveTrain.setLeftDesiredDistance(desiredDistance);
+		timer.start();
 	}
 
 	/**
@@ -53,8 +59,8 @@ public class DriveAtAngleDistance extends Command
 	 */
 	protected boolean isFinished()
 	{
-		if (driveTrain.isDriveAngleFinished() == true
-				&& driveTrain.isDriveDistanceFinished() == true)
+		if ((driveTrain.isDriveAngleFinished() == true
+				&& driveTrain.isDriveDistanceFinished() == true) || timer.get() > desiredTime)
 		{
 			return true;
 		} else

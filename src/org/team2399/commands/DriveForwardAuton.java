@@ -15,7 +15,7 @@ public class DriveForwardAuton extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(10))); // TODO:
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(7), 7)); // TODO:
 																				// Find
 																				// Actual
 																				// Distance

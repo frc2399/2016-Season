@@ -3,6 +3,7 @@ package org.team2399.commands;
 import org.team2399.Robot;
 import org.team2399.subsystems.Drivetrain;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -16,6 +17,8 @@ public class DriveDistance extends Command
 	 */
 	private Drivetrain driveTrain = Robot.drivetrain;
 	private double desiredDistance;
+	private double time;
+	private Timer timer = new Timer();;
 
 	/**
 	 * DriveDistance constructor
@@ -24,11 +27,13 @@ public class DriveDistance extends Command
 	 * allows command to be interrupted by other commands
 	 * @param desiredDistance: saves the value into the field
 	 */
-	public DriveDistance(double desiredDistance)
+	public DriveDistance(double desiredDistance, double time)
 	{
 		this.desiredDistance = desiredDistance;
 		requires(driveTrain);
+		this.time = time;
 		setInterruptible(true);
+		
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -41,6 +46,7 @@ public class DriveDistance extends Command
 	{
 		driveTrain.setLeftDesiredDistance(desiredDistance);
 		driveTrain.setRightDesiredDistance(desiredDistance);
+		timer.start();
 	}
 
 	/**
@@ -49,8 +55,17 @@ public class DriveDistance extends Command
 	 */
 	protected void execute()
 	{
+		
+		//System.out.println("This is how long it should be running for: " + time);
+		//System.out.println("This is the current time it has been running for: " + timer.get());
+		
+	//	if (time <= timer.get()){
 		driveTrain.moveToLeftDistance();
 		driveTrain.moveToRightDistance();
+		//} else {
+		//	driveTrain.setLeftSpeed(0);
+			//driveTrain.setRightSpeed(0);
+		//}
 	}
 
 	/**
@@ -59,6 +74,13 @@ public class DriveDistance extends Command
 	 */
 	protected boolean isFinished()
 	{
+		
+		/*if ((time <= timer.get())){
+			//return false;
+		} else {
+			return false;
+		}
+		*/
 		return driveTrain.isDriveDistanceFinished();
 	}
 
