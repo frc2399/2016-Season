@@ -149,14 +149,14 @@ public class Intake extends Subsystem
 	 * @param topSpeed: desired speed
 	 */
 	
+	public void setPositiveIntakeValues(double topSpeed){
+		intakeTopTalon.set(topSpeed * Math.abs(RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT));
+		intakeBottomTalon.set(topSpeed * Math.abs(RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT));
+	}
+	
 	public void setTopIntakeSpeed(double topSpeed)
 	{
-		if (OI.isPorticullasButtPressed() == true){
-			intakeTopTalon.set(topSpeed * Math.abs(RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT));
-		}
-		else {
 		intakeTopTalon.set(topSpeed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
-		}
 	}
 
 	/**
@@ -186,9 +186,17 @@ public class Intake extends Subsystem
 		intakeTopTalon.set(speed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
 	}
 
+	public double getTopIntakeSpeed(){
+		return intakeTopTalon.getSpeed();
+	}
+	
+	public double getBottomIntakeSpeed(){
+		return intakeBottomTalon.getSpeed();
+	}
+	
 	public boolean isWhiskerSwitchTriggered()
 	{
-		return (whiskerSwitch.get() == true);
+		return whiskerSwitch.get();
 
 	}
 

@@ -43,8 +43,28 @@ public class JoyIntake extends Command
 	 */
 	protected void execute()
 	{
-		intake.setIntakeSpeed(speed * OI.getIntakeThrottle());
-		System.out.println(speed * OI.getIntakeThrottle());
+		
+	/*	if (intake.isWhiskerSwitchTriggered() == true) //was inverted, fix before match 81
+		{
+			intake.setIntakeSpeed(speed * OI.getIntakeThrottle());
+			System.out.println(speed * OI.getIntakeThrottle());
+		}
+			else if ((OI.isOutputButtPressed() == true) && (intake.isWhiskerSwitchTriggered() == false)){
+				intake.setIntakeSpeed(-1);
+			}
+			else {
+				intake.setIntakeSpeed(0);
+			}
+			*/
+		if (speed > 0 && intake.isWhiskerSwitchTriggered() == false){ //goingn in
+			intake.setIntakeSpeed(speed);
+		}
+			else if (speed < 0){ //outtake
+			intake.setIntakeSpeed(speed);
+		} 
+			else {
+			intake.setIntakeSpeed(0);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -55,10 +75,11 @@ public class JoyIntake extends Command
 		 * If the speed is positive (see preset speeds in RobotMap), finish the
 		 * command. Otherwise, return false.
 		 */
-		if (speed > 0)
+	/*	if (Math.abs(speed) > 0 || speed < 0)
 		{
 			return intake.isWhiskerSwitchTriggered();
 		}
+		*/
 		return false;
 
 	}
