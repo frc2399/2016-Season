@@ -1,5 +1,6 @@
 package org.team2399.commands;
 
+import org.team2399.Robot;
 import org.team2399.RobotMap;
 import org.team2399.subsystems.Intake;
 
@@ -18,7 +19,6 @@ public class IntakeBoulder extends Command
 	 * desiredSpeed: how fast you want the intake to run
 	 * timer: timer for how long you want the intake to run
 	 */
-	private Intake intake = new Intake(RobotMap.INTAKE_ENCODER_COUNT);
 	// double desiredTime;
 	double desiredSpeed;
 
@@ -32,9 +32,9 @@ public class IntakeBoulder extends Command
 	 */
 	public IntakeBoulder(/* double desiredTime, */double desiredSpeed)
 	{
+		requires(Robot.intake);
 		// this.desiredTime = desiredTime;
 		this.desiredSpeed = desiredSpeed;
-		requires(intake);
 		setInterruptible(true);
 
 		// Use requires() here to declare subsystem dependencies
@@ -56,7 +56,7 @@ public class IntakeBoulder extends Command
 	 */
 	protected void execute()
 	{
-		intake.setIntakeSpeed(desiredSpeed);
+		Robot.intake.setIntakeSpeed(desiredSpeed);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class IntakeBoulder extends Command
 	{
 		if (desiredSpeed > 0)
 		{
-			return intake.isWhiskerSwitchTriggered();
+			return Robot.intake.isWhiskerSwitchTriggered();
 		}
 		return false;
 		/*
