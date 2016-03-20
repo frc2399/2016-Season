@@ -7,6 +7,7 @@ import org.team2399.commands.JoyIntake;
 import org.team2399.commands.JoyPitch;
 import org.team2399.commands.PitchAnglePConstantAdjustment;
 import org.team2399.commands.PositionAndIntake;
+import org.team2399.commands.PositiveIntakeValues;
 import org.team2399.commands.SwitchToCameraOne;
 import org.team2399.commands.SwitchToCameraZero;
 
@@ -55,10 +56,10 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-	private static Button switchToCameraOneButt = new JoystickButton(intakeJoy,
-			5); // TODO
-	private static Button switchToCameraZeroButt = new JoystickButton(
-			intakeJoy, 6); // find
+//	private static Button switchToCameraOneButt = new JoystickButton(intakeJoy,
+	//		5); // TODO
+	//private static Button switchToCameraZeroButt = new JoystickButton(
+		//	intakeJoy, 6); // find
 	// port
 
 	private static Button incrementDistancePConstantButt = new JoystickButton(
@@ -101,7 +102,7 @@ public class OI
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
 	private static SwitchToCameraZero switchToCameraZero = new SwitchToCameraZero();
-	private static SwitchToCameraOne switchToCameraOne = new SwitchToCameraOne();
+//	private static SwitchToCameraOne switchToCameraOne = new SwitchToCameraOne();
 
 	private static DistancePConstantAdjustment incrementDistancePConstant = new DistancePConstantAdjustment(
 			true);
@@ -117,7 +118,7 @@ public class OI
 			true);
 	private static PitchAnglePConstantAdjustment decrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(
 			false);
-	
+	private static PositiveIntakeValues positiveIntakeValues = new PositiveIntakeValues(1);
 	
 	
 	
@@ -137,8 +138,8 @@ public class OI
 
 		automaticPitchAndIntakeButt.whenPressed(positionAndIntake);
 
-		switchToCameraOneButt.whenPressed(switchToCameraOne);
-		switchToCameraZeroButt.whenPressed(switchToCameraZero);
+	//	switchToCameraOneButt.whenPressed(switchToCameraOne);
+//		switchToCameraZeroButt.whenPressed(switchToCameraZero);
 		lowPitchButt.whenPressed(lowAngle);
 		medPitchButt.whenPressed(medAngle);
 		highPitchButt.whenPressed(highAngle);
@@ -157,7 +158,7 @@ public class OI
 		decrementPitchAnglePConstantButt
 				.whenPressed(decrementPitchAnglePConstant);
 		
-		porticulliusButt.whileHeld(inSpeed); //TODO forgive me java for i have sinned
+		porticulliusButt.whileHeld(positiveIntakeValues); 
 
 	}
 
@@ -216,6 +217,10 @@ public class OI
 	
 	public static boolean isPorticullasButtPressed(){
 		return porticulliusButt.get();
+	}
+	
+	public static boolean isOutputButtPressed(){
+		return outtakeButt.get();
 	}
 
 	// // CREATING BUTTONS
