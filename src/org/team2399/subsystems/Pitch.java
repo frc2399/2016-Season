@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -29,6 +30,8 @@ public class Pitch extends Subsystem
 	private Encoder pitchEncoder;
 	private Timer timer = new Timer();
 
+	SendableChooser supposedSpeed;
+	
 	private double pitchAnglePConstant;
 
 	// Put methods for controlling this subsystem
@@ -42,7 +45,9 @@ public class Pitch extends Subsystem
 	 */
 	public Pitch()
 	{
-		pitchTalon.enableBrakeMode(true);
+	
+  	pitchTalon.enableBrakeMode(true);
+ 
 
 		/*
 		 * If the constant in robot map is true, code operates under the
@@ -56,11 +61,11 @@ public class Pitch extends Subsystem
 		// pitchTalon.adjustRange();
 
 		// Sets soft limits (coded in rotations that the pitch can't go past)
-		pitchTalon
+/*		pitchTalon
 				.setReverseSoftLimit(degreesToRotations(RobotMap.LOWER_PITCH_LIMIT));
 		pitchTalon
 				.setForwardSoftLimit(degreesToRotations(RobotMap.UPPER_PITCH_LIMIT));
-
+*/
 	}
 
 	/**
@@ -163,14 +168,14 @@ public class Pitch extends Subsystem
 		 * in the constructor (the motor does the math for us)
 		 */
 		pitchTalon.set(speed);
-		SmartDashboard.putDouble("Encoder Pitch",
-				pitchTalon.getPulseWidthPosition());
-		SmartDashboard
-				.putString(
-						"Is Encoder Connected?",
-						pitchTalon.isSensorPresent(
-								FeedbackDevice.CtreMagEncoder_Absolute).name());
+		
+		
+		SmartDashboard.putDouble("speed", speed);
+		
+		
 	}
+	
+	
 
 	/**
 	 * Sets the default command for the subsystem

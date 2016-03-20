@@ -42,6 +42,7 @@ public class JoyPitch extends Command
 	protected void execute()
 	{
 		pitch.setPitchSpeed(-OI.getIntakeY());
+		System.out.println(-OI.getIntakeY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
