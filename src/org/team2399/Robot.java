@@ -46,6 +46,7 @@ public class Robot extends IterativeRobot
 	Command defenseCross;
 	Command positionAndGoal;
 
+	Command autoCommand;
 	CommandGroup finalAuton;
 
 	SendableChooser driveForward;
@@ -56,9 +57,9 @@ public class Robot extends IterativeRobot
 	 * Creates the camera
 	 */
 
-	public static CameraServer camServer0;
+//	public static CameraServer camServer0;
 
-	public static CameraServer camServer1;
+//	public static CameraServer camServer1;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -66,7 +67,7 @@ public class Robot extends IterativeRobot
 	 */
 	public void robotInit()
 	{
-		driveForward = new SendableChooser();
+/*		driveForward = new SendableChooser();
 		defenseChooser = new SendableChooser();
 		positionChooser = new SendableChooser();
 		
@@ -144,10 +145,11 @@ public class Robot extends IterativeRobot
 	 */
 	public void autonomousInit()
 	{
-		autonForward = (Command) driveForward.getSelected();
-		defenseCross = (Command) defenseChooser.getSelected();
-		positionAndGoal = (Command) positionChooser.getSelected();
+	//	autonForward = (Command) driveForward.getSelected();
+		//defenseCross = (Command) defenseChooser.getSelected();
+		//positionAndGoal = (Command) positionChooser.getSelected();
 
+		autoCommand = new DriveForwardAuton();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -157,15 +159,16 @@ public class Robot extends IterativeRobot
 
 		// schedule the autonomous command (example)
 
-		finalAuton.addSequential(autonForward, 2);
-		finalAuton.addSequential(defenseCross, 7);
-		finalAuton.addSequential(positionAndGoal, 6);
+	//	finalAuton.addSequential(autonForward, 2);
+		//finalAuton.addSequential(defenseCross, 7);
+	///	finalAuton.addSequential(positionAndGoal, 6);
 
-		if (autonForward != null)
+		/*if (autonForward != null)
 		{
 			finalAuton.start();
 		}
-
+*/
+		autoCommand.start();
 	}
 
 	/**
@@ -186,6 +189,8 @@ public class Robot extends IterativeRobot
 		{
 			finalAuton.cancel();
 		}
+		
+	//	camServer0.startAutomaticCapture();
 
 	}
 
