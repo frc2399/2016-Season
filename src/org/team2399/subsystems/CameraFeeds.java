@@ -14,8 +14,8 @@ public class CameraFeeds extends Subsystem
 {
 	private boolean cameraSwitchButtStatus = false;
 
-	public final int cam0 = 0;
-	public final int cam1 = 0;
+//	public final int cam0;
+//	public final int cam1;
 
 	private int currentCamera;
 	private Image frame;
@@ -36,11 +36,11 @@ public class CameraFeeds extends Subsystem
 		 * IMAGE_RGB_U64(6), The image type is 64-bit unsigned RGB color.
 		 */
 		// consider putting this in greyscale
-	//	cam0 = NIVision.IMAQdxOpenCamera("cam0",
-		//		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-	//	cam1 = NIVision.IMAQdxOpenCamera("cam1",
+		//cam0 = NIVision.IMAQdxOpenCamera("cam0",
 	//			NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-	//	currentCamera = cam0;
+		//cam1 = NIVision.IMAQdxOpenCamera("cam1",
+	//			NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+//		currentCamera = cam0;
 
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_SGL, 0);
 		server = CameraServer.getInstance();
@@ -50,13 +50,13 @@ public class CameraFeeds extends Subsystem
 
 	public void switchToCameraOne()
 	{
-		changeCam(cam1);
+	//	changeCam(cam1);
 		updateCam();
 	}
 
 	public void switchToCameraZero()
 	{
-		changeCam(cam0);
+	//	changeCam(cam0);
 		updateCam();
 	}
 

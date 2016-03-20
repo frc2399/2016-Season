@@ -45,7 +45,7 @@ public class SwitchToCameraZero extends Command
 	protected void execute()
 	{
 
-		camerafeeds.switchToCameraZero();
+	//	camerafeeds.switchToCameraZero();
 
 	}
 
