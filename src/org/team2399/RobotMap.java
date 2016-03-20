@@ -32,10 +32,10 @@ public class RobotMap
 	 * Sets the drivetrain encoder channels
 	 * TODO: set actual encoder channels
 	 */
-	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_A = 1;
-	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_B = 2;
-	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A = 3;
-	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B = 4;
+	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_A = 0;
+	public static final int DRIVETRAIN_LEFT_ENCODER_CHANNEL_B = 1;
+	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_A = 2;
+	public static final int DRIVETRAIN_RIGHT_ENCODER_CHANNEL_B = 3;
 
 	/**
 	 * Sets the intake encoder channels
@@ -53,7 +53,7 @@ public class RobotMap
 	public static final int JOYDRIVE_RIGHT_STICK_PORT = 1;
 	public static final int INTAKE_STICK_PORT = 2;
 
-	public static final int WHISKER_SWITCH_PORT_CONSTANT = 2399;
+	public static final int WHISKER_SWITCH_PORT_CONSTANT = 4;
 
 	/**
 	 * DEVICE VALUES AND CALCULATION CONSTANTS
@@ -69,7 +69,7 @@ public class RobotMap
 	/**
 	 * Gear ratios
 	 */
-	public static final double PITCH_GEAR_RATIO = 18.0 / 84.0;
+	public static final double PITCH_GEAR_RATIO = 20.0 / 84.0;
 	public static final double DRIVETRAIN_SPROCKET_RATIO = 20.0 / 34.0;
 	public static final double INTAKE_GEAR_RATIO = 16.0 / 1.0;
 
@@ -135,7 +135,7 @@ public class RobotMap
 	public static final int DRIVETRAIN_FORWARD_RIGHT_CONSTANT = -1;
 	public static final int DRIVETRAIN_FORWARD_LEFT_CONSTANT = 1;
 
-	public static final int INTAKE_TOP_SPEED_IN_CONSTANT = 1;
+	public static final int INTAKE_TOP_SPEED_IN_CONSTANT = -1;
 	public static final int INTAKE_BOTTOM_SPEED_IN_CONSTANT = 1;
 
 	// Replaced forward constant; used for setting whether or not the motor
@@ -147,8 +147,8 @@ public class RobotMap
 	 * Joystick forward constants
 	 */
 	public static final int JOYDRIVE_FORWARD_CONSTANT = -1;
-	public static final int PITCH_JOY_FORWARD_CONSTANT = -1;
-	public static final int THROTTLE_FORWARD_CONSTANT = -1;
+	public static final double PITCH_JOY_FORWARD_CONSTANT = -.5;
+	public static final int THROTTLE_FORWARD_CONSTANT = 1;
 
 	/**
 	 * Sensor forward constants
