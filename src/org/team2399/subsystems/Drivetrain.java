@@ -23,6 +23,8 @@ public class Drivetrain extends Subsystem
 	private CANTalon leftBackTalon;
 	private CANTalon rightBackTalon;
 
+	
+	private double time;
 	/**
 	 * Makes new encoders
 	 */
@@ -59,7 +61,9 @@ public class Drivetrain extends Subsystem
 	public Drivetrain(int encodercounts)
 	{
 		// creates talons
-		leftFrontTalon = new CANTalon(
+
+ 		leftFrontTalon = new CANTalon(
+ 
 				RobotMap.DRIVETRAIN_LEFTFRONT_TALON_ADDRESS);
 		rightFrontTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTFRONT_TALON_ADDRESS);
@@ -80,6 +84,7 @@ public class Drivetrain extends Subsystem
 
 		// starts the timer
 		timer.start();
+		
 	}
 
 	/**
@@ -206,14 +211,18 @@ public class Drivetrain extends Subsystem
 	 */
 	public boolean isDriveDistanceFinished()
 	{
-		if (Math.abs(calculateLeftDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT
-				&& Math.abs(calculateRightDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
+	/*	if ((Math.abs(calculateLeftDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
+				&& (Math.abs(calculateRightDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT))
 		{
 			return true;
 		} else
 		{
 			return false;
 		}
+	*/
+		return false;
+		
+	
 	}
 	
 	/**
