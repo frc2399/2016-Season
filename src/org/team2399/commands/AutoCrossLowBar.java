@@ -16,7 +16,7 @@ public class AutoCrossLowBar extends CommandGroup
 		// TODO: test/find measurements
 
 		addSequential(new AnglePitch(-15));
-		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(3.92)));
+		addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(3.92), 5));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

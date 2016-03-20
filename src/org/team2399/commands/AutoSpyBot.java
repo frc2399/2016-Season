@@ -14,7 +14,7 @@ public class AutoSpyBot extends CommandGroup
 	{
 		// TODO: test/find measurements
 		addSequential(new DriveAngle(60));
-		addSequential(new DriveAtAngleDistance(60, 6));
+		addSequential(new DriveAtAngleDistance(60, 6, 5));
 		addSequential(new DriveAngle(-120));
 		addSequential(new AutoIntakeBoulder(RobotMap.OUTTAKE_SPEED, 5));
 		// Add Commands here:

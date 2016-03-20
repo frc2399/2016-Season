@@ -9,7 +9,7 @@ public class AutoStopRobot extends CommandGroup {
     
     public  AutoStopRobot() {
     	
-    	addSequential(new DriveAtAngleDistance(0, 0));
+    	addSequential(new DriveAtAngleDistance(0, 0, 5));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

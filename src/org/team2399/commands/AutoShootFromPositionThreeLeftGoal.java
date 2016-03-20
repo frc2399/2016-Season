@@ -13,9 +13,9 @@ public class AutoShootFromPositionThreeLeftGoal extends CommandGroup
 	public AutoShootFromPositionThreeLeftGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 59));
+		addSequential(new DriveAtAngleDistance(0, 59, 5));
 		addSequential(new DriveAngle(-60));
-		addSequential(new DriveAtAngleDistance(-60, 98.5));
+		addSequential(new DriveAtAngleDistance(-60, 98.5, 5));
 		addSequential(new DriveAngle(60));
 		addSequential(new AutoIntakeBoulder(RobotMap.OUTTAKE_SPEED, 5));
 		// Add Commands here:

@@ -13,9 +13,9 @@ public class AutoShootFromPositionFourFarGoal extends CommandGroup
 	public AutoShootFromPositionFourFarGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 59));
+		addSequential(new DriveAtAngleDistance(0, 59, 5));
 		addSequential(new DriveAngle(-55));
-		addSequential(new DriveAtAngleDistance(-55, 132.5));
+		addSequential(new DriveAtAngleDistance(-55, 132.5, 5));
 		addSequential(new DriveAngle(60));
 		addSequential(new AutoIntakeBoulder(RobotMap.OUTTAKE_SPEED, 5));
 		// Add Commands here:

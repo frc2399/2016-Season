@@ -13,7 +13,7 @@ public class AutoShootFromPositionTwoNearGoal extends CommandGroup
 	public AutoShootFromPositionTwoNearGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 143));
+		addSequential(new DriveAtAngleDistance(0, 143, 5));
 		addSequential(new DriveAngle(60));
 		addSequential(new AutoIntakeBoulder(RobotMap.OUTTAKE_SPEED, 5));
 		// Add Commands here:

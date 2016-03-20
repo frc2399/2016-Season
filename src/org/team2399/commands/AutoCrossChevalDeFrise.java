@@ -14,9 +14,9 @@ public class AutoCrossChevalDeFrise extends CommandGroup {
     	//TODO check values
     	addSequential(new AnglePitch(15));
     	addSequential(new AnglePitch(-30));
-    	addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(1.25)));
+    	addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(1.25), 5));
     	addParallel(new AnglePitch(70));
-    	addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(1)));
+    	addSequential(new DriveAtAngleDistance(0, Utility.feetToInches(1), 5));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -13,9 +13,9 @@ public class AutoShootFromPositionTwoFarGoal extends CommandGroup
 	public AutoShootFromPositionTwoFarGoal()
 	{
 		// TODO: test/find measurements
-		addSequential(new DriveAtAngleDistance(0, 59));
+		addSequential(new DriveAtAngleDistance(0, 59, 5));
 		addSequential(new DriveAngle(70));
-		addSequential(new DriveAtAngleDistance(70, 197));
+		addSequential(new DriveAtAngleDistance(70, 197, 5));
 		addSequential(new DriveAngle(-35));
 		addSequential(new AutoIntakeBoulder(RobotMap.OUTTAKE_SPEED, 5));
 		// Add Commands here:
