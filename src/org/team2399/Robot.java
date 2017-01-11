@@ -2,7 +2,6 @@ package org.team2399;
 
 
 import org.team2399.commands.*;
-import org.team2399.subsystems.CameraFeeds;
 import org.team2399.subsystems.Drivetrain;
 import org.team2399.subsystems.Intake;
 import org.team2399.subsystems.Pitch;
@@ -32,8 +31,7 @@ public class Robot extends IterativeRobot
 	public static Drivetrain drivetrain = new Drivetrain(
 			RobotMap.DRIVETRAIN_ENCODER_COUNT);
 	public static Pitch pitch = new Pitch();
-	public static CameraFeeds camerafeeds = new CameraFeeds();
-
+	
 	/**
 	 * Creates instance of OI for use in commands
 	 */
