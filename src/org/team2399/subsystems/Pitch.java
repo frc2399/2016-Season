@@ -3,7 +3,8 @@ package org.team2399.subsystems;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyPitch;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -53,8 +54,8 @@ public class Pitch extends Subsystem
 		 * assumption that the motor is inverted.
 		 */
 		pitchTalon.setInverted(RobotMap.IS_PITCH_MOTOR_INVERTED);
-		pitchTalon
-				.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
+		pitchTalon.setFeedbackDevice(
+				CANTalon.FeedbackDevice.CtreMagEncoder_Absolute);
 		timer.start();
 		// TODO: Running this will currently break things
 		// pitchTalon.adjustRange();
@@ -117,11 +118,13 @@ public class Pitch extends Subsystem
 
 	public void adjustRange()
 	{
-		double nonZeroedStartUpDegrees = rotationsToDegrees(RobotMap.PITCH_ANGLE_REFERENCE_ROTATIONS
-				- pitchTalon.getPosition());
+		double nonZeroedStartUpDegrees = rotationsToDegrees(
+				RobotMap.PITCH_ANGLE_REFERENCE_ROTATIONS
+						- pitchTalon.getPosition());
 		double zeroedStartUpDegrees = RobotMap.PITCH_ANGLE_REFERENCE_DEGREES
 				- nonZeroedStartUpDegrees;
-		double zeroedStartUpRotations = degreesToRotations(zeroedStartUpDegrees);
+		double zeroedStartUpRotations = degreesToRotations(
+				zeroedStartUpDegrees);
 		pitchTalon.setPosition(zeroedStartUpRotations);
 	}
 

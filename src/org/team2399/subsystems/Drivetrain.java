@@ -3,11 +3,11 @@ package org.team2399.subsystems;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyDrive;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-//import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -23,7 +23,6 @@ public class Drivetrain extends Subsystem
 	private CANTalon leftBackTalon;
 	private CANTalon rightBackTalon;
 
-	
 	private double time;
 	/**
 	 * Makes new encoders
@@ -47,7 +46,7 @@ public class Drivetrain extends Subsystem
 	 * timer for use with loops
 	 */
 	private Timer timer = new Timer();
-	
+
 	private double distancePConstant = 0.01;
 	private double anglePConstant = 0.01;
 
@@ -62,12 +61,13 @@ public class Drivetrain extends Subsystem
 	{
 		// creates talons
 
- 		leftFrontTalon = new CANTalon(
- 
+		leftFrontTalon = new CANTalon(
+
 				RobotMap.DRIVETRAIN_LEFTFRONT_TALON_ADDRESS);
 		rightFrontTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTFRONT_TALON_ADDRESS);
-		leftBackTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFTBACK_TALON_ADDRESS);
+		leftBackTalon = new CANTalon(
+				RobotMap.DRIVETRAIN_LEFTBACK_TALON_ADDRESS);
 		rightBackTalon = new CANTalon(
 				RobotMap.DRIVETRAIN_RIGHTBACK_TALON_ADDRESS);
 
@@ -84,7 +84,7 @@ public class Drivetrain extends Subsystem
 
 		// starts the timer
 		timer.start();
-		
+
 	}
 
 	/**
@@ -211,20 +211,22 @@ public class Drivetrain extends Subsystem
 	 */
 	public boolean isDriveDistanceFinished()
 	{
-	/*	if ((Math.abs(calculateLeftDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
-				&& (Math.abs(calculateRightDistanceError()) <= RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT))
-		{
-			return true;
-		} else
-		{
-			return false;
-		}
-	*/
+		/*
+		 * if ((Math.abs(calculateLeftDistanceError()) <=
+		 * RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT)
+		 * && (Math.abs(calculateRightDistanceError()) <=
+		 * RobotMap.DRIVE_DISTANCE_ERROR_CONSTANT))
+		 * {
+		 * return true;
+		 * } else
+		 * {
+		 * return false;
+		 * }
+		 */
 		return false;
-		
-	
+
 	}
-	
+
 	/**
 	 * the units for this is inches/percent
 	 */
@@ -232,18 +234,16 @@ public class Drivetrain extends Subsystem
 	{
 		distancePConstant += 0.005;
 	}
-	
+
 	public void decrementDistancePConstant()
 	{
 		distancePConstant -= 0.005;
 	}
-	
+
 	public double getDistancePConstant()
 	{
 		return distancePConstant;
 	}
-	
-	
 
 	/**
 	 * GYRO/ANGLE METHODS
@@ -302,8 +302,7 @@ public class Drivetrain extends Subsystem
 	 */
 	public void moveToAngle()
 	{
-		double pOutput = calculateAngleError()
-				* anglePConstant;
+		double pOutput = calculateAngleError() * anglePConstant;
 		setRightSpeed(-pOutput);
 		setLeftSpeed(pOutput);
 	}
@@ -315,7 +314,8 @@ public class Drivetrain extends Subsystem
 	 */
 	public boolean isDriveAngleFinished()
 	{
-		if (Math.abs(calculateAngleError()) <= RobotMap.DRIVE_ANGLE_ERROR_CONSTANT)
+		if (Math.abs(
+				calculateAngleError()) <= RobotMap.DRIVE_ANGLE_ERROR_CONSTANT)
 		{
 			return true;
 		} else
@@ -323,7 +323,7 @@ public class Drivetrain extends Subsystem
 			return false;
 		}
 	}
-	
+
 	/**
 	 * the units for this is percent/degrees
 	 */
@@ -331,12 +331,12 @@ public class Drivetrain extends Subsystem
 	{
 		anglePConstant += 0.005;
 	}
-	
+
 	public void decrementAnglePConstant()
 	{
 		anglePConstant -= 0.005;
 	}
-	
+
 	public double getAnglePConstant()
 	{
 		return anglePConstant;
@@ -376,8 +376,8 @@ public class Drivetrain extends Subsystem
 	 */
 	public void setLeftSpeed(double leftSpeed)
 	{
-		leftFrontTalon.set(leftSpeed
-				* RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
+		leftFrontTalon
+				.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
 		leftBackTalon
 				.set(leftSpeed * RobotMap.DRIVETRAIN_FORWARD_LEFT_CONSTANT);
 	}
@@ -388,10 +388,10 @@ public class Drivetrain extends Subsystem
 	 */
 	public void setRightSpeed(double rightSpeed)
 	{
-		rightFrontTalon.set(rightSpeed
-				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
-		rightBackTalon.set(rightSpeed
-				* RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
+		rightFrontTalon
+				.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
+		rightBackTalon
+				.set(rightSpeed * RobotMap.DRIVETRAIN_FORWARD_RIGHT_CONSTANT);
 	}
 
 	/**

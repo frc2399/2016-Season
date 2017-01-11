@@ -4,7 +4,8 @@ import org.team2399.OI;
 import org.team2399.RobotMap;
 import org.team2399.commands.JoyIntake;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -148,12 +149,15 @@ public class Intake extends Subsystem
 	 * TODO: make actual loops
 	 * @param topSpeed: desired speed
 	 */
-	
-	public void setPositiveIntakeValues(double topSpeed){
-		intakeTopTalon.set(topSpeed * Math.abs(RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT));
-		intakeBottomTalon.set(topSpeed * Math.abs(RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT));
+
+	public void setPositiveIntakeValues(double topSpeed)
+	{
+		intakeTopTalon.set(
+				topSpeed * Math.abs(RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT));
+		intakeBottomTalon.set(
+				topSpeed * Math.abs(RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT));
 	}
-	
+
 	public void setTopIntakeSpeed(double topSpeed)
 	{
 		intakeTopTalon.set(topSpeed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
@@ -167,11 +171,14 @@ public class Intake extends Subsystem
 	 */
 	public void setBottomIntakeSpeed(double bottomSpeed)
 	{
-		if (OI.isPorticullasButtPressed() == true){
-			intakeTopTalon.set(bottomSpeed * Math.abs(RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT));
-		}
-		else {
-		intakeTopTalon.set(bottomSpeed * RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
+		if (OI.isPorticullasButtPressed() == true)
+		{
+			intakeTopTalon.set(bottomSpeed
+					* Math.abs(RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT));
+		} else
+		{
+			intakeTopTalon.set(
+					bottomSpeed * RobotMap.INTAKE_BOTTOM_SPEED_IN_CONSTANT);
 		}
 	}
 
@@ -186,14 +193,16 @@ public class Intake extends Subsystem
 		intakeTopTalon.set(speed * RobotMap.INTAKE_TOP_SPEED_IN_CONSTANT);
 	}
 
-	public double getTopIntakeSpeed(){
+	public double getTopIntakeSpeed()
+	{
 		return intakeTopTalon.getSpeed();
 	}
-	
-	public double getBottomIntakeSpeed(){
+
+	public double getBottomIntakeSpeed()
+	{
 		return intakeBottomTalon.getSpeed();
 	}
-	
+
 	public boolean isWhiskerSwitchTriggered()
 	{
 		return whiskerSwitch.get();
