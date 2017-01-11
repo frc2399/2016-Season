@@ -8,8 +8,6 @@ import org.team2399.commands.JoyPitch;
 import org.team2399.commands.PitchAnglePConstantAdjustment;
 import org.team2399.commands.PositionAndIntake;
 import org.team2399.commands.PositiveIntakeValues;
-import org.team2399.commands.SwitchToCameraOne;
-import org.team2399.commands.SwitchToCameraZero;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -34,7 +32,8 @@ public class OI
 	private static Joystick rightJoy = new Joystick(
 			RobotMap.JOYDRIVE_RIGHT_STICK_PORT);
 
-	private static Joystick intakeJoy = new Joystick(RobotMap.INTAKE_STICK_PORT);
+	private static Joystick intakeJoy = new Joystick(
+			RobotMap.INTAKE_STICK_PORT);
 
 	/**
 	 * Pitch buttons (preset angles)
@@ -56,10 +55,11 @@ public class OI
 	private static Button outtakeButt = new JoystickButton(intakeJoy, 2);
 	private static Button stopButt = new JoystickButton(intakeJoy, 10);
 
-//	private static Button switchToCameraOneButt = new JoystickButton(intakeJoy,
-	//		5); // TODO
-	//private static Button switchToCameraZeroButt = new JoystickButton(
-		//	intakeJoy, 6); // find
+	// private static Button switchToCameraOneButt = new
+	// JoystickButton(intakeJoy,
+	// 5); // TODO
+	// private static Button switchToCameraZeroButt = new JoystickButton(
+	// intakeJoy, 6); // find
 	// port
 
 	private static Button incrementDistancePConstantButt = new JoystickButton(
@@ -101,8 +101,8 @@ public class OI
 	private static JoyIntake outSpeed = new JoyIntake(RobotMap.OUTTAKE_SPEED);
 	private static JoyIntake stopSpeed = new JoyIntake(RobotMap.STOP_SPEED);
 
-	private static SwitchToCameraZero switchToCameraZero = new SwitchToCameraZero();
-//	private static SwitchToCameraOne switchToCameraOne = new SwitchToCameraOne();
+	// private static SwitchToCameraOne switchToCameraOne = new
+	// SwitchToCameraOne();
 
 	private static DistancePConstantAdjustment incrementDistancePConstant = new DistancePConstantAdjustment(
 			true);
@@ -118,10 +118,8 @@ public class OI
 			true);
 	private static PitchAnglePConstantAdjustment decrementPitchAnglePConstant = new PitchAnglePConstantAdjustment(
 			false);
-	private static PositiveIntakeValues positiveIntakeValues = new PositiveIntakeValues(1);
-	
-	
-	
+	private static PositiveIntakeValues positiveIntakeValues = new PositiveIntakeValues(
+			1);
 
 	/**
 	 * Sets what buttons do (OI constructor)
@@ -138,8 +136,8 @@ public class OI
 
 		automaticPitchAndIntakeButt.whenPressed(positionAndIntake);
 
-	//	switchToCameraOneButt.whenPressed(switchToCameraOne);
-//		switchToCameraZeroButt.whenPressed(switchToCameraZero);
+		// switchToCameraOneButt.whenPressed(switchToCameraOne);
+		// switchToCameraZeroButt.whenPressed(switchToCameraZero);
 		lowPitchButt.whenPressed(lowAngle);
 		medPitchButt.whenPressed(medAngle);
 		highPitchButt.whenPressed(highAngle);
@@ -157,8 +155,8 @@ public class OI
 				.whenPressed(incrementPitchAnglePConstant);
 		decrementPitchAnglePConstantButt
 				.whenPressed(decrementPitchAnglePConstant);
-		
-		porticulliusButt.whileHeld(positiveIntakeValues); 
+
+		porticulliusButt.whileHeld(positiveIntakeValues);
 
 	}
 
@@ -214,12 +212,14 @@ public class OI
 				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
-	
-	public static boolean isPorticullasButtPressed(){
+
+	public static boolean isPorticullasButtPressed()
+	{
 		return porticulliusButt.get();
 	}
-	
-	public static boolean isOutputButtPressed(){
+
+	public static boolean isOutputButtPressed()
+	{
 		return outtakeButt.get();
 	}
 
