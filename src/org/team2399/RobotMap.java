@@ -49,9 +49,12 @@ public class RobotMap
 	/**
 	 * Ports for sensors and joysticks
 	 */
-	public static final int JOYDRIVE_LEFT_STICK_PORT = 0;
-	public static final int JOYDRIVE_RIGHT_STICK_PORT = 1;
-	public static final int INTAKE_STICK_PORT = 2;
+	//public static final int JOYDRIVE_LEFT_STICK_PORT = 0;
+	//public static final int JOYDRIVE_RIGHT_STICK_PORT = 1;
+	//public static final int INTAKE_STICK_PORT = 2;
+	
+	public static final int XBOX_PORT = 0;
+	public static final int INTAKE_STICK_PORT = 1;
 
 	public static final int WHISKER_SWITCH_PORT_CONSTANT = 4;
 

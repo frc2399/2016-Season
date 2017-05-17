@@ -7,6 +7,7 @@ import org.team2399.subsystems.Intake;
 import org.team2399.subsystems.Pitch;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -51,6 +52,7 @@ public class Robot extends IterativeRobot
 	SendableChooser defenseChooser;
 	SendableChooser positionChooser;
 
+	Command rumble = new Rumble();
 	/**
 	 * Creates the camera
 	 */
@@ -188,6 +190,7 @@ public class Robot extends IterativeRobot
 			finalAuton.cancel();
 		}
 		
+		//SmartDashboard.putNumber("DS Place", DriverStation.getInstance().getLocation());
 	//	camServer0.startAutomaticCapture();
 
 	}
@@ -198,6 +201,11 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
+		
+		if(DriverStation.getInstance().getMatchTime() == 120)
+		{
+			rumble.start();
+		}
 	}
 
 	/**
