@@ -9,6 +9,7 @@ import org.team2399.subsystems.Pitch;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -53,6 +54,9 @@ public class Robot extends IterativeRobot
 	SendableChooser positionChooser;
 
 	Command rumble = new Rumble();
+	
+	Timer timey = new Timer();
+
 	/**
 	 * Creates the camera
 	 */
@@ -67,6 +71,8 @@ public class Robot extends IterativeRobot
 	 */
 	public void robotInit()
 	{
+		timey.start();
+
 /*		driveForward = new SendableChooser();
 		defenseChooser = new SendableChooser();
 		positionChooser = new SendableChooser();
@@ -149,7 +155,7 @@ public class Robot extends IterativeRobot
 		//defenseCross = (Command) defenseChooser.getSelected();
 		//positionAndGoal = (Command) positionChooser.getSelected();
 
-		autoCommand = new DriveForwardAuton();
+	//	autoCommand = new DriveForwardAuton();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -168,7 +174,7 @@ public class Robot extends IterativeRobot
 			finalAuton.start();
 		}
 */
-		autoCommand.start();
+	//	autoCommand.start();
 	}
 
 	/**
@@ -200,9 +206,9 @@ public class Robot extends IterativeRobot
 	 */
 	public void teleopPeriodic()
 	{
+		double time = timey.get();
 		Scheduler.getInstance().run();
-		
-		if(DriverStation.getInstance().getMatchTime() == 120)
+		if(time <120.0 &&  time > 119.5)
 		{
 			rumble.start();
 		}

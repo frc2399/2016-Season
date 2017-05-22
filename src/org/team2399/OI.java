@@ -38,28 +38,29 @@ public class OI
 	**/
 
 	private static XboxController xbox = new XboxController(RobotMap.XBOX_PORT);
-	private static Joystick intakeJoy = new Joystick(
-			RobotMap.INTAKE_STICK_PORT);
+	//private static Joystick intakeJoy = new Joystick(
+		//	RobotMap.INTAKE_STICK_PORT);
 
 	/**
 	 * Pitch buttons (preset angles)
 	 * TODO: Set actual buttons for pitch
 	 */
-
+	
+	/**
 	private static Button lowPitchButt = new JoystickButton(intakeJoy, 11);
 	private static Button medPitchButt = new JoystickButton(intakeJoy, 12);
 	private static Button highPitchButt = new JoystickButton(intakeJoy, 9);
 	private static Button stopPitchButt = new JoystickButton(intakeJoy, 10);
-
+	 */
 	private static Button automaticPitchAndIntakeButt = new JoystickButton(
 			xbox, 1); // A
-	private static Button porticulliusButt = new JoystickButton(xbox, 2); //B
+	//private static Button porticulliusButt = new JoystickButton(xbox, 2); //B
 
 
 	/**
 	 * Intake buttons
 	 */
-	private static Button intakeButt = new JoystickButton(xbox, 0); //X
+	private static Button intakeButt = new JoystickButton(xbox, 1); //X
 	private static Button outtakeButt = new JoystickButton(xbox, 3); //Y
 	private static Button stopButt = new JoystickButton(xbox, 4);
 
@@ -151,10 +152,12 @@ public class OI
 
 		// switchToCameraOneButt.whenPressed(switchToCameraOne);
 		// switchToCameraZeroButt.whenPressed(switchToCameraZero);
+		/**
 		lowPitchButt.whenPressed(lowAngle);
 		medPitchButt.whenPressed(medAngle);
 		highPitchButt.whenPressed(highAngle);
 		stopPitchButt.whenPressed(stopSpoon);
+		*/
 
 		/**
 		incrementDistancePConstantButt.whenPressed(incrementDistancePConstant);
@@ -171,7 +174,7 @@ public class OI
 				.whenPressed(decrementPitchAnglePConstant);
 		**/
 
-		porticulliusButt.whileHeld(positiveIntakeValues);
+		//porticulliusButt.whileHeld(positiveIntakeValues);
 
 	}
 
@@ -185,17 +188,30 @@ public class OI
 	 */
 	public static double getLeftY()
 	{
-		return xbox.getY(GenericHID.Hand.kLeft) * RobotMap.JOYDRIVE_FORWARD_CONSTANT;
+		return xbox.getY(GenericHID.Hand.kLeft) * RobotMap.JOYDRIVE_FORWARD_CONSTANT *  0.9;
 	}
 
 	public static double getRightY()
 	{
-		return xbox.getY(GenericHID.Hand.kRight) * RobotMap.JOYDRIVE_FORWARD_CONSTANT;
+		return xbox.getRawAxis(3) * RobotMap.JOYDRIVE_FORWARD_CONSTANT * 0.9;
 	}
 
 	public static double getIntakeY()
 	{
-		return intakeJoy.getY() * RobotMap.PITCH_JOY_FORWARD_CONSTANT;
+		if((xbox.getPOV() >= 0 && xbox.getPOV() <= 90) || ((xbox.getPOV() > 270 && xbox.getPOV() <= 360)))
+		{
+			return -0.5;
+		}
+		else if(xbox.getPOV() > 90 && xbox.getPOV() < 270)
+		{
+			return 0.5;
+		}
+		else 
+		{
+			return 0;
+		}
+		//return xbox.getPOV() / 270 * RobotMap.PITCH_JOY_FORWARD_CONSTANT;
+		//return intakeJoy.getY() * RobotMap.PITCH_JOY_FORWARD_CONSTANT;
 	}
 
 	/**
@@ -221,16 +237,18 @@ public class OI
 		return (throttle + 1) / 2;
 	}
 
+	/**
 	public static double getIntakeThrottle()
 	{
 		double throttle = intakeJoy.getThrottle()
 				* RobotMap.THROTTLE_FORWARD_CONSTANT;
 		return (throttle + 1) / 2;
 	}
+	*/
 
 	public static boolean isPorticullasButtPressed()
 	{
-		return porticulliusButt.get();
+		return false; //porticulliusButt.get();
 	}
 
 	public static boolean isOutputButtPressed()
@@ -248,6 +266,8 @@ public class OI
 		xbox.setRumble(GenericHID.RumbleType.kLeftRumble, left);
 		xbox.setRumble(GenericHID.RumbleType.kRightRumble, right);
 	}
+	
+	
 	// // CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	// joystick.
